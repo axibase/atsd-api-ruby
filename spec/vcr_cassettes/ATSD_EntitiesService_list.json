@@ -1,0 +1,61 @@
+{
+  "http_interactions": [
+    {
+      "request": {
+        "method": "get",
+        "uri": "http://10.211.55.9:8088/api/v1/entities",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "ATSD Ruby Client v0.12.0"
+          ],
+          "Authorization": [
+            "Basic ZGthbGFjaG92OmRtaXRyeQ=="
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": null
+        },
+        "headers": {
+          "expires": [
+            "Thu, 01-Jan-1970 00:00:00 GMT"
+          ],
+          "set-cookie": [
+            "ATSD_SESSION_ID=6a0608fkqdhxku9ufnz20vr6;Path=/"
+          ],
+          "access-control-allow-origin": [
+            "*"
+          ],
+          "access-control-allow-headers": [
+            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+          ],
+          "access-control-allow-methods": [
+            "GET, POST, PUT, PATCH, DELETE"
+          ],
+          "content-type": [
+            "application/json"
+          ],
+          "connection": [
+            "close"
+          ],
+          "server": [
+            "Jetty(6.1.x)"
+          ]
+        },
+        "body": {
+          "encoding": "ASCII-8BIT",
+          "string": "[{\"name\":\"atsd\",\"enabled\":true,\"lastInsertTime\":1428307909632},{\"name\":\"ubuntu\",\"enabled\":true,\"lastInsertTime\":1428307911000}]"
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 06 Apr 2015 08:11:53 GMT"
+    }
+  ],
+  "recorded_with": "VCR 2.9.3"
+}

@@ -1,0 +1,61 @@
+{
+  "http_interactions": [
+    {
+      "request": {
+        "method": "post",
+        "uri": "http://10.211.55.9:8088/api/v1/series/csv/ubuntu?q=ats&w=vcx",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "time,value\n11428654811000,53142\n1428654812000,53342\n428654813000,53242\n"
+        },
+        "headers": {
+          "User-Agent": [
+            "ATSD Ruby Client v0.15.0"
+          ],
+          "Authorization": [
+            "Basic ZGthbGFjaG92OmRtaXRyeQ=="
+          ],
+          "Content-Type": [
+            "text/csv"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": null
+        },
+        "headers": {
+          "expires": [
+            "Thu, 01-Jan-1970 00:00:00 GMT"
+          ],
+          "set-cookie": [
+            "ATSD_SESSION_ID=1dtvvw7opi7b53cny1aanijb7;Path=/"
+          ],
+          "access-control-allow-origin": [
+            "*"
+          ],
+          "access-control-allow-headers": [
+            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+          ],
+          "access-control-allow-methods": [
+            "GET, POST, PUT, PATCH, DELETE"
+          ],
+          "connection": [
+            "close"
+          ],
+          "server": [
+            "Jetty(6.1.x)"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": ""
+        },
+        "http_version": null
+      },
+      "recorded_at": "Fri, 10 Apr 2015 09:40:31 GMT"
+    }
+  ],
+  "recorded_with": "VCR 2.9.3"
+}

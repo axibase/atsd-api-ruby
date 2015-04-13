@@ -1,0 +1,64 @@
+{
+  "http_interactions": [
+    {
+      "request": {
+        "method": "post",
+        "uri": "http://10.211.55.9:8088/api/v1/series",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"queries\":[{\"entity\":\"ubuntu\",\"metric\":\"meminfo.active\",\"startTime\":1427885974000,\"endTime\":1427885975000,\"requestId\":\"query_0\"},{\"entity\":\"ubuntu\",\"metric\":\"meminfo.active\",\"startTime\":1427885974100,\"endTime\":1427885975100,\"requestId\":\"query_1\"}]}"
+        },
+        "headers": {
+          "User-Agent": [
+            "ATSD Ruby Client v0.12.0"
+          ],
+          "Authorization": [
+            "Basic ZGthbGFjaG92OmRtaXRyeQ=="
+          ],
+          "Content-Type": [
+            "application/json"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": null
+        },
+        "headers": {
+          "expires": [
+            "Thu, 01-Jan-1970 00:00:00 GMT"
+          ],
+          "set-cookie": [
+            "ATSD_SESSION_ID=m620ngeu774mtrgoo3e3v6nr;Path=/"
+          ],
+          "content-type": [
+            "application/json; charset=UTF-8"
+          ],
+          "access-control-allow-origin": [
+            "*"
+          ],
+          "access-control-allow-headers": [
+            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+          ],
+          "access-control-allow-methods": [
+            "GET, POST, PUT, PATCH, DELETE"
+          ],
+          "connection": [
+            "close"
+          ],
+          "server": [
+            "Jetty(6.1.x)"
+          ]
+        },
+        "body": {
+          "encoding": "ASCII-8BIT",
+          "string": "{\"series\":[{\"requestId\":\"query_0\",\"entity\":\"ubuntu\",\"metric\":\"meminfo.active\",\"tags\":{},\"type\":\"HISTORY\",\"aggregate\":{\"type\":\"DETAIL\"},\"data\":[{\"t\":1427885974000,\"v\":1.0},{\"t\":1427885975000,\"v\":444140.0}]},{\"requestId\":\"query_1\",\"entity\":\"ubuntu\",\"metric\":\"meminfo.active\",\"tags\":{},\"type\":\"HISTORY\",\"aggregate\":{\"type\":\"DETAIL\"},\"data\":[{\"t\":1427885975000,\"v\":444140.0}]}]}"
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 06 Apr 2015 08:11:53 GMT"
+    }
+  ],
+  "recorded_with": "VCR 2.9.3"
+}

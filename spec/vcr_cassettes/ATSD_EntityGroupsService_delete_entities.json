@@ -1,0 +1,559 @@
+{
+  "http_interactions": [
+    {
+      "request": {
+        "method": "put",
+        "uri": "http://10.211.55.9:8088/api/v1/entity-groups/uuu",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"name\":\"uuu\"}"
+        },
+        "headers": {
+          "User-Agent": [
+            "ATSD Ruby Client v0.12.0"
+          ],
+          "Authorization": [
+            "Basic ZGthbGFjaG92OmRtaXRyeQ=="
+          ],
+          "Content-Type": [
+            "application/json"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": null
+        },
+        "headers": {
+          "expires": [
+            "Thu, 01-Jan-1970 00:00:00 GMT"
+          ],
+          "set-cookie": [
+            "ATSD_SESSION_ID=fxn68gjsq42w1bc67o9qvwjrv;Path=/"
+          ],
+          "access-control-allow-origin": [
+            "*"
+          ],
+          "access-control-allow-headers": [
+            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+          ],
+          "access-control-allow-methods": [
+            "GET, POST, PUT, PATCH, DELETE"
+          ],
+          "connection": [
+            "close"
+          ],
+          "server": [
+            "Jetty(6.1.x)"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": ""
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 06 Apr 2015 12:29:32 GMT"
+    },
+    {
+      "request": {
+        "method": "patch",
+        "uri": "http://10.211.55.9:8088/api/v1/entity-groups/uuu/entities",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "[{\"action\":\"add\",\"entities\":[{\"name\":\"e4\"},{\"name\":\"e6\"}]}]"
+        },
+        "headers": {
+          "User-Agent": [
+            "ATSD Ruby Client v0.12.0"
+          ],
+          "Authorization": [
+            "Basic ZGthbGFjaG92OmRtaXRyeQ=="
+          ],
+          "Content-Type": [
+            "application/json"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": null
+        },
+        "headers": {
+          "expires": [
+            "Thu, 01-Jan-1970 00:00:00 GMT"
+          ],
+          "set-cookie": [
+            "ATSD_SESSION_ID=bz1rhfu9icsvjdbadh80pwvw;Path=/"
+          ],
+          "access-control-allow-origin": [
+            "*"
+          ],
+          "access-control-allow-headers": [
+            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+          ],
+          "access-control-allow-methods": [
+            "GET, POST, PUT, PATCH, DELETE"
+          ],
+          "connection": [
+            "close"
+          ],
+          "server": [
+            "Jetty(6.1.x)"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": ""
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 06 Apr 2015 12:29:32 GMT"
+    },
+    {
+      "request": {
+        "method": "patch",
+        "uri": "http://10.211.55.9:8088/api/v1/entity-groups/uuu/entities",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "[{\"action\":\"delete\",\"entities\":[{\"name\":\"e4\"},{\"name\":\"e6\"}]}]"
+        },
+        "headers": {
+          "User-Agent": [
+            "ATSD Ruby Client v0.12.0"
+          ],
+          "Authorization": [
+            "Basic ZGthbGFjaG92OmRtaXRyeQ=="
+          ],
+          "Content-Type": [
+            "application/json"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": null
+        },
+        "headers": {
+          "expires": [
+            "Thu, 01-Jan-1970 00:00:00 GMT"
+          ],
+          "set-cookie": [
+            "ATSD_SESSION_ID=1bt9rce4scowz1uc6doozu0c5d;Path=/"
+          ],
+          "access-control-allow-origin": [
+            "*"
+          ],
+          "access-control-allow-headers": [
+            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+          ],
+          "access-control-allow-methods": [
+            "GET, POST, PUT, PATCH, DELETE"
+          ],
+          "connection": [
+            "close"
+          ],
+          "server": [
+            "Jetty(6.1.x)"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": ""
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 06 Apr 2015 12:29:32 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "http://10.211.55.9:8088/api/v1/entity-groups/uuu/entities",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "ATSD Ruby Client v0.12.0"
+          ],
+          "Authorization": [
+            "Basic ZGthbGFjaG92OmRtaXRyeQ=="
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": null
+        },
+        "headers": {
+          "expires": [
+            "Thu, 01-Jan-1970 00:00:00 GMT"
+          ],
+          "set-cookie": [
+            "ATSD_SESSION_ID=1by2voa04770vshtrwoeluh71;Path=/"
+          ],
+          "access-control-allow-origin": [
+            "*"
+          ],
+          "access-control-allow-headers": [
+            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+          ],
+          "access-control-allow-methods": [
+            "GET, POST, PUT, PATCH, DELETE"
+          ],
+          "content-type": [
+            "application/json"
+          ],
+          "connection": [
+            "close"
+          ],
+          "server": [
+            "Jetty(6.1.x)"
+          ]
+        },
+        "body": {
+          "encoding": "ASCII-8BIT",
+          "string": "[]"
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 06 Apr 2015 12:29:32 GMT"
+    },
+    {
+      "request": {
+        "method": "delete",
+        "uri": "http://10.211.55.9:8088/api/v1/entity-groups/uuu",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "ATSD Ruby Client v0.12.0"
+          ],
+          "Authorization": [
+            "Basic ZGthbGFjaG92OmRtaXRyeQ=="
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": null
+        },
+        "headers": {
+          "expires": [
+            "Thu, 01-Jan-1970 00:00:00 GMT"
+          ],
+          "set-cookie": [
+            "ATSD_SESSION_ID=19yvibfvcdqwt2e6uz8gopbgp;Path=/"
+          ],
+          "access-control-allow-origin": [
+            "*"
+          ],
+          "access-control-allow-headers": [
+            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+          ],
+          "access-control-allow-methods": [
+            "GET, POST, PUT, PATCH, DELETE"
+          ],
+          "connection": [
+            "close"
+          ],
+          "server": [
+            "Jetty(6.1.x)"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": ""
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 06 Apr 2015 12:29:32 GMT"
+    },
+    {
+      "request": {
+        "method": "put",
+        "uri": "http://10.211.55.9:8088/api/v1/entity-groups/iii",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"name\":\"iii\"}"
+        },
+        "headers": {
+          "User-Agent": [
+            "ATSD Ruby Client v0.12.0"
+          ],
+          "Authorization": [
+            "Basic ZGthbGFjaG92OmRtaXRyeQ=="
+          ],
+          "Content-Type": [
+            "application/json"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": null
+        },
+        "headers": {
+          "expires": [
+            "Thu, 01-Jan-1970 00:00:00 GMT"
+          ],
+          "set-cookie": [
+            "ATSD_SESSION_ID=13xfixqhr7shg1c0vovve0dbm1;Path=/"
+          ],
+          "access-control-allow-origin": [
+            "*"
+          ],
+          "access-control-allow-headers": [
+            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+          ],
+          "access-control-allow-methods": [
+            "GET, POST, PUT, PATCH, DELETE"
+          ],
+          "connection": [
+            "close"
+          ],
+          "server": [
+            "Jetty(6.1.x)"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": ""
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 06 Apr 2015 12:29:32 GMT"
+    },
+    {
+      "request": {
+        "method": "patch",
+        "uri": "http://10.211.55.9:8088/api/v1/entity-groups/iii/entities",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "[{\"action\":\"add\",\"entities\":[{\"name\":\"e4\"},{\"name\":\"e6\"}]}]"
+        },
+        "headers": {
+          "User-Agent": [
+            "ATSD Ruby Client v0.12.0"
+          ],
+          "Authorization": [
+            "Basic ZGthbGFjaG92OmRtaXRyeQ=="
+          ],
+          "Content-Type": [
+            "application/json"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": null
+        },
+        "headers": {
+          "expires": [
+            "Thu, 01-Jan-1970 00:00:00 GMT"
+          ],
+          "set-cookie": [
+            "ATSD_SESSION_ID=1xxbd4r2w6cgx1g7a3ao3ay2zf;Path=/"
+          ],
+          "access-control-allow-origin": [
+            "*"
+          ],
+          "access-control-allow-headers": [
+            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+          ],
+          "access-control-allow-methods": [
+            "GET, POST, PUT, PATCH, DELETE"
+          ],
+          "connection": [
+            "close"
+          ],
+          "server": [
+            "Jetty(6.1.x)"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": ""
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 06 Apr 2015 12:29:32 GMT"
+    },
+    {
+      "request": {
+        "method": "patch",
+        "uri": "http://10.211.55.9:8088/api/v1/entity-groups/iii/entities",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "[{\"action\":\"delete\",\"entities\":[{\"name\":\"e4\"}]}]"
+        },
+        "headers": {
+          "User-Agent": [
+            "ATSD Ruby Client v0.12.0"
+          ],
+          "Authorization": [
+            "Basic ZGthbGFjaG92OmRtaXRyeQ=="
+          ],
+          "Content-Type": [
+            "application/json"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": null
+        },
+        "headers": {
+          "expires": [
+            "Thu, 01-Jan-1970 00:00:00 GMT"
+          ],
+          "set-cookie": [
+            "ATSD_SESSION_ID=9k619kd2j28afff81z067jgt;Path=/"
+          ],
+          "access-control-allow-origin": [
+            "*"
+          ],
+          "access-control-allow-headers": [
+            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+          ],
+          "access-control-allow-methods": [
+            "GET, POST, PUT, PATCH, DELETE"
+          ],
+          "connection": [
+            "close"
+          ],
+          "server": [
+            "Jetty(6.1.x)"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": ""
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 06 Apr 2015 12:29:32 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "http://10.211.55.9:8088/api/v1/entity-groups/iii/entities",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "ATSD Ruby Client v0.12.0"
+          ],
+          "Authorization": [
+            "Basic ZGthbGFjaG92OmRtaXRyeQ=="
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": null
+        },
+        "headers": {
+          "expires": [
+            "Thu, 01-Jan-1970 00:00:00 GMT"
+          ],
+          "set-cookie": [
+            "ATSD_SESSION_ID=19irpc99stolu1qcqndpvl46z1;Path=/"
+          ],
+          "access-control-allow-origin": [
+            "*"
+          ],
+          "access-control-allow-headers": [
+            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+          ],
+          "access-control-allow-methods": [
+            "GET, POST, PUT, PATCH, DELETE"
+          ],
+          "content-type": [
+            "application/json"
+          ],
+          "connection": [
+            "close"
+          ],
+          "server": [
+            "Jetty(6.1.x)"
+          ]
+        },
+        "body": {
+          "encoding": "ASCII-8BIT",
+          "string": "[{\"name\":\"e6\",\"enabled\":true}]"
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 06 Apr 2015 12:29:32 GMT"
+    },
+    {
+      "request": {
+        "method": "delete",
+        "uri": "http://10.211.55.9:8088/api/v1/entity-groups/iii",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "ATSD Ruby Client v0.12.0"
+          ],
+          "Authorization": [
+            "Basic ZGthbGFjaG92OmRtaXRyeQ=="
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": null
+        },
+        "headers": {
+          "expires": [
+            "Thu, 01-Jan-1970 00:00:00 GMT"
+          ],
+          "set-cookie": [
+            "ATSD_SESSION_ID=utyu9csz2jop1do2svshm6yde;Path=/"
+          ],
+          "access-control-allow-origin": [
+            "*"
+          ],
+          "access-control-allow-headers": [
+            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+          ],
+          "access-control-allow-methods": [
+            "GET, POST, PUT, PATCH, DELETE"
+          ],
+          "connection": [
+            "close"
+          ],
+          "server": [
+            "Jetty(6.1.x)"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": ""
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 06 Apr 2015 12:29:32 GMT"
+    }
+  ],
+  "recorded_with": "VCR 2.9.3"
+}
