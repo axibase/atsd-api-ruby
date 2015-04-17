@@ -68,8 +68,8 @@ Or install manually:
 To start using the gem you need to create an ATSD instance:
 
 ```ruby
-atsd = ATSD.new :url => '#{API_ENDPOINT}/api/v1', 
-                :basic_auth => '#{LOGIN}:#{PASSWORD}', 
+atsd = ATSD.new :url => "#{API_ENDPOINT}/api/v1", 
+                :basic_auth => "#{LOGIN}:#{PASSWORD}", 
                 :logger => true
 ```
 
