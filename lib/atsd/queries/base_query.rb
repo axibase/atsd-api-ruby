@@ -12,6 +12,22 @@ module ATSD
       @client = client
     end
 
+
+    # @!method type(type)
+    #   specifies source for underlying data
+    #   @param [String] type see {Type} for possible values
+    #   @return [self]
+
+    TO_MILLISECONDS_LAMBDA = ->(v) do
+      case v
+        when Time
+          v.to_i * 1_000
+        else
+          v.to_i
+      end
+    end
+
+
     # Build request parameters hash
     # @return [Hash]
     def to_request_hash
@@ -31,6 +47,7 @@ module ATSD
     # @raise [APIError]
     def result
       @result ||= execute
+      @result
     end
 
     protected

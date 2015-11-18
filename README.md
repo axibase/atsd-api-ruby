@@ -68,6 +68,8 @@ Or install manually:
 To start using the gem you need to create an ATSD instance:
 
 ```ruby
+require 'atsd'
+include ATSD
 atsd = ATSD.new :url => "#{API_ENDPOINT}/api/v1", 
                 :basic_auth => "#{LOGIN}:#{PASSWORD}", 
                 :logger => true
@@ -119,10 +121,10 @@ to CamelCase used in the API. For example, `end_time` property in ruby code beco
 Simple query:
 
 ```ruby
-series = atsd.series
+series_service = atsd.series_service
 # => #<ATSD::SeriesService:0x007f82a4446c08
 
-query = series.query('ubuntu', 'meminfo.memfree')
+query = series_service.query('ubuntu', 'meminfo.memfree')
 # => {:entity=>"ubuntu", :metric=>"meminfo.memfree"}
 
 query.class
@@ -154,7 +156,7 @@ s.entity
 Complex query:
 
 ```ruby
-query.aggregate(types:[ATSD::SeriesQuery::AggregateType::AVG], interval:{count:1, unit:ATSD::SeriesQuery::Interval::HOUR})
+query.aggregate(types:[SeriesQuery::AggregateType::AVG], interval:{count:1, unit:SeriesQuery::Interval::HOUR})
 # => {:entity=>"ubuntu",
 #  :metric=>"meminfo.memfree",
 #  :end_time=>1428303004000,
@@ -169,14 +171,30 @@ query.execute
 #   :data=>[{"t"=>1428300000000, "v"=>82615.05263157895}]}]
 ```
 
+Query with Versions:
+
+```ruby
+query = atsd.series_service.query("sensor-1", "temperature", Time.new(2015, 11, 17, 12, 0, 0), Time.new(2015, 11, 17, 19, 0, 0), {:versioned => true})
+query.execute
+```
+
 Data Insertion:
 
 ```ruby
-s = ATSD::Series.new
+s = Series.new
 s.entity = 'ubuntu'
 s.metric = 'meminfo.memfree'
 s.data = [ {t: 100000000, v: 512} ]
-series.insert(s)
+series_service.insert(s)
+```
+
+Inserting Series with Versions:
+
+```ruby
+sample_1 = Sample.new :t => Time.new(2015, 11, 17, 17, 0, 0), :v => 7, :version => {:status => "normal", :source => "gateway-1"}
+sample_2 = Sample.new :t => Time.new(2015, 11, 17, 18, 0, 0), :v => 17, :version => {:status => "error", :source => "gateway-1"}
+series = Series.new :entity => "sensor-1", :metric => "temperature", :data => [sample_1, sample_2]
+atsd.series_service.insert(series)
 ```
 
 **CSV Insert**
@@ -198,41 +216,41 @@ time, mem.info.memfree, meminfo.memused
 
 Inserting csv data example:
 ```ruby
-series.csv_insert('ubuntu', File.read('/path/to/data.csv'), { :user => 'beta' })
+series_service.csv_insert('ubuntu', File.read('/path/to/data.csv'), { :user => 'beta' })
 ```
 
 #### Properties Service
 
 ```ruby
-props = atsd.properties
+properties_service = atsd.properties_service
 # => #<ATSD::PropertiesService:0x007f82a456e6f8
 
-property = ATSD::Property.new
+property = Property.new
 property.entity = 'ubuntu'
 property.type = 'system'
 property.key = {"server_name":"server","user_name":"system"}
 property.tags = {"name.1": "value.1"}
-props.insert(property)
+properties_service.insert(property)
 
-props.query('ubuntu', 'system').execute
+properties_service.query('ubuntu', 'system').execute
 # => [{:type=>"system",
 #  :entity=>"ubuntu",
 #  :key=>{"server_name"=>"server", "user_name"=>"system"},
 #  :timestamp=>1428304255068,
 #  :tags=>{"name.1"=>"value.1"}}]
 
-props.delete(property)
-props.query('ubuntu', 'system').execute
+properties_service.delete(property)
+properties_service.query('ubuntu', 'system').execute
 # => []
 ```
 
 #### Alerts Service
 
 ```ruby
-a = atsd.alerts
+alerts_service = atsd.alerts_service
 # => #<ATSD::AlertsService:0x007faf7c0efdc0
 
-a.query.execute
+alerts_service.query.execute
 # => [{:value=>447660.0,
 #     :id=>4,
 #     :text_value=>"447660",
@@ -258,10 +276,10 @@ a.query.execute
 #### Metrics Service
 
 ```ruby
-ms = atsd.metrics
+metrics_service = atsd.metrics_service
 # => #<ATSD::MetricsService:0x007fbb548d9548
 
-ms.list
+metrics_service.list
 # => [{:name=>"activemq_metrics_count",
 #     :enabled=>true,
 #     :data_type=>"FLOAT",
@@ -271,6 +289,7 @@ ms.list
 #     :retention_interval=>0,
 #     :invalid_action=>"NONE",
 #     :last_insert_time=>1428328861848},
+#     :versioned=>true
 #    {:name=>"activemq_properties_count",
 #     :enabled=>true,
 #     :data_type=>"FLOAT",
@@ -278,7 +297,7 @@ ms.list
 #     :persistent=>true,
 # ...
 
-ms.entity_and_tags('df.disk_size')
+metrics_service.entity_and_tags('df.disk_size')
 # => [{:entity=>"ubuntu", :tags=>{"file_system"=>"/dev/sda1", "mount_point"=>"/"}, :last_insert_time=>1428328928000},
 #  {:entity=>"ubuntu",
 #   :tags=>{"file_system"=>"none", "mount_point"=>"/sys/fs/cgroup"},
@@ -288,24 +307,35 @@ ms.entity_and_tags('df.disk_size')
 #  {:entity=>"ubuntu", :tags=>{"file_system"=>"none", "mount_point"=>"/run/user"}, :last_insert_time=>1428328928000},
 #  {:entity=>"ubuntu", :tags=>{"file_system"=>"udev", "mount_point"=>"/dev"}, :last_insert_time=>1428328928000},
 #  {:entity=>"ubuntu", :tags=>{"file_system"=>"tmpfs", "mount_point"=>"/run"}, :last_insert_time=>1428328928000}]
+
+metric = Metric.new
+# => {}
+metric.name = "cpu_count"
+# => "cpu_count"
+metric.versioned = true
+# => true
+metrics_service.create_or_replace(metric)
+metrics_service.get("cpu_count")
+# => {:name=>"cpu_count", :enabled=>true, :data_type=>"FLOAT", :counter=>false, :persistent=>true, :tags=>{}, :time_precision=>"MILLISECONDS", :retention_interval=>0, :invalid_action=>"NONE", :versioned=>true}
+
 ```
 
 #### Entities Service
 
 ```ruby
-ent = atsd.entities
+entities_service = atsd.entities_service
 # => #<ATSD::EntitiesService:0x007f82a45b40b8
 
-ent.list
+entities_service.list
 # => [{:name=>"atsd", :enabled=>true, :last_insert_time=>1428304482631},
 #  {:name=>"mine", :enabled=>true},
 #  {:name=>"test_entity", :enabled=>true, :last_insert_time=>1000000000},
 #  {:name=>"ubuntu", :enabled=>true, :last_insert_time=>1428304489000}]
 
-ent.get('ubuntu')
+entities_service.get('ubuntu')
 # => {:name=>"ubuntu", :enabled=>true, :last_insert_time=>1428304499000, :tags=>{}}
 
-ent.metrics('ubuntu')
+entities_service.metrics('ubuntu')
 # => [{:name=>"df.disk_size",
 #   :enabled=>true,
 #   :data_type=>"FLOAT",
@@ -319,8 +349,8 @@ ent.metrics('ubuntu')
 #   :enabled=>true,
 # ...
 
-ent.delete(ent.get('mine')) # or ent.delete('mine')
-ent.list
+entities_service.delete(entities_service.get('mine')) # or entities_service.delete('mine')
+entities_service.list
 # => [{:name=>"atsd", :enabled=>true, :last_insert_time=>1428304482631},
 #  {:name=>"test_entity", :enabled=>true, :last_insert_time=>1000000000},
 #  {:name=>"ubuntu", :enabled=>true, :last_insert_time=>1428304489000}]
@@ -328,19 +358,19 @@ ent.list
 #### Entity Groups Service 
 
 ```ruby
-eg = atsd.entity_groups
+entity_groups_service = atsd.entity_groups_service
 # => #<ATSD::EntityGroupsService:0x007fb1b2a0d7f8
 
-eg.create_or_replace('group1')
-eg.list
+entity_groups_service.create_or_replace('group1')
+entity_groups_service.list
 # => [{:name=>"group1"}]
 
-eg.add_entities('group1', [{name:'entity1'},{name:'entity2'}])
-eg.entities(eg.get('group1'))
+entity_groups_service.add_entities('group1', [{name:'entity1'},{name:'entity2'}])
+entity_groups_service.entities(entity_groups_service.get('group1'))
 # => [{:name=>"entity1", :enabled=>true}, {:name=>"entity2", :enabled=>true}]
 
-eg.delete_all_entities('group1')
-eg.entities('group1')
+entity_groups_service.delete_all_entities('group1')
+entity_groups_service.entities('group1')
 # => []
 ```
 

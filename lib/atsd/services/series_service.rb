@@ -10,13 +10,15 @@ module ATSD
     #
     # @param [String, Entity] entity
     # @param [String, Metric] metric
+    # @param [Fixnum] start_time
+    # @param [Fixnum] end_time
     # @param [Hash] options other query parameters
     # @return [SeriesQuery]
-    def query(entity, metric, options = {})
+    def query(entity, metric, start_time, end_time, options = {})
       query = SeriesQuery.new @client
       entity = entity.name if entity.is_a? Entity
       metric = metric.name if metric.is_a? Metric
-      options.merge! entity: entity, metric: metric
+      options.merge! entity: entity, metric: metric, start_time: start_time, end_time: end_time
       options.each { |option, value| query[option] = value }
       query
     end
@@ -28,7 +30,9 @@ module ATSD
     # @raise [APIError]
     def insert(series)
       series = Utils.ensure_array(series).map do |s|
-        s = Series.new(s) if s.is_a? Hash
+        if s.is_a? Hash
+          s = Series.new(s)
+        end
         s.to_request_hash
       end
       @client.series_insert series

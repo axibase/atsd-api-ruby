@@ -4,97 +4,20 @@ module ATSD
   # Class for building and executing Series Query
   # @see https://axibase.com/atsd/api/#series:-query
   class SeriesQuery < BaseQuery
-
-    # @!method type(type)
-    #   specifies source for underlying data
-    #   @param [String] type see {Type} for possible values
-    #   @return [self]
-
-    # `type` parameter possible values
-    module Type
-      HISTORY = 'HISTORY' # default
-      FORECAST = 'FORECAST'
-      FORECAST_DEVIATION = 'FORECAST_DEVIATION'
-    end
-
-    # `join.type` parameter possible values
-    module JoinType
-      COUNT = 'COUNT'
-      MIN = 'MIN'
-      MAX = 'MAX'
-      AVG = 'AVG'
-      SUM = 'SUM'
-      PERCENTILE_999 = 'PERCENTILE_999'
-      PERCENTILE_995 = 'PERCENTILE_995'
-      PERCENTILE_99 = 'PERCENTILE_99'
-      PERCENTILE_95 = 'PERCENTILE_95'
-      PERCENTILE_90 = 'PERCENTILE_90'
-      PERCENTILE_75 = 'PERCENTILE_75'
-      PERCENTILE_50 = 'PERCENTILE_50'
-      STANDARD_DEVIATION = 'STANDARD_DEVIATION'
-    end
-
-    # `join.interpolate` parameter possible values
-    module JoinInterpolate
-      STEP = 'STEP' # default
-      NONE = 'NONE'
-      LINEAR = 'LINEAR'
-    end
-
-    # `aggregate.type` parameter possible values
-    module AggregateType
-      DETAIL = 'DETAIL'
-      COUNT = 'COUNT'
-      MIN = 'MIN'
-      MAX = 'MAX'
-      AVG = 'AVG'
-      SUM = 'SUM'
-      PERCENTILE_999 = 'PERCENTILE_999'
-      PERCENTILE_995 = 'PERCENTILE_995'
-      PERCENTILE_99 = 'PERCENTILE_99'
-      PERCENTILE_95 = 'PERCENTILE_95'
-      PERCENTILE_90 = 'PERCENTILE_90'
-      PERCENTILE_75 = 'PERCENTILE_75'
-      PERCENTILE_50 = 'PERCENTILE_50'
-      STANDARD_DEVIATION = 'STANDARD_DEVIATION'
-      FIRST = 'FIRST'
-      LAST = 'LAST'
-      DELTA = 'DELTA'
-      WAVG = 'WAVG'
-      WTAVG = 'WTAVG'
-      THRESHOLD_COUNT = 'THRESHOLD_COUNT'
-      THRESHOLD_DURATION = 'THRESHOLD_DURATION'
-      THRESHOLD_PERCENT = 'THRESHOLD_PERCENT'
-    end
-
-    # `aggregate.interpolate` parameter possible values
-    module AggregateInterpolate
-      STEP = 'STEP'
-      NONE = 'NONE'
-      LINEAR = 'LINEAR'
-    end
-
-    # interval's unit possible values
-    module Interval
-      MILLISECOND = 'MILLISECOND'
-      SECOND = 'SECOND'
-      MINUTE = 'MINUTE'
-      HOUR = 'HOUR'
-      DAY = 'DAY'
-      WEEK = 'WEEK'
-      MONTH = 'MONTH'
-      QUARTER = 'QUARTER'
-      YEAR = 'YEAR'
-    end
-
-    TO_MILLISECONDS_LAMBDA = ->(v) do
-      case v
-        when Time
-          v.to_i * 1_000
-        else
-          v.to_i
-      end
-    end
+    #
+    # # @!method type(type)
+    # #   specifies source for underlying data
+    # #   @param [String] type see {Type} for possible values
+    # #   @return [self]
+    #
+    # TO_MILLISECONDS_LAMBDA = ->(v) do
+    #   case v
+    #     when Time
+    #       v.to_i * 1_000
+    #     else
+    #       v.to_i
+    #   end
+    # end
 
     coerce_key :end_time, TO_MILLISECONDS_LAMBDA
     coerce_key :start_time, TO_MILLISECONDS_LAMBDA
@@ -146,5 +69,83 @@ module ATSD
       results.each { |r| queries_by_id[r.request_id].result << r }
     end
   end
+
+  # `type` parameter possible values
+  module Type
+    HISTORY = 'HISTORY' # default
+    FORECAST = 'FORECAST'
+    FORECAST_DEVIATION = 'FORECAST_DEVIATION'
+  end
+
+  # `join.type` parameter possible values
+  module JoinType
+    COUNT = 'COUNT'
+    MIN = 'MIN'
+    MAX = 'MAX'
+    AVG = 'AVG'
+    SUM = 'SUM'
+    PERCENTILE_999 = 'PERCENTILE_999'
+    PERCENTILE_995 = 'PERCENTILE_995'
+    PERCENTILE_99 = 'PERCENTILE_99'
+    PERCENTILE_95 = 'PERCENTILE_95'
+    PERCENTILE_90 = 'PERCENTILE_90'
+    PERCENTILE_75 = 'PERCENTILE_75'
+    PERCENTILE_50 = 'PERCENTILE_50'
+    STANDARD_DEVIATION = 'STANDARD_DEVIATION'
+  end
+
+  # `join.interpolate` parameter possible values
+  module JoinInterpolate
+    STEP = 'STEP' # default
+    NONE = 'NONE'
+    LINEAR = 'LINEAR'
+  end
+
+  # `aggregate.type` parameter possible values
+  module AggregateType
+    DETAIL = 'DETAIL'
+    COUNT = 'COUNT'
+    MIN = 'MIN'
+    MAX = 'MAX'
+    AVG = 'AVG'
+    SUM = 'SUM'
+    PERCENTILE_999 = 'PERCENTILE_999'
+    PERCENTILE_995 = 'PERCENTILE_995'
+    PERCENTILE_99 = 'PERCENTILE_99'
+    PERCENTILE_95 = 'PERCENTILE_95'
+    PERCENTILE_90 = 'PERCENTILE_90'
+    PERCENTILE_75 = 'PERCENTILE_75'
+    PERCENTILE_50 = 'PERCENTILE_50'
+    STANDARD_DEVIATION = 'STANDARD_DEVIATION'
+    FIRST = 'FIRST'
+    LAST = 'LAST'
+    DELTA = 'DELTA'
+    WAVG = 'WAVG'
+    WTAVG = 'WTAVG'
+    THRESHOLD_COUNT = 'THRESHOLD_COUNT'
+    THRESHOLD_DURATION = 'THRESHOLD_DURATION'
+    THRESHOLD_PERCENT = 'THRESHOLD_PERCENT'
+  end
+
+  # `aggregate.interpolate` parameter possible values
+  module AggregateInterpolate
+    STEP = 'STEP'
+    NONE = 'NONE'
+    LINEAR = 'LINEAR'
+  end
+
+  # interval's unit possible values
+  module Interval
+    MILLISECOND = 'MILLISECOND'
+    SECOND = 'SECOND'
+    MINUTE = 'MINUTE'
+    HOUR = 'HOUR'
+    DAY = 'DAY'
+    WEEK = 'WEEK'
+    MONTH = 'MONTH'
+    QUARTER = 'QUARTER'
+    YEAR = 'YEAR'
+  end
+
 end
 

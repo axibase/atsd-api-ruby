@@ -44,11 +44,11 @@ module ATSD
       end
     end
 
-    service :series, SeriesService
-    service :properties, PropertiesService
-    service :alerts, AlertsService
-    service :metrics, MetricsService
-    service :entities, EntitiesService
-    service :entity_groups, EntityGroupsService
+    service :series_service, SeriesService
+    service :properties_service, PropertiesService
+    service :alerts_service, AlertsService
+    service :metrics_service, MetricsService
+    service :entities_service, EntitiesService
+    service :entity_groups_service, EntityGroupsService
   end
 end
