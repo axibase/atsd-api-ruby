@@ -176,6 +176,25 @@ Query with Versions:
 ```ruby
 query = atsd.series_service.query("sensor-1", "temperature", Time.new(2015, 11, 17, 12, 0, 0), Time.new(2015, 11, 17, 19, 0, 0), {:versioned => true})
 query.execute
+template = "%23s,   %13s,   %23s,   %17s,   %17s\n"
+output = sprintf(template, "sample_time", "sample_value", "version_time", "version_source", "version_status")
+query.result.each {|data| data.data.each {|sample| output << sprintf(template, Time.at(sample["t"]/1000).utc, sample["v"], Time.at(sample["version"]["t"]/1000).utc, sample["version"]["source"], sample["version"]["status"])  }}
+puts output
+            sample_time,    sample_value,              version_time,      version_source,      version_status
+2015-11-17 14:00:00 UTC,             7.0,   2015-11-18 16:19:57 UTC,           gateway-1,              normal
+2015-11-17 14:00:00 UTC,             7.0,   2015-11-18 16:22:05 UTC,           gateway-1,              normal
+2015-11-17 14:00:00 UTC,             7.0,   2015-11-18 16:23:28 UTC,           gateway-1,              normal
+2015-11-17 14:00:00 UTC,             7.0,   2015-11-18 16:36:18 UTC,           gateway-1,              normal
+2015-11-17 14:00:00 UTC,             7.0,   2015-11-18 16:37:02 UTC,           gateway-1,              normal
+2015-11-17 14:00:00 UTC,             7.0,   2015-11-18 17:41:10 UTC,           gateway-1,              normal
+2015-11-17 14:00:00 UTC,             7.0,   2015-11-18 17:45:57 UTC,           gateway-1,              normal
+2015-11-17 15:00:00 UTC,            17.0,   2015-11-18 16:19:57 UTC,           gateway-1,               error
+2015-11-17 15:00:00 UTC,            17.0,   2015-11-18 16:22:05 UTC,           gateway-1,               error
+2015-11-17 15:00:00 UTC,            17.0,   2015-11-18 16:23:28 UTC,           gateway-1,               error
+2015-11-17 15:00:00 UTC,            17.0,   2015-11-18 16:36:18 UTC,           gateway-1,               error
+2015-11-17 15:00:00 UTC,            17.0,   2015-11-18 16:37:02 UTC,           gateway-1,               error
+2015-11-17 15:00:00 UTC,            17.0,   2015-11-18 17:41:10 UTC,           gateway-1,               error
+2015-11-17 15:00:00 UTC,            17.0,   2015-11-18 17:45:57 UTC,           gateway-1,               error
 ```
 
 Data Insertion:
