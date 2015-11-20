@@ -119,10 +119,6 @@ module ATSD
       Time.at(self.send("last_insert_time")/1000)
     end
 
-    # def set_last_insert_date(last_insert_date)
-    #   self["last_insert_date"] = last_insert_date
-    # end
-
     def set_versioned(versioned)
       self["versioned"] = versioned
     end
@@ -160,45 +156,6 @@ module ATSD
     TRANSFORM = 'TRANSFORM'
     RAISE_ERROR = 'RAISE_ERROR'
   end
-
-  # class Enum
-  #   def self.keys
-  #     constants
-  #   end
-  #
-  #   def self.values
-  #     @values ||= constants.map { |const| const_get(const) }
-  #   end
-  # end
-  # class Enum
-  #   def self.keys
-  #     constants
-  #   end
-  #
-  #   def self.values
-  #     @values ||= constants.map { |const| const_get(const) }
-  #   end
-  # end
-  #
-  # class Data_Type < Enum
-  #   SHORT='SHORT'
-  #   INTEGER='INTEGER'
-  #   FLOAT='FLOAT'
-  #   LONG='LONG'
-  #   DOUBLE='DOUBLE'
-  # end
-  #
-  # class Time_Precision < Enum
-  #   SECONDS='SECONDS'
-  #   MILLISECONDS='MILLISECONDS'
-  # end
-  #
-  # class Invalid_Action < Enum
-  #   NONE='NONE'
-  #   DISCARD='DISCARD'
-  #   TRANSFORM='TRANSFORM'
-  #   RAISE_ERROR='RAISE_ERROR'
-  # end
 
 end
 

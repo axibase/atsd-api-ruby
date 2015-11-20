@@ -20,19 +20,6 @@ module ATSD
       end
       hash
     end
-
-    # def method_missing(meth, *args, &block)
-    #   action = meth[0, 3]
-    #   field = meth[4..-1]
-    #   case action
-    #     when "get"
-    #       return self.send(field)
-    #     when "set"
-    #       return self[field]=args[0]
-    #     else
-    #       super
-    #   end
-    # end
-  end
+``  end
 end
 
