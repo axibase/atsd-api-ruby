@@ -53,5 +53,30 @@ module ATSD
       entity = entity.name if entity.is_a? Entity
       @client.series_csv_insert(entity, data, tags)
     end
+
+    # Post json
+    # @param [Hash] config - Hash containing url, login and password keys, e.g. {:url => "http://www.example.com:8088/api/v1", :login => "login", :password => "password"}
+    # @param [String] payload Body - ready to be parsed by ATSD server
+    # @return [Faraday::Response]
+    # @raise [APIError]
+    def self.post_payload(config,payload)
+      url = config[:url]
+      login, password = config[:login],config[:password]
+
+      @connection = Faraday.new url do |builder|
+        builder.headers['User-Agent'] = "ATSD Ruby Client v#{VERSION}"
+        builder.basic_auth login, password
+        builder.request :json
+
+        builder.response :errors_handler
+        builder.response :json, :content_type => 'application/json'
+
+        builder.adapter Faraday.default_adapter
+      end
+      response = @connection.post do |req|
+        req.body = payload
+      end
+      response
+    end
   end
 end

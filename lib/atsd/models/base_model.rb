@@ -20,6 +20,6 @@ module ATSD
       end
       hash
     end
-``  end
+  end
 end
 
