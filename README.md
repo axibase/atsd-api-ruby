@@ -206,7 +206,7 @@ s = Series.new
 s.entity = 'sensor-1'
 s.metric = 'temperature'
 s.data = [ {t: Time.now.to_i*1000, v: 22} ]
-series_service.insert(s)
+atsd.series_service.insert(s)
 ```
 
 Inserting series using Sample class:
@@ -215,7 +215,7 @@ Inserting series using Sample class:
 s = Series.new
 s.entity = 'sensor-1'
 s.metric = 'pressure'
-sample = Sample.new :t => Time.parse("2015-11-17T17:00:00Z"), :v => 7, :version => {:status => "normal", :source => "gateway-1"}
+sample = Sample.new :time => Time.parse("2015-11-17T17:00:00Z"), :value => 7, :version => {:status => "normal", :source => "gateway-1"}
 s.data = [ sample ]
 series_service.insert(s)
 ```
@@ -223,8 +223,8 @@ series_service.insert(s)
 Inserting Series with Versions:
 
 ```ruby
-sample_1 = Sample.new :t => Time.parse("2015-11-17T17:00:00Z"), :v => 7, :version => {:status => "normal", :source => "gateway-1"}
-sample_2 = Sample.new :t => Time.parse("2015-11-17T18:00:00Z"), :v => 17, :version => {:status => "error", :source => "gateway-1"}
+sample_1 = Sample.new :time => Time.parse("2015-11-17T17:00:00Z"), :value => 7, :version => {:status => "normal", :source => "gateway-1"}
+sample_2 = Sample.new :time => Time.parse("2015-11-17T18:00:00Z"), :value => 17, :version => {:status => "error", :source => "gateway-1"}
 series = Series.new :entity => "sensor-1", :metric => "pressure", :data => [sample_1, sample_2]
 atsd.series_service.insert(series)
 ```

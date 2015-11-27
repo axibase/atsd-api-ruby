@@ -20,6 +20,23 @@ module ATSD
       end
       hash
     end
+
+    # Converts time and value keys as t and v respectively
+    # for the rest operates as a superclass method
+    def []=(key,value)
+      if key.to_s == 'time'
+        key = :t
+        case value
+          when Time
+            value = value.to_i * 1_000
+          else
+            value = value.to_i
+        end
+      end
+      key = :v if key.to_s == 'value'
+      super(key, value)
+    end
+
   end
 end
 

@@ -7,17 +7,6 @@ module ATSD
 
   class Sample < BaseModel
 
-    TO_MILLISECONDS_LAMBDA = ->(v) do
-      case v
-        when Time
-          v.to_i * 1_000
-        else
-          v.to_i
-      end
-    end
-
-    coerce_key :t, TO_MILLISECONDS_LAMBDA
-
     def set_time(time)
       self["t"] = time
     end

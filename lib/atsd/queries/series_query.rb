@@ -4,20 +4,6 @@ module ATSD
   # Class for building and executing Series Query
   # @see https://axibase.com/atsd/api/#series:-query
   class SeriesQuery < BaseQuery
-    #
-    # # @!method type(type)
-    # #   specifies source for underlying data
-    # #   @param [String] type see {Type} for possible values
-    # #   @return [self]
-    #
-    # TO_MILLISECONDS_LAMBDA = ->(v) do
-    #   case v
-    #     when Time
-    #       v.to_i * 1_000
-    #     else
-    #       v.to_i
-    #   end
-    # end
 
     coerce_key :end_time, TO_MILLISECONDS_LAMBDA
     coerce_key :start_time, TO_MILLISECONDS_LAMBDA
