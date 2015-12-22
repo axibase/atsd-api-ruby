@@ -120,8 +120,8 @@ module ATSD
     LINEAR = 'LINEAR'
   end
 
-  # interval's unit possible values
-  module Interval
+  # period's unit possible values
+  module Period
     MILLISECOND = 'MILLISECOND'
     SECOND = 'SECOND'
     MINUTE = 'MINUTE'

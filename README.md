@@ -149,18 +149,18 @@ s.entity
 Aggregated query:
 
 ```ruby
-query.aggregate(types:[SeriesQuery::AggregateType::AVG], interval:{count:1, unit:SeriesQuery::Interval::HOUR})
+query.aggregate(types:[SeriesQuery::AggregateType::AVG], period:{count:1, unit:SeriesQuery::Period::HOUR})
 # => {:entity=>"sensor-1",
 #  :metric=>"temperature",
 #  :end_time=>1428303004000,
-#  :aggregate=>{:types=>["AVG"], :interval=>{:count=>1, :unit=>"HOUR"}}}
+#  :aggregate=>{:types=>["AVG"], :period=>{:count=>1, :unit=>"HOUR"}}}
 
 query.execute
 # => [{:entity=>"sensor-1",
 #   :metric=>"temperature",
 #   :tags=>{},
 #   :type=>"HISTORY",
-#   :aggregate=>{"type"=>"AVG", "interval"=>{"count"=>1, "unit"=>"HOUR"}},
+#   :aggregate=>{"type"=>"AVG", "period"=>{"count"=>1, "unit"=>"HOUR"}},
 #   :data=>[{"t"=>1428300000000, "v"=>23.57}]}]
 ```
 
