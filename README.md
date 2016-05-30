@@ -4,7 +4,7 @@ The ATSD Client for Ruby enables Ruby developers
 to easily read and write statistics and metadata 
 from Axibase Time-Series Database.
 
-API documentation: https://axibase.com/atsd/api
+API documentation: https://github.com/axibase/atsd-docs/blob/master/api/README.md
 
 ## Installation
 
