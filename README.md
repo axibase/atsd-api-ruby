@@ -257,11 +257,7 @@ series_service.csv_insert('sensor-1', File.read('/path/to/data.csv'), { :user =>
 properties_service = atsd.properties_service
 # => #<ATSD::PropertiesService:0x007f82a456e6f8
 
-property = Property.new
-property.entity = 'sensor-1'
-property.type = 'sensor_type'
-property.tags = {"location":"NUR","site":"building-1"}
-property.key = {"id": "ch-15"}
+property = Property.new :entity => 'sensor-1', :type => 'sensor_type', :tags => {"location":"NUR","site":"building-1"}, :key => {"id": "ch-15"}
 properties_service.insert(property)
 
 properties_service.query('sensor-1', 'sensor_type', :start_date => "2015-11-17T17:00:00Z").execute
