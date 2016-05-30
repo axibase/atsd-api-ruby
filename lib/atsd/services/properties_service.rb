@@ -41,7 +41,7 @@ module ATSD
     def delete(properties)
       properties = Utils.ensure_array(properties).map do |s|
         s = Property.new(s) if s.is_a? Hash
-        s.to_request_hash.select { |k, v| [:entity, :type, :key].include? k }
+        s.to_request_hash.select { |k, v| %w(entity type key).include? k }
       end
       @client.properties_delete(properties)
       self

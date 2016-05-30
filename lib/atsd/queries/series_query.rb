@@ -5,8 +5,8 @@ module ATSD
   # @see https://axibase.com/atsd/api/#series:-query
   class SeriesQuery < BaseQuery
 
-    coerce_key :end_time, TO_MILLISECONDS_LAMBDA
-    coerce_key :start_time, TO_MILLISECONDS_LAMBDA
+    coerce_key :end_date, TO_ISO_LAMBDA
+    coerce_key :start_date, TO_ISO_LAMBDA
 
     # @return [Array<Series>]
     def result

@@ -82,13 +82,13 @@ module ATSD
     # Returns an array of property types for the entity.
     #
     # @param [String, Hash, Entity] entity
-    # @param [Integer, Time] start_time
+    # @param [Integer, Time] start_date
     #   Return only property types that have been collected after the specified time.
     # @return [Array<String>]
     # @raise [APIError]
-    def property_types(entity, start_time = nil)
-      start_time = start_time.to_i * 1000 if start_time.is_a? Time
-      params = start_time ? { :start_time => start_time } : {}
+    def property_types(entity, start_date = nil)
+      start_date = start_date.iso8601 if start_date.is_a? Time
+      params = start_date ? { :start_date => start_date } : {}
       @client.entities_property_types(name_for_entity(entity), params)
     end
 

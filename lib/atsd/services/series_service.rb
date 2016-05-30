@@ -10,15 +10,15 @@ module ATSD
     #
     # @param [String, Entity] entity
     # @param [String, Metric] metric
-    # @param [Fixnum] start_time
-    # @param [Fixnum] end_time
+    # @param [String] start_date
+    # @param [String] end_date
     # @param [Hash] options other query parameters
     # @return [SeriesQuery]
-    def query(entity, metric, start_time, end_time, options = {})
+    def query(entity, metric, start_date, end_date, options = {})
       query = SeriesQuery.new @client
       entity = entity.name if entity.is_a? Entity
       metric = metric.name if metric.is_a? Metric
-      options.merge! entity: entity, metric: metric, start_time: start_time, end_time: end_time
+      options.merge! entity: entity, metric: metric, start_date: start_date, end_date: end_date
       options.each { |option, value| query[option] = value }
       query
     end

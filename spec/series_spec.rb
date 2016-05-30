@@ -8,9 +8,9 @@ RSpec.describe SeriesService do
 
   let(:entity) { 'ubuntu' }
   let(:metric) { 'meminfo.active' }
-  let(:start_time) { 1427885974000 }
-  let(:end_time) { 1427885975000 }
-  let(:data) { [ t: 1427885974000, v: 1  ] }
+  let(:start_date) { '2015-04-01T10:59:34.000Z' }
+  let(:end_date) { '2015-04-01T10:59:35.000Z' }
+  let(:data) { [d: '2015-04-01T10:59:34.000Z', v: 1  ] }
   let(:tags) { { :tag1 => 'value1' } }
 
   context '#query' do
@@ -45,7 +45,7 @@ RSpec.describe SeriesService do
       series = Series.new
       series.entity = entity
       series.metric = metric
-      series.data = [ t: start_time, v: 1]
+      series.data = [ t: start_date, v: 1]
       subject.insert(series)
     end
 
@@ -86,11 +86,11 @@ RSpec.describe SeriesService do
         query = SeriesQuery.new $client
         query.entity(entity).
             metric(metric).
-            start_time(start_time).
-            end_time(end_time)
+            start_date(start_date).
+            end_date(end_date)
         query2 = query.dup.
-            start_time(query[:start_time] + 100).
-            end_time(query[:end_time] + 100)
+            start_date(query[:start_date] + 100).
+            end_date(query[:end_date] + 100)
         result = query.execute_with(query2)
         expect(query[:request_id]).to be_truthy
         expect(query2[:request_id]).to be_truthy

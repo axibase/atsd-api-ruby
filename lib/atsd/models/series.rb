@@ -7,24 +7,20 @@ module ATSD
 
   class Sample < BaseModel
 
-    def set_time(time)
-      self["t"] = time
-    end
-
-    def get_time()
-      self.send("t")
+    def set_date(date)
+      self['d'] = date
     end
 
     def get_date()
-      Time.at(self.send("t")/1000)
+      self.send('d')
     end
 
     def set_value(value)
-      self["v"] = value
+      self['v'] = value
     end
 
     def get_value()
-      self.send("v")
+      self.send('v')
     end
 
   end
@@ -32,19 +28,19 @@ module ATSD
   class Version < BaseModel
 
     def set_source(source)
-      self["source"] = source
+      self['source'] = source
     end
 
     def get_source()
-      self.send("source")
+      self.send('source')
     end
 
     def set_status(status)
-      self["status"] = status
+      self['status'] = status
     end
 
     def get_status()
-      self.send("status")
+      self.send('status')
     end
   end
 end

@@ -4,17 +4,17 @@ module ATSD
   # Class for building and executing Alerts History Query
   # @see https://axibase.com/atsd/api/#alerts:-history-query
   class AlertsHistoryQuery < BaseQuery
-    TO_MILLISECONDS_LAMBDA = ->(v) do
+    TO_ISO_LAMBDA = ->(v) do
       case v
         when Time
-          v.to_i * 1_000
+          v.iso8601
         else
-          v.to_i
+          v
       end
     end
 
-    coerce_key :end_time, TO_MILLISECONDS_LAMBDA
-    coerce_key :start_time, TO_MILLISECONDS_LAMBDA
+    coerce_key :end_date, TO_ISO_LAMBDA
+    coerce_key :start_date, TO_ISO_LAMBDA
 
     # @return [Array<AlertHistory>]
     def result

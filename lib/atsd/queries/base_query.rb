@@ -18,12 +18,12 @@ module ATSD
     #   @param [String] type see {Type} for possible values
     #   @return [self]
 
-    TO_MILLISECONDS_LAMBDA = ->(v) do
+    TO_ISO_LAMBDA = ->(v) do
       case v
         when Time
-          v.to_i * 1_000
+          v.iso8601
         else
-          v.to_i
+          v
       end
     end
 

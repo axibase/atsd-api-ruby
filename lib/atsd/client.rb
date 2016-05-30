@@ -43,8 +43,8 @@ module ATSD
     # @return [Array<Hash>] time series
     # @raise [APIError]
     def series_query(queries)
-      response = @connection.post 'series', :queries => Utils.ensure_array(queries)
-      response.body['series']
+      response = @connection.post 'series/query', Utils.ensure_array(queries)
+      response.body
     end
 
     # Insert time series
@@ -84,7 +84,7 @@ module ATSD
     # @return [Array<Hash>] array of properties
     # @raise [APIError]
     def properties_query(queries = nil)
-      response = @connection.post 'properties', :queries => Utils.ensure_array(queries)
+      response = @connection.post 'properties/query', Utils.ensure_array(queries)
       response.body
     end
 
@@ -95,7 +95,7 @@ module ATSD
     # @return [Array<Hash>] array of properties
     # @raise [APIError]
     def properties_for_entity_and_type(entity, type)
-      response = @connection.get "properties/#{entity}/types#{type}"
+      response = @connection.get "properties/query/#{entity}/types#{type}"
       response.body
     end
 
@@ -153,7 +153,7 @@ module ATSD
     # @return [Array<Hash>] alerts
     # @raise [APIError]
     def alerts_query(queries = nil)
-      response = @connection.post 'alerts', :queries => Utils.ensure_array(queries)
+      response = @connection.post 'alerts/query', Utils.ensure_array(queries)
       response.body
     end
 
@@ -173,7 +173,7 @@ module ATSD
     # @return [Array<Hash>] history records
     # @raise [APIError]
     def alerts_history_query(queries = nil)
-      response = @connection.post 'alerts/history', :queries => Utils.ensure_array(queries)
+      response = @connection.post 'alerts/history/query', Utils.ensure_array(queries)
       response.body
     end
 

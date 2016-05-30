@@ -120,8 +120,8 @@ Basic query:
 require 'time'
 series_service = atsd.series_service
 # => #<ATSD::SeriesService:0x007f82a4446c08
-query = series_service.query('sensor-1', 'temperature', Time.parse("2015-11-17T12:00:00Z"), Time.parse("2015-11-17T19:00:00Z"))
-# => {:entity=>"sensor-1", :metric=>"temperature", :start_time=>1447750800000, :end_time=>1447776000000}
+query = series_service.query('sensor-1', 'temperature', "2015-11-17T12:00:00Z", "2015-11-17T19:00:00Z")
+# => {:entity=>"sensor-1", :metric=>"temperature", :start_date=>"2015-11-17T12:00:00Z", :end_date=>"2015-11-17T19:00:00Z"}
 
 query.class
 # => ATSD::SeriesQuery
@@ -169,11 +169,11 @@ Query with Versions:
 ```ruby
 query = atsd.series_service.query("sensor-2", "pressure", Time.parse("2015-11-17T12:00:00Z"), Time.parse("2015-11-17T19:00:00Z"), {:versioned => true})
 query.execute
-template = "%23s,   %13s,   %23s,   %17s,   %17s\n"
-output = sprintf(template, "sample_time", "sample_value", "version_time", "version_source", "version_status")
+template = "%24s,   %13s,   %24s,   %17s,   %17s\n"
+output = sprintf(template, "sample_date", "sample_value", "version_date", "version_source", "version_status")
 query.result.each do |data|
-    samples = data.data.sort_by{|sample| sample["version"]["t"]}
-    samples.each {|sample| output << sprintf(template, Time.at(sample["t"]/1000).strftime("%Y-%m-%dT%H:%M:%SZ"), sample["v"], Time.at(sample["version"]["t"]/1000).strftime("%Y-%m-%dT%H:%M:%SZ"), sample["version"]["source"], sample["version"]["status"])  }
+    samples = data.data.sort_by{|sample| sample["version"]["d"]}
+    samples.each {|sample| output << sprintf(template, sample["d"], sample["v"], sample["version"]["d"], sample["version"]["source"], sample["version"]["status"])  }
 end
 puts output
             sample_time,    sample_value,              version_time,      version_source,      version_status
@@ -205,7 +205,7 @@ Inserting series:
 s = Series.new
 s.entity = 'sensor-1'
 s.metric = 'temperature'
-s.data = [ {t: Time.now.to_i*1000, v: 22} ]
+s.data = [ {d: Time.now.iso8601, v: 22} ]
 atsd.series_service.insert(s)
 ```
 
@@ -215,7 +215,7 @@ Inserting series using Sample class:
 s = Series.new
 s.entity = 'sensor-1'
 s.metric = 'pressure'
-sample = Sample.new :time => Time.parse("2015-11-17T17:00:00Z"), :value => 7, :version => {:status => "normal", :source => "gateway-1"}
+sample = Sample.new :date => "2015-11-17T17:00:00Z", :value => 7, :version => {:status => "normal", :source => "gateway-1"}
 s.data = [ sample ]
 series_service.insert(s)
 ```
@@ -223,8 +223,8 @@ series_service.insert(s)
 Inserting Series with Versions:
 
 ```ruby
-sample_1 = Sample.new :time => Time.parse("2015-11-17T17:00:00Z"), :value => 7, :version => {:status => "normal", :source => "gateway-1"}
-sample_2 = Sample.new :time => Time.parse("2015-11-17T18:00:00Z"), :value => 17, :version => {:status => "error", :source => "gateway-1"}
+sample_1 = Sample.new :date => Time.parse("2015-11-17T17:00:00Z"), :value => 7, :version => {:status => "normal", :source => "gateway-1"}
+sample_2 = Sample.new :date => Time.parse("2015-11-17T18:00:00Z"), :value => 17, :version => {:status => "error", :source => "gateway-1"}
 series = Series.new :entity => "sensor-1", :metric => "pressure", :data => [sample_1, sample_2]
 atsd.series_service.insert(series)
 ```
@@ -261,18 +261,18 @@ property = Property.new
 property.entity = 'sensor-1'
 property.type = 'sensor_type'
 property.tags = {"location":"NUR","site":"building-1"}
-property.keys = {"id": "ch-15"}
+property.key = {"id": "ch-15"}
 properties_service.insert(property)
 
-properties_service.query('sensor-1', 'sensor_type').execute
+properties_service.query('sensor-1', 'sensor_type', :start_date => "2015-11-17T17:00:00Z").execute
 # => [{:type=>"sensor_type",
 #  :entity=>"sensor-1",
 #  :tags=>{"location"=>"NUR", "site"=>"building-1"},
-#  :timestamp=>1428304255068,
-#  :keys=>{"id"=>"ch-15"}}]
+#  :d=>"2016-05-30T12:16:31Z",
+#  :key=>{"id"=>"ch-15"}}]
 
 properties_service.delete(property)
-properties_service.query('sensor-1', 'sensor_type').execute
+properties_service.query('sensor-1', 'sensor_type', :start_date => "2015-11-17T17:00:00Z").execute
 # => []
 ```
 
@@ -282,28 +282,21 @@ properties_service.query('sensor-1', 'sensor_type').execute
 alerts_service = atsd.alerts_service
 # => #<ATSD::AlertsService:0x007faf7c0efdc0
 
+alerts_service.query(:entity => "sensor-1", :metrics => ["meminfo.active"], :start_date => "2015-11-17T17:00:00Z").execute
 alerts_service.query.execute
-# => [{:value=>447660.0,
-#     :id=>4,
-#     :text_value=>"447660",
-#     :tags=>{},
-#     :metric=>"meminfo.active",
-#     :entity=>"sensor-1",
-#     :severity=>3,
-#     :rule=>"My rule!",
-#     :repeat_count=>5,
-#     :open_time=>1428330612667,
-#     :open_value=>445144.0,
-#     :acknowledged=>false,
-#     :last_event_time=>1428330687440},
-#    {:value=>447660.0,
-#     :id=>6,
-#     :text_value=>"447660",
-#     :tags=>{},
-#     :metric=>"meminfo.active",
-#     :entity=>"sensor-1",
-#     :severity=>3,
-# ...
+# => [{"entity"=>"sensor-1",
+#  "tags"=>{},
+#  "repeatCount"=>79,
+#  "textValue"=>"21.9",
+#  "metric"=>"meminfo.active",
+#  "severity"=>3,
+#  "rule"=>"memory info",
+#  "openDate"=>"2016-05-30T12:33:07Z",
+#  "lastEventDate"=>"2016-05-30T13:52:11Z",
+#  "acknowledged"=>false,
+#  "openValue"=>100.0,
+#  :v=>21.9,
+#  "id"=>8}]
 ```
 #### Metrics Service
 
@@ -311,7 +304,7 @@ alerts_service.query.execute
 metrics_service = atsd.metrics_service
 # => #<ATSD::MetricsService:0x007fbb548d9548
 
-metrics_service.list
+metrics_service.list(:limit => 10)
 # => [{:name=>"activemq_metrics_count",
 #     :enabled=>true,
 #     :data_type=>"FLOAT",
