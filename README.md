@@ -1,4 +1,4 @@
-# Axibase Time-Series Database Client for Ruby
+# Axibase Time Series Database Client for Ruby
 
 The ATSD Client for Ruby enables Ruby developers 
 to easily read and write statistics and metadata 
