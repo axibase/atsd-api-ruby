@@ -23,6 +23,17 @@ module ATSD
       query
     end
 
+    # Retrieve series values for the specified entity, metric, and optional series tags in CSV and JSON format.
+    #
+    # @param [String] format. Supported formats are csv and json
+    # @param [String] entity
+    # @param [String] metric
+    # @param [Hash] parameters other query parameters
+    # @return [Array<Hash>] time series
+    def url_query(format, entity, metric, parameters={})
+      @client.series_url_query(format, entity, metric, parameters)
+    end
+
     # Insert time series.
     #
     # @param [Array<Series, Hash>, Series, Hash] series
@@ -59,9 +70,9 @@ module ATSD
     # @param [String] payload Body - ready to be parsed by ATSD server
     # @return [Faraday::Response]
     # @raise [APIError]
-    def self.post_payload(config,payload)
+    def self.post_payload(config, payload)
       url = config[:url]
-      login, password = config[:login],config[:password]
+      login, password = config[:login], config[:password]
 
       @connection = Faraday.new url do |builder|
         builder.headers['User-Agent'] = "ATSD Ruby Client v#{VERSION}"

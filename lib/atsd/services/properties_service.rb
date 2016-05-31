@@ -33,6 +33,25 @@ module ATSD
       self
     end
 
+    # Returns an array of property types for the entity.
+    #
+    # @param [String] entity
+    # @return [self]
+    # @raise [APIError]
+    def type_query(entity)
+      @client.properties_for_entity(entity)
+    end
+
+    # Retrieve property records for the specified entity and type.
+    #
+    # @param [String] entity
+    # @param [String] type
+    # @return [self]
+    # @raise [APIError]
+    def url_query(entity, type)
+      @client.properties_for_entity_and_type(entity,type)
+    end
+
     # Delete properties.
     #
     # @param [Array<Property, Hash>, Property, Hash] properties
@@ -44,19 +63,6 @@ module ATSD
         s.to_request_hash.select { |k, v| [:entity, :type, :key].include? k }
       end
       @client.properties_delete(properties)
-      self
-    end
-
-    # Delete rows that partially match the specified key
-    #
-    # @param [Hash, Array<Hash>] matchers
-    # @return [self]
-    # @raise [APIError]
-    def delete_match(matchers)
-      matchers = Utils.ensure_array(matchers).map do |m|
-        m.camelize_keys
-      end
-      @client.properties_delete_match matchers
       self
     end
   end

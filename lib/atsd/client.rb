@@ -47,6 +47,21 @@ module ATSD
       response.body
     end
 
+    # Retrieve series values for the specified entity, metric, and optional series tags in CSV and JSON format
+    #
+    # @param [String] format
+    # @param [String] entity
+    # @param [String] metric
+    # @param [Hash] parameters other query parameters
+    # @return [Array<Hash>] time series
+    # @raise [APIError]
+    def series_url_query(format, entity, metric, parameters)
+      url = "series/#{format}/#{entity}/#{metric}?"
+      parameters.each { |k, v| url << "&#{k}=#{v}" }
+      response = @connection.get url
+      response.body
+    end
+
     # Insert time series
     #
     # @param [Hash, Array<Hash>] series series or array of series
@@ -95,7 +110,17 @@ module ATSD
     # @return [Array<Hash>] array of properties
     # @raise [APIError]
     def properties_for_entity_and_type(entity, type)
-      response = @connection.get "properties/query/#{entity}/types#{type}"
+      response = @connection.get "properties/#{entity}/types/#{type}"
+      response.body
+    end
+
+    # Returns array of property types for the entity.
+    #
+    # @param [String] type
+    # @return [Array<Hash>] array of properties
+    # @raise [APIError]
+    def properties_for_entity(entity)
+      response = @connection.get "properties/#{entity}/types"
       response.body
     end
 
@@ -109,42 +134,13 @@ module ATSD
       true
     end
 
-    # Insert keys and delete keys by id or by partial key match in one request.
-    #
-    # @param [Hash, Array<Hash>] insert properties to insert
-    # @param [Hash, Array<Hash>] delete delete an array of properties for entity,
-    #   type, and optionally for specified keys
-    # @param [Hash, Array<Hash>] delete_matchers delete rows that partially match the specified key.
-    #   'createdBeforeTime’ specifies an optional time condition. The server should delete all keys
-    #   that have been created before the specified time. 'createdBeforeTime’ is specified in unix
-    #   milliseconds.
-    # @return true
-    # @raise [APIError]
-    def properties_batch(insert, delete, delete_matchers)
-      @connection.patch 'properties', [
-          { :action => 'insert', :properties => Utils.ensure_array(insert) },
-          { :action => 'delete', :properties => Utils.ensure_array(delete) },
-          { :action => 'delete-match', :matchers => Utils.ensure_array(delete_matchers) }
-      ].select { |action| (action[:properties] || action[:matchers]).count > 0 }
-      true
-    end
-
     # Delete an array of properties for entity, type, and optionally for specified keys
     #
     # @param [Hash, Array<Hash>] properties
     # @return true
     # @raise [APIError]
     def properties_delete(properties)
-      properties_batch [], properties, []
-    end
-
-    # Delete rows that partially match the specified key
-    #
-    # @param [Hash, Array<Hash>] matchers
-    # @return true
-    # @raise [APIError]
-    def properties_delete_match(matchers)
-      properties_batch [], [], matchers
+      @connection.post 'properties/delete', Utils.ensure_array(properties)
     end
 
     # Query alerts
@@ -157,13 +153,23 @@ module ATSD
       response.body
     end
 
-    # (De-)acknowledge and delete alerts
+    # (De-)acknowledge alerts
     #
     # @param [Hash, Array<Hash>] actions action or array of actions
     # @return [true]
     # @raise [APIError]
     def alerts_update(actions)
-      @connection.patch 'alerts', Utils.ensure_array(actions)
+      @connection.post 'alerts/update', Utils.ensure_array(actions)
+      true
+    end
+
+    # Delete alerts
+    #
+    # @param [Hash, Array<Hash>] actions action or array of actions
+    # @return [true]
+    # @raise [APIError]
+    def alerts_delete(actions)
+      @connection.post 'alerts/delete', Utils.ensure_array(actions)
       true
     end
 

@@ -251,6 +251,21 @@ Inserting CSV data from file:
 series_service.csv_insert('sensor-1', File.read('/path/to/data.csv'), { :user => 'beta' })
 ```
 
+Retrieving series values CSV and JSON format:
+
+```ruby
+series_service.url_query('json','nurswgvml007','cpu_busy', :startDate => 'previous_minute')
+# => {"series"=>
+#  [{"entity"=>"nurswgvml007",
+#    "metric"=>"cpu_busy",
+#    "tags"=>{},
+#    "type"=>"HISTORY",
+#    "aggregate"=>{"type"=>"DETAIL"},
+#    "data"=>[{"t"=>1464688814000, "v"=>3.03}, {"t"=>1464688830000, "v"=>5}, {"t"=>1464688846000, "v"=>9}, {"t"=>1464688862000, "v"=>4.04}, {"t"=>1464688878000, "v"=>5.05}]}]}
+series_service.url_query('csv','nurswgvml007','cpu_busy', :startDate => 'previous_minute')
+=> "time,entity,metric,value\r\n1464688862000,nurswgvml007,cpu_busy,4.04\r\n1464688878000,nurswgvml007,cpu_busy,5.05\r\n1464688894000,nurswgvml007,cpu_busy,10.2\r\n1464688910000,nurswgvml007,cpu_busy,45.95\r\n1464688926000,nurswgvml007,cpu_busy,21.36\r\n1464688942000,nurswgvml007,cpu_busy,4.04\r\n"
+```
+
 #### Properties Service
 
 ```ruby
@@ -268,8 +283,22 @@ properties_service.query('sensor-1', 'sensor_type', :start_date => "2015-11-17T1
 #  :key=>{"id"=>"ch-15"}}]
 
 properties_service.delete(property)
-properties_service.query('sensor-1', 'sensor_type', :start_date => "2015-11-17T17:00:00Z").execute
+properties_service.query('sensor-1', 'sensor_type', :start_date => '2015-11-17T17:00:00Z').execute
 # => []
+
+properties_service.type_query('sensor-1')
+# => ["com.axibase.config",
+# "configuration",
+# "cpu",
+# "disk",
+# "sw.vmw.vm",
+# "system",
+
+properties_service.url_query('nurswgvml007','network')
+# => [{"type"=>"network", "entity"=>"nurswgvml007", "key"=>{"id"=>"eth1"}, "tags"=>{"network_i/o.read-kb/s"=>"261.9", "network_i/o.write-kb/s"=>"209.9", "network_packets.read/s"=>"354.4", "network_packets.write/s"=>"339.4"}, "timestamp"=>1464680627000},
+# {"type"=>"network", "entity"=>"nurswgvml007", "key"=>{"id"=>"lo"}, "tags"=>{"network_i/o.read-kb/s"=>"2.7", "network_i/o.write-kb/s"=>"2.7", "network_packets.read/s"=>"6.7", "network_packets.write/s"=>"6.7"}, "timestamp"=>1464680627000}]
+
+
 ```
 
 #### Alerts Service

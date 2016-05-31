@@ -20,34 +20,6 @@ RSpec.describe AlertsService do
     end
   end
 
-  context '#acknowledge' do
-    it 'acknowledge alert' do
-      results = subject.query.execute
-      first = results.first
-      subject.acknowledge(first)
-      subject.query.execute.each do |alert|
-        if alert.id == first.id
-          expect(alert.acknowledged).to be_truthy
-          expect(first.acknowledged).to be_truthy
-        end
-      end
-    end
-  end
-
-  context '#de_acknowledge' do
-    it 'de-acknowledge alert' do
-      results = subject.query.execute
-      first = results.first
-      subject.de_acknowledge(first)
-      subject.query.execute.each do |alert|
-        if alert.id == first.id
-          expect(alert.acknowledged).to be_falsey
-          expect(first.acknowledged).to be_falsey
-        end
-      end
-    end
-  end
-
   context '#delete' do
     it 'deletes existing alert' do
       results = subject.query.execute

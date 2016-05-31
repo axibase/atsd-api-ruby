@@ -16,24 +16,6 @@ module ATSD
       query
     end
 
-    # Acknowledge alerts
-    #
-    # @param [Array<Hash, Alert, Integer>, Hash, Alert, Integer] alerts
-    # @return [self]
-    # @raise [APIError]
-    def acknowledge(alerts)
-      alerts_acknowledge alerts, true
-    end
-
-    # De-acknowledge alerts
-    #
-    # @param [Array<Hash, Alert, Integer>, Hash, Alert, Integer] alerts
-    # @return [self]
-    # @raise [APIError]
-    def de_acknowledge(alerts)
-      alerts_acknowledge alerts, false
-    end
-
     # Delete alerts
     #
     # @param [Array<Hash, Alert>, Hash, Alert] alerts
@@ -44,8 +26,7 @@ module ATSD
         { :id => id_for_alert(alert) }
       end
       return if alerts.count == 0
-      @client.alerts_update :action => 'delete',
-                            :alerts => alerts
+      @client.alerts_delete alerts
     end
 
     # Create query builder for alert history.
@@ -59,18 +40,6 @@ module ATSD
     end
 
     private
-
-    def alerts_acknowledge(alerts, acknowledge)
-      alerts = Utils.ensure_array(alerts).map do |alert|
-        alert[:acknowledged] = acknowledge if alert.is_a? Hash
-        { :id => id_for_alert(alert) }
-      end
-      return if alerts.count == 0
-      @client.alerts_update :action => 'update',
-                            :fields => {:acknowledge => acknowledge},
-                            :alerts => alerts
-      self
-    end
 
     def id_for_alert(alert)
       case alert
