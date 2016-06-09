@@ -10,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Axibase Corporation']
   spec.email         = ['atsd-api@axibase.com']
 
-  spec.summary       = %q{Axibase Time-Series Database Client for Ruby.}
-  spec.description   = %q{Axibase Time-Series Database Client for Ruby is an easy-to-use client for interfacing with ATSD metadata and data REST API services.}
+  spec.summary       = %q{Axibase Time Series Database Client for Ruby.}
+  spec.description   = %q{Axibase Time Series Database Client for Ruby is an easy-to-use client for interfacing with ATSD metadata and data REST API services.}
   spec.homepage      = 'https://github.com/axibase/atsd-api-ruby/'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }

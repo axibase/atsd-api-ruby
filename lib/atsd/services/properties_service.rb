@@ -59,6 +59,7 @@ module ATSD
     # @raise [APIError]
     def delete(properties)
       properties = Utils.ensure_array(properties).map do |s|
+        s = s.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
         s = Property.new(s) if s.is_a? Hash
         s.to_request_hash.select { |k, v| [:entity, :type, :key].include? k }
       end

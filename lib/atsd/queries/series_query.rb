@@ -44,7 +44,7 @@ module ATSD
       queries_by_id = {}
       if queries.count > 1
         queries.each_with_index do |query, index|
-          query.request_id("query_#{index}") unless query.request_id
+          query.request_id("query_#{index}")
           query.result = []
           queries_by_id[query[:request_id]] = query
         end
@@ -52,7 +52,7 @@ module ATSD
 
       results = @client.series_query queries.map {|q| q.to_request_hash}
       results.map! { |json| Series.new(json) }
-      results.each { |r| queries_by_id[r.request_id].result << r }
+      results.each { |r| queries_by_id[r.requestId].result << r }
     end
   end
 

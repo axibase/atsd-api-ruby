@@ -3,7 +3,7 @@ require 'active_support/core_ext/hash/keys'
 
 module ATSD
 
-  # HTTP(S) Client for Axibase Time-Series Database. Implements all REST methods
+  # HTTP(S) Client for Axibase Time Series Database. Implements all REST methods
   # of the API in a straightforward manner.
   class Client
 

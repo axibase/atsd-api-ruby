@@ -20,7 +20,7 @@ end
 RSpec.shared_context 'client' do
   let(:env) { LastEnvMiddleware.last_env }
   around(:each) do |example|
-    VCR.use_cassette(example.example_group.metadata[:full_description]) do
+    VCR.use_cassette(example.example_group.metadata[:full_description], :record => :all) do
       example.run
     end
   end

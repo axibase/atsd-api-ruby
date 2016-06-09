@@ -13,27 +13,27 @@ RSpec.describe ATSD do
   describe ATSD::ATSD do
     context '.service' do
       it 'creates series service' do
-        expect(atsd.series).to be_a ATSD::SeriesService
+        expect(atsd.series_service).to be_a ATSD::SeriesService
       end
 
       it 'creates properties service' do
-        expect(atsd.properties).to be_a ATSD::PropertiesService
+        expect(atsd.properties_service).to be_a ATSD::PropertiesService
       end
 
       it 'creates alerts service' do
-        expect(atsd.alerts).to be_a ATSD::AlertsService
+        expect(atsd.alerts_service).to be_a ATSD::AlertsService
       end
 
       it 'creates metrics service' do
-        expect(atsd.metrics).to be_a ATSD::MetricsService
+        expect(atsd.metrics_service).to be_a ATSD::MetricsService
       end
 
       it 'creates entities service' do
-        expect(atsd.entities).to be_a ATSD::EntitiesService
+        expect(atsd.entities_service).to be_a ATSD::EntitiesService
       end
 
       it 'creates entity groups service' do
-        expect(atsd.entity_groups).to be_a ATSD::EntityGroupsService
+        expect(atsd.entity_groups_service).to be_a ATSD::EntityGroupsService
       end
     end
   end

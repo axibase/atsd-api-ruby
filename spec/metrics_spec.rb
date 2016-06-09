@@ -53,7 +53,7 @@ RSpec.describe MetricsService do
       subject.create_or_replace(local2)
       metric2 = subject.get(local2)
       expect(metric2.label).to eq local2.label
-      expect(metric2.data_type).not_to eq local.data_type
+      expect(metric2.dataType).not_to eq local.data_type
       subject.delete(metric2)
     end
 
@@ -78,12 +78,12 @@ RSpec.describe MetricsService do
       expect(metric.label).to eq local.label
 
       local2 = local.dup
-      local2.label = 'Label 2'
+      local2[:label] = 'Label 2'
       subject.update(local2)
 
       metric2 = subject.get(local2)
       expect(metric2.label).to eq local2.label
-      expect(metric2.data_type).to eq local.data_type
+      expect(metric2.dataType).to eq local.data_type
 
       subject.delete(metric2)
     end

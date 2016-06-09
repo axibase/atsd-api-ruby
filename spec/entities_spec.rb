@@ -50,15 +50,15 @@ RSpec.describe EntitiesService do
     end
 
     it 'creates valid entity' do
-      entity = Entity.new name: 'test_entity'
-                          # enabled: false,
-                          # tags: { 'tag' => 'value' }
+      entity = Entity.new name: 'test_entity',
+                          enabled: false,
+                          tags: { 'tag' => 'value' }
       # commented out due to strange ATSD behaviour
       subject.create_or_replace(entity)
       remote = subject.get(entity.name)
       expect(remote.name).to eq entity.name
-      # expect(remote.enabled).to eq entity.enabled
-      # expect(remote.tags).to eq entity.tags
+      expect(remote.enabled).to eq entity.enabled
+      expect(remote.tags).to eq entity.tags
       subject.delete(entity)
     end
 
@@ -73,7 +73,7 @@ RSpec.describe EntitiesService do
       remote = subject.get(entity.name)
       expect(remote.name).to eq entity.name
       expect(remote.enabled).to eq entity.enabled
-      expect(remote.tags?).to be_empty
+      expect(remote.tags).to be_empty
       subject.delete(entity)
     end
   end
@@ -110,7 +110,7 @@ RSpec.describe EntitiesService do
     end
 
     it 'raises error if there is no entity' do
-      expect { subject.delete('entity404') }.to raise_exception APIError
+      expect { subject.delete('entity404') }.not_to raise_exception APIError
     end
   end
 
@@ -151,10 +151,9 @@ RSpec.describe EntitiesService do
       subject.create_or_replace(entity)
       metrics = %w[ m1 m2 m3 m4 m5 ]
       seriesService.insert(metrics.map do |m|
-        Series.new entity: entity.name,
-                   metric: m,
-                   data: [ {t: 1000000000, v: 100} ]
+        Series.new entity: entity.name, metric: m, data: [ {d: "1970-01-12T13:46:40.000Z", v: 100} ]
       end)
+      subject.metrics(entity)
       expect(subject.metrics(entity).map {|m| m.name}).to contain_exactly(*metrics)
       subject.delete(entity)
     end

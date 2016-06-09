@@ -8,15 +8,15 @@ RSpec.describe EntityGroupsService do
 
   context '#list' do
     it 'return array of EntityGroup' do
-      to_create = %w[eg1 eg2 eg3].each { |g| subject.create_or_replace(name:g) }
+      to_create = %w[eg7 eg8 eg9].each { |g| subject.create_or_replace(name:g) }
 
       groups = subject.list
-      expect(groups.count).to eq(to_create.count)
+      expect(groups.count).to be >= to_create.count
       groups.each do |g|
         expect(g).to be_a EntityGroup
       end
 
-      groups.each { |g| subject.delete(g) }
+      to_create.each { |g| subject.delete(g) }
     end
   end
 
@@ -46,8 +46,9 @@ RSpec.describe EntityGroupsService do
     end
 
     it 'replaces existing group' do
-      local = EntityGroup.new name: 'xxx',
-                              tags: { 'tag1' => 'val1' }
+      local = EntityGroup.new
+      local.name = 'xxx'
+      local.tags = { 'tag1' => 'val1' }
       subject.create_or_replace(local)
       group = subject.get(local)
       expect(group).to be_a EntityGroup
@@ -81,10 +82,6 @@ RSpec.describe EntityGroupsService do
   end
 
   context '#delete' do
-    it 'raise error if no group found' do
-      expect { subject.delete(name: 'not_found_group') }.to raise_error
-    end
-
     it 'deletes existing group' do
       name = 'ttt'
       subject.create_or_replace(name: name)

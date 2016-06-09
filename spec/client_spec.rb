@@ -16,7 +16,7 @@ RSpec.describe ATSD::Client do
   context 'Middleware' do
     it 'throws APIError on error' do
       expect { $client.connection.get '404_not_found' }.to raise_exception ATSD::APIError do |error|
-        expect(error.status).to eq 404
+        expect(error.status).to eq 500
       end
     end
   end
@@ -25,8 +25,8 @@ RSpec.describe ATSD::Client do
     let(:request_body) { {
         entity: 'ubuntu',
         metric: 'meminfo.active',
-        startTime: 1427885974000,
-        endTime: 1427885975000
+        startDate: '2015-04-01T10:59:34.000Z',
+        endDate: '2015-04-01T10:59:35.000Z'
     } }
 
     context "#series_query" do
@@ -35,7 +35,7 @@ RSpec.describe ATSD::Client do
       it 'send POST request to "series"' do
         response
         expect(env.method).to eq(:post)
-        expect(env.url.path).to eq('/api/v1/series')
+        expect(env.url.path).to eq('/api/v1/series/query')
       end
 
       it 'returns Array of Hashes' do
@@ -48,7 +48,7 @@ RSpec.describe ATSD::Client do
       let(:series) { {
           entity: 'ubuntu',
           metric: 'meminfo.active',
-          data: [ { t: 1, v: 1} ]
+          data: [ { d: '2015-04-01T10:59:34.000Z', v: 1} ]
       } }
 
       it 'inserts single series' do

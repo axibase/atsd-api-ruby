@@ -2,7 +2,7 @@
 
 The ATSD Client for Ruby enables Ruby developers 
 to easily read and write statistics and metadata 
-from Axibase Time-Series Database.
+from Axibase Time Series Database.
 
 API documentation: https://github.com/axibase/atsd-docs/blob/master/api/README.md
 
@@ -254,7 +254,7 @@ series_service.csv_insert('sensor-1', File.read('/path/to/data.csv'), { :user =>
 Retrieving series values CSV and JSON format:
 
 ```ruby
-series_service.url_query('json','nurswgvml007','cpu_busy', :startDate => 'previous_minute')
+series_service.url_query('json','nurswgvml007','cpu_busy', :startDate => 'previous_minute', :endDate => 'now')
 # => {"series"=>
 #  [{"entity"=>"nurswgvml007",
 #    "metric"=>"cpu_busy",
@@ -262,7 +262,7 @@ series_service.url_query('json','nurswgvml007','cpu_busy', :startDate => 'previo
 #    "type"=>"HISTORY",
 #    "aggregate"=>{"type"=>"DETAIL"},
 #    "data"=>[{"t"=>1464688814000, "v"=>3.03}, {"t"=>1464688830000, "v"=>5}, {"t"=>1464688846000, "v"=>9}, {"t"=>1464688862000, "v"=>4.04}, {"t"=>1464688878000, "v"=>5.05}]}]}
-series_service.url_query('csv','nurswgvml007','cpu_busy', :startDate => 'previous_minute')
+series_service.url_query('csv','nurswgvml007','cpu_busy', :startDate => 'previous_minute', :endDate => 'now')
 => "time,entity,metric,value\r\n1464688862000,nurswgvml007,cpu_busy,4.04\r\n1464688878000,nurswgvml007,cpu_busy,5.05\r\n1464688894000,nurswgvml007,cpu_busy,10.2\r\n1464688910000,nurswgvml007,cpu_busy,45.95\r\n1464688926000,nurswgvml007,cpu_busy,21.36\r\n1464688942000,nurswgvml007,cpu_busy,4.04\r\n"
 ```
 
@@ -275,7 +275,7 @@ properties_service = atsd.properties_service
 property = Property.new :entity => 'sensor-1', :type => 'sensor_type', :tags => {"location":"NUR","site":"building-1"}, :key => {"id": "ch-15"}
 properties_service.insert(property)
 
-properties_service.query('sensor-1', 'sensor_type', :start_date => "2015-11-17T17:00:00Z").execute
+properties_service.query('sensor-1', 'sensor_type', :start_date => '2015-11-17T17:00:00Z', :end_date => '2016-01-17T17:00:00Z').execute
 # => [{:type=>"sensor_type",
 #  :entity=>"sensor-1",
 #  :tags=>{"location"=>"NUR", "site"=>"building-1"},
@@ -283,7 +283,7 @@ properties_service.query('sensor-1', 'sensor_type', :start_date => "2015-11-17T1
 #  :key=>{"id"=>"ch-15"}}]
 
 properties_service.delete(property)
-properties_service.query('sensor-1', 'sensor_type', :start_date => '2015-11-17T17:00:00Z').execute
+properties_service.query('sensor-1', 'sensor_type', :start_date => '2015-11-17T17:00:00Z', :end_date => '2016-01-17T17:00:00Z').execute
 # => []
 
 properties_service.type_query('sensor-1')
@@ -307,8 +307,7 @@ properties_service.url_query('nurswgvml007','network')
 alerts_service = atsd.alerts_service
 # => #<ATSD::AlertsService:0x007faf7c0efdc0
 
-alerts_service.query(:entity => "sensor-1", :metrics => ["meminfo.active"], :start_date => "2015-11-17T17:00:00Z").execute
-alerts_service.query.execute
+alerts_service.query(:entity => "sensor-1", :metrics => ["meminfo.active"], :start_date => '2015-11-17T17:00:00Z', :end_date => '2016-01-17T17:00:00Z').execute
 # => [{"entity"=>"sensor-1",
 #  "tags"=>{},
 #  "repeatCount"=>79,

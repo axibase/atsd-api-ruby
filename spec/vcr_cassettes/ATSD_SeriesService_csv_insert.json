@@ -3,17 +3,17 @@
     {
       "request": {
         "method": "post",
-        "uri": "http://10.211.55.9:8088/api/v1/series/csv/ubuntu?q=ats&w=vcx",
+        "uri": "http://hbs.axibase.com:32816/api/v1/series/csv/ubuntu?q=ats&w=vcx",
         "body": {
           "encoding": "UTF-8",
-          "string": "time,value\n11428654811000,53142\n1428654812000,53342\n428654813000,53242\n"
+          "string": "date,value\n2332-02-29T02:20:11.000Z,53142\n2015-04-10T08:33:32.000Z,53342\n1983-08-02T06:46:53.000Z,53242\n"
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v0.15.0"
+            "ATSD Ruby Client v1.0.7"
           ],
           "Authorization": [
-            "Basic ZGthbGFjaG92OmRtaXRyeQ=="
+            "Basic YXhpYmFzZTpheGliYXNl"
           ],
           "Content-Type": [
             "text/csv"
@@ -26,11 +26,11 @@
           "message": null
         },
         "headers": {
-          "expires": [
-            "Thu, 01-Jan-1970 00:00:00 GMT"
-          ],
           "set-cookie": [
-            "ATSD_SESSION_ID=1dtvvw7opi7b53cny1aanijb7;Path=/"
+            "ATSD_SESSION_ID=7q9hyti7zwwlfdf2xzxy330x;Path=/"
+          ],
+          "expires": [
+            "Thu, 01 Jan 1970 00:00:00 GMT"
           ],
           "access-control-allow-origin": [
             "*"
@@ -39,13 +39,13 @@
             "Origin, X-Requested-With, Content-Type, Accept, Authorization"
           ],
           "access-control-allow-methods": [
-            "GET, POST, PUT, PATCH, DELETE"
+            "HEAD, GET, POST, PUT, PATCH, DELETE"
           ],
           "connection": [
             "close"
           ],
           "server": [
-            "Jetty(6.1.x)"
+            "Jetty(8.y.z-SNAPSHOT)"
           ]
         },
         "body": {
@@ -54,7 +54,7 @@
         },
         "http_version": null
       },
-      "recorded_at": "Fri, 10 Apr 2015 09:40:31 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 09:44:54 GMT"
     }
   ],
   "recorded_with": "VCR 2.9.3"

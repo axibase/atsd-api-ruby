@@ -14,7 +14,7 @@ RSpec.describe SeriesService do
   let(:tags) { { :tag1 => 'value1' } }
 
   context '#query' do
-    let(:query) { subject.query entity, metric }
+    let(:query) { subject.query entity, metric, start_date, end_date }
 
     it 'create SeriesQuery instance' do
       expect(query).to be_a SeriesQuery
@@ -29,7 +29,7 @@ RSpec.describe SeriesService do
     it 'understand Entity and Metric objects' do
       entity_obj = Entity.new :name => entity
       metric_obj = Metric.new :name => metric
-      query = subject.query entity_obj, metric_obj
+      query = subject.query entity_obj, metric_obj, start_date, end_date
       expect(query[:entity]).to eq(entity)
       expect(query[:metric]).to eq(metric)
     end
@@ -38,6 +38,7 @@ RSpec.describe SeriesService do
   context '#insert' do
     it 'send Hash to ATSD' do
       series = { entity: entity, metric: metric, data: data  }
+      series = { entity: entity, metric: metric, data: data  }
       expect(subject.insert(series)).to eq(subject) # also check method chaining
     end
 
@@ -45,7 +46,7 @@ RSpec.describe SeriesService do
       series = Series.new
       series.entity = entity
       series.metric = metric
-      series.data = [ t: start_date, v: 1]
+      series.data = [ d: start_date, v: 1]
       subject.insert(series)
     end
 
@@ -61,7 +62,7 @@ RSpec.describe SeriesService do
   end
 
   context "#csv_insert" do
-    let (:data) { "time,value\n11428654811000,53142\n1428654812000,53342\n428654813000,53242\n" }
+    let (:data) { "date,value\n2332-02-29T02:20:11.000Z,53142\n2015-04-10T08:33:32.000Z,53342\n1983-08-02T06:46:53.000Z,53242\n" }
     it 'correctly build request' do
       tags = {:q => 'ats', :w => 'vcx'}
       subject.csv_insert(entity, data, tags)
@@ -76,7 +77,7 @@ RSpec.describe SeriesService do
     context '#result' do
       it 'call execute if necessary' do
         query = SeriesQuery.new $client
-        query.entity(entity).metric(metric)
+        query.entity(entity).metric(metric).start_date(start_date).end_date(end_date)
         expect(query.result).to be_truthy
       end
     end
@@ -89,8 +90,8 @@ RSpec.describe SeriesService do
             start_date(start_date).
             end_date(end_date)
         query2 = query.dup.
-            start_date(query[:start_date] + 100).
-            end_date(query[:end_date] + 100)
+            start_date('2016-04-01T10:59:34.000Z').
+            end_date('2016-04-01T10:59:35.000Z')
         result = query.execute_with(query2)
         expect(query[:request_id]).to be_truthy
         expect(query2[:request_id]).to be_truthy

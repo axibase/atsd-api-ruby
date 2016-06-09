@@ -3,17 +3,17 @@
     {
       "request": {
         "method": "post",
-        "uri": "http://10.211.55.9:8088/api/v1/series",
+        "uri": "http://hbs.axibase.com:32816/api/v1/series/query",
         "body": {
           "encoding": "UTF-8",
-          "string": "{\"queries\":[{\"entity\":\"ubuntu\",\"metric\":\"meminfo.active\",\"startTime\":1427885974000,\"endTime\":1427885975000}]}"
+          "string": "[{\"entity\":\"ubuntu\",\"metric\":\"meminfo.active\",\"startDate\":\"2015-04-01T10:59:34.000Z\",\"endDate\":\"2015-04-01T10:59:35.000Z\"}]"
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v0.12.0"
+            "ATSD Ruby Client v1.0.7"
           ],
           "Authorization": [
-            "Basic ZGthbGFjaG92OmRtaXRyeQ=="
+            "Basic YXhpYmFzZTpheGliYXNl"
           ],
           "Content-Type": [
             "application/json"
@@ -26,11 +26,11 @@
           "message": null
         },
         "headers": {
-          "expires": [
-            "Thu, 01-Jan-1970 00:00:00 GMT"
-          ],
           "set-cookie": [
-            "ATSD_SESSION_ID=1fwlm1c4c4fmd1bff33oov1oe2;Path=/"
+            "ATSD_SESSION_ID=110m0t5d8ekbv1tn4gjx5lv6ea;Path=/"
+          ],
+          "expires": [
+            "Thu, 01 Jan 1970 00:00:00 GMT"
           ],
           "content-type": [
             "application/json; charset=UTF-8"
@@ -42,22 +42,25 @@
             "Origin, X-Requested-With, Content-Type, Accept, Authorization"
           ],
           "access-control-allow-methods": [
-            "GET, POST, PUT, PATCH, DELETE"
+            "HEAD, GET, POST, PUT, PATCH, DELETE"
+          ],
+          "vary": [
+            "Accept-Encoding, User-Agent"
           ],
           "connection": [
             "close"
           ],
           "server": [
-            "Jetty(6.1.x)"
+            "Jetty(8.y.z-SNAPSHOT)"
           ]
         },
         "body": {
           "encoding": "ASCII-8BIT",
-          "string": "{\"series\":[{\"entity\":\"ubuntu\",\"metric\":\"meminfo.active\",\"tags\":{},\"type\":\"HISTORY\",\"aggregate\":{\"type\":\"DETAIL\"},\"data\":[{\"t\":1427885974000,\"v\":1.0},{\"t\":1427885975000,\"v\":444140.0}]}]}"
+          "string": "[{\"entity\":\"ubuntu\",\"metric\":\"meminfo.active\",\"tags\":{},\"type\":\"HISTORY\",\"aggregate\":{\"type\":\"DETAIL\"},\"data\":[{\"d\":\"2015-04-01T10:59:34.000Z\",\"v\":1}]}]"
         },
         "http_version": null
       },
-      "recorded_at": "Mon, 06 Apr 2015 08:11:53 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 09:45:01 GMT"
     }
   ],
   "recorded_with": "VCR 2.9.3"

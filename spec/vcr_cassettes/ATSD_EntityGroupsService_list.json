@@ -3,17 +3,17 @@
     {
       "request": {
         "method": "put",
-        "uri": "http://10.211.55.9:8088/api/v1/entity-groups/eg1",
+        "uri": "http://hbs.axibase.com:32816/api/v1/entity-groups/eg7",
         "body": {
           "encoding": "UTF-8",
-          "string": "{\"name\":\"eg1\"}"
+          "string": "{\"name\":\"eg7\"}"
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v0.12.0"
+            "ATSD Ruby Client v1.0.7"
           ],
           "Authorization": [
-            "Basic ZGthbGFjaG92OmRtaXRyeQ=="
+            "Basic YXhpYmFzZTpheGliYXNl"
           ],
           "Content-Type": [
             "application/json"
@@ -26,11 +26,11 @@
           "message": null
         },
         "headers": {
-          "expires": [
-            "Thu, 01-Jan-1970 00:00:00 GMT"
-          ],
           "set-cookie": [
-            "ATSD_SESSION_ID=uqp6o83inzcd13lfbsrwfk7fc;Path=/"
+            "ATSD_SESSION_ID=17bk3x36wfvpz1fj37if0t5hj8;Path=/"
+          ],
+          "expires": [
+            "Thu, 01 Jan 1970 00:00:00 GMT"
           ],
           "access-control-allow-origin": [
             "*"
@@ -39,13 +39,13 @@
             "Origin, X-Requested-With, Content-Type, Accept, Authorization"
           ],
           "access-control-allow-methods": [
-            "GET, POST, PUT, PATCH, DELETE"
+            "HEAD, GET, POST, PUT, PATCH, DELETE"
           ],
           "connection": [
             "close"
           ],
           "server": [
-            "Jetty(6.1.x)"
+            "Jetty(8.y.z-SNAPSHOT)"
           ]
         },
         "body": {
@@ -54,22 +54,22 @@
         },
         "http_version": null
       },
-      "recorded_at": "Mon, 06 Apr 2015 12:29:33 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 09:45:01 GMT"
     },
     {
       "request": {
         "method": "put",
-        "uri": "http://10.211.55.9:8088/api/v1/entity-groups/eg2",
+        "uri": "http://hbs.axibase.com:32816/api/v1/entity-groups/eg8",
         "body": {
           "encoding": "UTF-8",
-          "string": "{\"name\":\"eg2\"}"
+          "string": "{\"name\":\"eg8\"}"
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v0.12.0"
+            "ATSD Ruby Client v1.0.7"
           ],
           "Authorization": [
-            "Basic ZGthbGFjaG92OmRtaXRyeQ=="
+            "Basic YXhpYmFzZTpheGliYXNl"
           ],
           "Content-Type": [
             "application/json"
@@ -82,11 +82,11 @@
           "message": null
         },
         "headers": {
-          "expires": [
-            "Thu, 01-Jan-1970 00:00:00 GMT"
-          ],
           "set-cookie": [
-            "ATSD_SESSION_ID=gayj8rj2mbk0zfwaqk1s6jpy;Path=/"
+            "ATSD_SESSION_ID=1tb7uhhxotb091d81b1ljvgusv;Path=/"
+          ],
+          "expires": [
+            "Thu, 01 Jan 1970 00:00:00 GMT"
           ],
           "access-control-allow-origin": [
             "*"
@@ -95,13 +95,13 @@
             "Origin, X-Requested-With, Content-Type, Accept, Authorization"
           ],
           "access-control-allow-methods": [
-            "GET, POST, PUT, PATCH, DELETE"
+            "HEAD, GET, POST, PUT, PATCH, DELETE"
           ],
           "connection": [
             "close"
           ],
           "server": [
-            "Jetty(6.1.x)"
+            "Jetty(8.y.z-SNAPSHOT)"
           ]
         },
         "body": {
@@ -110,22 +110,22 @@
         },
         "http_version": null
       },
-      "recorded_at": "Mon, 06 Apr 2015 12:29:33 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 09:45:02 GMT"
     },
     {
       "request": {
         "method": "put",
-        "uri": "http://10.211.55.9:8088/api/v1/entity-groups/eg3",
+        "uri": "http://hbs.axibase.com:32816/api/v1/entity-groups/eg9",
         "body": {
           "encoding": "UTF-8",
-          "string": "{\"name\":\"eg3\"}"
+          "string": "{\"name\":\"eg9\"}"
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v0.12.0"
+            "ATSD Ruby Client v1.0.7"
           ],
           "Authorization": [
-            "Basic ZGthbGFjaG92OmRtaXRyeQ=="
+            "Basic YXhpYmFzZTpheGliYXNl"
           ],
           "Content-Type": [
             "application/json"
@@ -138,11 +138,11 @@
           "message": null
         },
         "headers": {
-          "expires": [
-            "Thu, 01-Jan-1970 00:00:00 GMT"
-          ],
           "set-cookie": [
-            "ATSD_SESSION_ID=lqvv0sxuz0151xzinn5isxkv3;Path=/"
+            "ATSD_SESSION_ID=wyyd5rvpjjcsbejnzpabf7q4;Path=/"
+          ],
+          "expires": [
+            "Thu, 01 Jan 1970 00:00:00 GMT"
           ],
           "access-control-allow-origin": [
             "*"
@@ -151,13 +151,13 @@
             "Origin, X-Requested-With, Content-Type, Accept, Authorization"
           ],
           "access-control-allow-methods": [
-            "GET, POST, PUT, PATCH, DELETE"
+            "HEAD, GET, POST, PUT, PATCH, DELETE"
           ],
           "connection": [
             "close"
           ],
           "server": [
-            "Jetty(6.1.x)"
+            "Jetty(8.y.z-SNAPSHOT)"
           ]
         },
         "body": {
@@ -166,22 +166,22 @@
         },
         "http_version": null
       },
-      "recorded_at": "Mon, 06 Apr 2015 12:29:33 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 09:45:02 GMT"
     },
     {
       "request": {
         "method": "get",
-        "uri": "http://10.211.55.9:8088/api/v1/entity-groups",
+        "uri": "http://hbs.axibase.com:32816/api/v1/entity-groups",
         "body": {
           "encoding": "US-ASCII",
           "string": ""
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v0.12.0"
+            "ATSD Ruby Client v1.0.7"
           ],
           "Authorization": [
-            "Basic ZGthbGFjaG92OmRtaXRyeQ=="
+            "Basic YXhpYmFzZTpheGliYXNl"
           ]
         }
       },
@@ -191,11 +191,11 @@
           "message": null
         },
         "headers": {
-          "expires": [
-            "Thu, 01-Jan-1970 00:00:00 GMT"
-          ],
           "set-cookie": [
-            "ATSD_SESSION_ID=1qjncvmajh9rkmxisvgaokhnx;Path=/"
+            "ATSD_SESSION_ID=3o0qx9wf2nmubuhcrpybymvg;Path=/"
+          ],
+          "expires": [
+            "Thu, 01 Jan 1970 00:00:00 GMT"
           ],
           "access-control-allow-origin": [
             "*"
@@ -204,40 +204,43 @@
             "Origin, X-Requested-With, Content-Type, Accept, Authorization"
           ],
           "access-control-allow-methods": [
-            "GET, POST, PUT, PATCH, DELETE"
+            "HEAD, GET, POST, PUT, PATCH, DELETE"
           ],
           "content-type": [
-            "application/json"
+            "application/json;charset=UTF-8"
+          ],
+          "vary": [
+            "Accept-Encoding, User-Agent"
           ],
           "connection": [
             "close"
           ],
           "server": [
-            "Jetty(6.1.x)"
+            "Jetty(8.y.z-SNAPSHOT)"
           ]
         },
         "body": {
           "encoding": "ASCII-8BIT",
-          "string": "[{\"name\":\"eg1\"},{\"name\":\"eg2\"},{\"name\":\"eg3\"}]"
+          "string": "[{\"name\":\"ITM - Linux OS\",\"expression\":\"hasMetric('klzsys.system_load_1min')\"},{\"name\":\"VMware Clusters\",\"expression\":\"properties('vmware.cluster').size() > 0\"},{\"name\":\"VMware Hosts\",\"expression\":\"properties('vmware.host').size() > 0\"},{\"name\":\"VMware VMs\",\"expression\":\"properties('vmware.vm').size() > 0\"},{\"name\":\"apache-activemq-brokers\",\"expression\":\"properties('broker').size() > 0\"},{\"name\":\"apache-derby-databases\",\"expression\":\"properties('jmx.derby.version').size() > 0\"},{\"name\":\"aws-ebs\",\"expression\":\"properties('aws_ec2.volume').size() > 0\"},{\"name\":\"aws-ec2\",\"expression\":\"properties('aws_ec2.instance').size() > 0\"},{\"name\":\"cadvisor-containers\",\"expression\":\"tags.container_namespace != '' and tags.container_id != '' or tags.container_namespace = 'docker' or tags.container_namespace = 'lxc'\"},{\"name\":\"cadvisor-hosts\",\"expression\":\"tags.container_host = 'true'\"},{\"name\":\"docker-containers\",\"expression\":\"tags.status != 'deleted' && properties('docker.container').size() > 0\"},{\"name\":\"docker-hosts\",\"expression\":\"tags.status != 'deleted' && properties('docker.info').size() > 0\"},{\"name\":\"docker-images\",\"expression\":\"tags.status != 'deleted' && properties('docker.image').size() > 0\"},{\"name\":\"docker-networks\",\"expression\":\"tags.status != 'deleted' && properties('docker.network').size() > 0\"},{\"name\":\"docker-volumes\",\"expression\":\"tags.status != 'deleted' && properties('docker.volume').size() > 0\"},{\"name\":\"eg7\"},{\"name\":\"eg8\"},{\"name\":\"eg9\"},{\"name\":\"java-loggers\",\"expression\":\"hasMetric('log_event_total_counter')\"},{\"name\":\"java-virtual-machine\",\"expression\":\"properties('jvm.operatingsystem').size() > 0\"},{\"name\":\"jetty-web-server\",\"expression\":\"properties('jmx.jetty.hashsessionmanager').size() > 0\"},{\"name\":\"nginx-servers\",\"expression\":\"hasMetric('nginx.active_connections')\"},{\"name\":\"nmon-aix\",\"expression\":\"properties('configuration').progname = 'topas_nmon'\"},{\"name\":\"nmon-linux\",\"expression\":\"properties('configuration').progname != '' and properties('configuration').progname not like 'topas*'\"},{\"name\":\"scollector-dotnet\",\"expression\":\"hasMetric('dotnet.current.classes')\"},{\"name\":\"scollector-iis\",\"expression\":\"hasMetric('iis.bytes')\"},{\"name\":\"scollector-linux\",\"expression\":\"properties('scollector.default').size() > 0 && properties('scollector.default').uname like '*Linux*'\"},{\"name\":\"scollector-macos\",\"expression\":\"properties('scollector.default').size() > 0 && properties('scollector.default').versioncaption like '*Mac*'\"},{\"name\":\"scollector-mssql\",\"expression\":\"hasMetric('mssql.logins')\"},{\"name\":\"scollector-windows\",\"expression\":\"properties('scollector.default').size() > 0 && properties('scollector.default').versioncaption like '*Windows*'\"},{\"name\":\"scom-databases\",\"expression\":\"properties('scom.database').size() > 0\"},{\"name\":\"scom-servers\",\"expression\":\"properties('scom.operating_system').size() > 0\"},{\"name\":\"solarwind-vmware-cluster\",\"expression\":\"properties('sw.vmw.cluster').size() > 0\"},{\"name\":\"solarwind-vmware-host\",\"expression\":\"properties('sw.vmw.host').size() > 0\"},{\"name\":\"solarwind-vmware-vm\",\"expression\":\"properties('sw.vmw.vm').size() > 0\"},{\"name\":\"solarwinds-base\",\"expression\":\"properties('sw.node').size() > 0\"},{\"name\":\"tcollector - linux\",\"expression\":\"properties('tcollector').size() > 0\"}]"
         },
         "http_version": null
       },
-      "recorded_at": "Mon, 06 Apr 2015 12:29:33 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 09:45:02 GMT"
     },
     {
       "request": {
         "method": "delete",
-        "uri": "http://10.211.55.9:8088/api/v1/entity-groups/eg1",
+        "uri": "http://hbs.axibase.com:32816/api/v1/entity-groups/eg7",
         "body": {
           "encoding": "US-ASCII",
           "string": ""
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v0.12.0"
+            "ATSD Ruby Client v1.0.7"
           ],
           "Authorization": [
-            "Basic ZGthbGFjaG92OmRtaXRyeQ=="
+            "Basic YXhpYmFzZTpheGliYXNl"
           ]
         }
       },
@@ -247,11 +250,11 @@
           "message": null
         },
         "headers": {
-          "expires": [
-            "Thu, 01-Jan-1970 00:00:00 GMT"
-          ],
           "set-cookie": [
-            "ATSD_SESSION_ID=3b37uvgjr6c1iatxp5dh1ct6;Path=/"
+            "ATSD_SESSION_ID=1p4niai8uyrl9mya3rjknrcus;Path=/"
+          ],
+          "expires": [
+            "Thu, 01 Jan 1970 00:00:00 GMT"
           ],
           "access-control-allow-origin": [
             "*"
@@ -260,13 +263,13 @@
             "Origin, X-Requested-With, Content-Type, Accept, Authorization"
           ],
           "access-control-allow-methods": [
-            "GET, POST, PUT, PATCH, DELETE"
+            "HEAD, GET, POST, PUT, PATCH, DELETE"
           ],
           "connection": [
             "close"
           ],
           "server": [
-            "Jetty(6.1.x)"
+            "Jetty(8.y.z-SNAPSHOT)"
           ]
         },
         "body": {
@@ -275,22 +278,22 @@
         },
         "http_version": null
       },
-      "recorded_at": "Mon, 06 Apr 2015 12:29:33 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 09:45:02 GMT"
     },
     {
       "request": {
         "method": "delete",
-        "uri": "http://10.211.55.9:8088/api/v1/entity-groups/eg2",
+        "uri": "http://hbs.axibase.com:32816/api/v1/entity-groups/eg8",
         "body": {
           "encoding": "US-ASCII",
           "string": ""
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v0.12.0"
+            "ATSD Ruby Client v1.0.7"
           ],
           "Authorization": [
-            "Basic ZGthbGFjaG92OmRtaXRyeQ=="
+            "Basic YXhpYmFzZTpheGliYXNl"
           ]
         }
       },
@@ -300,11 +303,11 @@
           "message": null
         },
         "headers": {
-          "expires": [
-            "Thu, 01-Jan-1970 00:00:00 GMT"
-          ],
           "set-cookie": [
-            "ATSD_SESSION_ID=1gvuuxb5m680t1vlvem6dxg1gy;Path=/"
+            "ATSD_SESSION_ID=1wegiyvvmzkftfxvr6jtu051q;Path=/"
+          ],
+          "expires": [
+            "Thu, 01 Jan 1970 00:00:00 GMT"
           ],
           "access-control-allow-origin": [
             "*"
@@ -313,13 +316,13 @@
             "Origin, X-Requested-With, Content-Type, Accept, Authorization"
           ],
           "access-control-allow-methods": [
-            "GET, POST, PUT, PATCH, DELETE"
+            "HEAD, GET, POST, PUT, PATCH, DELETE"
           ],
           "connection": [
             "close"
           ],
           "server": [
-            "Jetty(6.1.x)"
+            "Jetty(8.y.z-SNAPSHOT)"
           ]
         },
         "body": {
@@ -328,22 +331,22 @@
         },
         "http_version": null
       },
-      "recorded_at": "Mon, 06 Apr 2015 12:29:33 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 09:45:02 GMT"
     },
     {
       "request": {
         "method": "delete",
-        "uri": "http://10.211.55.9:8088/api/v1/entity-groups/eg3",
+        "uri": "http://hbs.axibase.com:32816/api/v1/entity-groups/eg9",
         "body": {
           "encoding": "US-ASCII",
           "string": ""
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v0.12.0"
+            "ATSD Ruby Client v1.0.7"
           ],
           "Authorization": [
-            "Basic ZGthbGFjaG92OmRtaXRyeQ=="
+            "Basic YXhpYmFzZTpheGliYXNl"
           ]
         }
       },
@@ -353,11 +356,11 @@
           "message": null
         },
         "headers": {
-          "expires": [
-            "Thu, 01-Jan-1970 00:00:00 GMT"
-          ],
           "set-cookie": [
-            "ATSD_SESSION_ID=qatbrd3hnig7yd3j41i9sij9;Path=/"
+            "ATSD_SESSION_ID=1i14mu144t1vo1k0y1ywzm6arw;Path=/"
+          ],
+          "expires": [
+            "Thu, 01 Jan 1970 00:00:00 GMT"
           ],
           "access-control-allow-origin": [
             "*"
@@ -366,13 +369,13 @@
             "Origin, X-Requested-With, Content-Type, Accept, Authorization"
           ],
           "access-control-allow-methods": [
-            "GET, POST, PUT, PATCH, DELETE"
+            "HEAD, GET, POST, PUT, PATCH, DELETE"
           ],
           "connection": [
             "close"
           ],
           "server": [
-            "Jetty(6.1.x)"
+            "Jetty(8.y.z-SNAPSHOT)"
           ]
         },
         "body": {
@@ -381,7 +384,7 @@
         },
         "http_version": null
       },
-      "recorded_at": "Mon, 06 Apr 2015 12:29:33 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 09:45:02 GMT"
     }
   ],
   "recorded_with": "VCR 2.9.3"
