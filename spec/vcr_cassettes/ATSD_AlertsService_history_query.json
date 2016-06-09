@@ -10,7 +10,7 @@
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
+            "ATSD Ruby Client v1.0.8"
           ],
           "Authorization": [
             "Basic YXhpYmFzZTpheGliYXNl"
@@ -27,7 +27,7 @@
         },
         "headers": {
           "set-cookie": [
-            "ATSD_SESSION_ID=1uu4n5fyy67nyfupn3569cyks;Path=/"
+            "ATSD_SESSION_ID=12nn4ihs8e3xx14u8dl7wtve7d;Path=/"
           ],
           "expires": [
             "Thu, 01 Jan 1970 00:00:00 GMT"
@@ -60,7 +60,7 @@
         },
         "http_version": null
       },
-      "recorded_at": "Thu, 09 Jun 2016 09:44:55 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 13:10:41 GMT"
     }
   ],
   "recorded_with": "VCR 2.9.3"

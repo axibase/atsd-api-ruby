@@ -10,7 +10,7 @@
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
+            "ATSD Ruby Client v1.0.8"
           ],
           "Authorization": [
             "Basic YXhpYmFzZTpheGliYXNl"
@@ -48,7 +48,7 @@
         },
         "http_version": null
       },
-      "recorded_at": "Thu, 09 Jun 2016 09:45:01 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 13:10:53 GMT"
     }
   ],
   "recorded_with": "VCR 2.9.3"

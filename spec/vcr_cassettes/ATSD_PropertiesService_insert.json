@@ -3,70 +3,14 @@
     {
       "request": {
         "method": "post",
-        "uri": "http://hbs.axibase.com:32816/api/v1/properties/insert",
-        "body": {
-          "encoding": "UTF-8",
-          "string": "[{\"entity\":\"YYFSWGVG\",\"type\":\"prop_test_type\",\"key\":{\"system\":\"system_name\",\"user\":\"user_name\"},\"tags\":{\"tag1\":\"tagvalue1\",\"tag2\":\"tagvalue2\"},\"date\":\"2015-04-01T10:59:34.000Z\"}]"
-        },
-        "headers": {
-          "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
-          ],
-          "Authorization": [
-            "Basic YXhpYmFzZTpheGliYXNl"
-          ],
-          "Content-Type": [
-            "application/json"
-          ]
-        }
-      },
-      "response": {
-        "status": {
-          "code": 200,
-          "message": null
-        },
-        "headers": {
-          "set-cookie": [
-            "ATSD_SESSION_ID=6b3c216a6jxkh91dcxhpjseh;Path=/"
-          ],
-          "expires": [
-            "Thu, 01 Jan 1970 00:00:00 GMT"
-          ],
-          "access-control-allow-origin": [
-            "*"
-          ],
-          "access-control-allow-headers": [
-            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-          ],
-          "access-control-allow-methods": [
-            "HEAD, GET, POST, PUT, PATCH, DELETE"
-          ],
-          "connection": [
-            "close"
-          ],
-          "server": [
-            "Jetty(8.y.z-SNAPSHOT)"
-          ]
-        },
-        "body": {
-          "encoding": "UTF-8",
-          "string": ""
-        },
-        "http_version": null
-      },
-      "recorded_at": "Thu, 09 Jun 2016 09:15:36 GMT"
-    },
-    {
-      "request": {
-        "method": "post",
         "uri": "http://hbs.axibase.com:32816/api/v1/properties/query",
         "body": {
           "encoding": "UTF-8",
-          "string": "[{\"startDate\":\"2015-04-01T10:59:34.000Z\",\"endDate\":\"2016-06-09T12:15:36+03:00\",\"entity\":\"YYFSWGVG\",\"type\":\"prop_test_type\"}]"
+          "string": "[{\"startDate\":\"2015-04-01T10:59:34.000Z\",\"endDate\":\"2016-06-09T16:06:46+03:00\",\"entity\":\"prop_test_entity\",\"type\":\"prop_test_type\"}]"
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
+            "ATSD Ruby Client v1.0.8"
           ],
           "Authorization": [
             "Basic YXhpYmFzZTpheGliYXNl"
@@ -83,7 +27,7 @@
         },
         "headers": {
           "set-cookie": [
-            "ATSD_SESSION_ID=ry92imuy4ate1k5edg97fi5q4;Path=/"
+            "ATSD_SESSION_ID=gz2gym4gbqrq164lhbggiyfyy;Path=/"
           ],
           "expires": [
             "Thu, 01 Jan 1970 00:00:00 GMT"
@@ -112,11 +56,11 @@
         },
         "body": {
           "encoding": "ASCII-8BIT",
-          "string": "[{\"type\":\"prop_test_type\",\"entity\":\"yyfswgvg\",\"key\":{\"system\":\"system_name\",\"user\":\"user_name\"},\"tags\":{\"tag1\":\"tagvalue1\",\"tag2\":\"tagvalue2\"},\"date\":\"2016-06-09T09:15:35.803Z\"}]"
+          "string": "[{\"type\":\"prop_test_type\",\"entity\":\"prop_test_entity\",\"key\":{\"system\":\"system_name\",\"user\":\"user_name\"},\"tags\":{\"tag1\":\"tagvalue1\",\"tag2\":\"tagvalue2\"},\"date\":\"2016-06-09T13:06:45.394Z\"}]"
         },
         "http_version": null
       },
-      "recorded_at": "Thu, 09 Jun 2016 09:15:36 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 13:06:46 GMT"
     },
     {
       "request": {
@@ -124,11 +68,11 @@
         "uri": "http://hbs.axibase.com:32816/api/v1/properties/query",
         "body": {
           "encoding": "UTF-8",
-          "string": "[{\"startDate\":\"2015-04-01T10:59:34.000Z\",\"endDate\":\"2016-06-09T12:20:52+03:00\",\"entity\":\"prop-test-entity\",\"type\":\"prop_test_type\"}]"
+          "string": "[{\"startDate\":\"2015-04-01T10:59:34.000Z\",\"endDate\":\"2016-06-09T16:07:30+03:00\",\"entity\":\"prop_test_entity\",\"type\":\"prop_test_type\"}]"
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
+            "ATSD Ruby Client v1.0.8"
           ],
           "Authorization": [
             "Basic YXhpYmFzZTpheGliYXNl"
@@ -145,7 +89,7 @@
         },
         "headers": {
           "set-cookie": [
-            "ATSD_SESSION_ID=1mwqvwiwpsnsp22nt44kht1ql;Path=/"
+            "ATSD_SESSION_ID=18hbim3a0lr55wmpqcba3rqrk;Path=/"
           ],
           "expires": [
             "Thu, 01 Jan 1970 00:00:00 GMT"
@@ -174,11 +118,11 @@
         },
         "body": {
           "encoding": "ASCII-8BIT",
-          "string": "[]"
+          "string": "[{\"type\":\"prop_test_type\",\"entity\":\"prop_test_entity\",\"key\":{\"system\":\"system_name\",\"user\":\"user_name\"},\"tags\":{\"tag1\":\"tagvalue1\",\"tag2\":\"tagvalue2\"},\"date\":\"2016-06-09T13:07:29.661Z\"}]"
         },
         "http_version": null
       },
-      "recorded_at": "Thu, 09 Jun 2016 09:20:52 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 13:07:30 GMT"
     },
     {
       "request": {
@@ -186,11 +130,11 @@
         "uri": "http://hbs.axibase.com:32816/api/v1/properties/query",
         "body": {
           "encoding": "UTF-8",
-          "string": "[{\"startDate\":\"2015-04-01T10:59:34.000Z\",\"endDate\":\"2016-06-09T12:21:14+03:00\",\"entity\":\"prop-test-entity\",\"type\":\"prop_test_type\"}]"
+          "string": "[{\"startDate\":\"2015-04-01T10:59:34.000Z\",\"endDate\":\"2016-06-09T16:09:14+03:00\",\"entity\":\"prop_test_entity\",\"type\":\"prop_test_type\"}]"
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
+            "ATSD Ruby Client v1.0.8"
           ],
           "Authorization": [
             "Basic YXhpYmFzZTpheGliYXNl"
@@ -207,7 +151,7 @@
         },
         "headers": {
           "set-cookie": [
-            "ATSD_SESSION_ID=1vvwczlsj6dlxf3p0fgti8nub;Path=/"
+            "ATSD_SESSION_ID=1x75jre26t8jj14rt5y1j1v4g;Path=/"
           ],
           "expires": [
             "Thu, 01 Jan 1970 00:00:00 GMT"
@@ -236,11 +180,11 @@
         },
         "body": {
           "encoding": "ASCII-8BIT",
-          "string": "[]"
+          "string": "[{\"type\":\"prop_test_type\",\"entity\":\"prop_test_entity\",\"key\":{\"system\":\"system_name\",\"user\":\"user_name\"},\"tags\":{\"tag1\":\"tagvalue1\",\"tag2\":\"tagvalue2\"},\"date\":\"2016-06-09T13:09:13.164Z\"}]"
         },
         "http_version": null
       },
-      "recorded_at": "Thu, 09 Jun 2016 09:21:14 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 13:09:14 GMT"
     },
     {
       "request": {
@@ -248,11 +192,11 @@
         "uri": "http://hbs.axibase.com:32816/api/v1/properties/query",
         "body": {
           "encoding": "UTF-8",
-          "string": "[{\"startDate\":\"2015-04-01T10:59:34.000Z\",\"endDate\":\"2016-06-09T12:21:38+03:00\",\"entity\":\"prop-test-entity\",\"type\":\"prop_test_type\"}]"
+          "string": "[{\"startDate\":\"2015-04-01T10:59:34.000Z\",\"endDate\":\"2016-06-09T16:10:21+03:00\",\"entity\":\"prop_test_entity\",\"type\":\"prop_test_type\"}]"
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
+            "ATSD Ruby Client v1.0.8"
           ],
           "Authorization": [
             "Basic YXhpYmFzZTpheGliYXNl"
@@ -269,7 +213,7 @@
         },
         "headers": {
           "set-cookie": [
-            "ATSD_SESSION_ID=1anw3tgbmmuescyk22th66a13;Path=/"
+            "ATSD_SESSION_ID=vuoyjrj2dz321xqc20bvtgitf;Path=/"
           ],
           "expires": [
             "Thu, 01 Jan 1970 00:00:00 GMT"
@@ -302,317 +246,7 @@
         },
         "http_version": null
       },
-      "recorded_at": "Thu, 09 Jun 2016 09:21:38 GMT"
-    },
-    {
-      "request": {
-        "method": "post",
-        "uri": "http://hbs.axibase.com:32816/api/v1/properties/query",
-        "body": {
-          "encoding": "UTF-8",
-          "string": "[{\"startDate\":\"2015-04-01T10:59:34.000Z\",\"endDate\":\"2016-06-09T12:25:51+03:00\",\"entity\":\"prop-test-entity\",\"type\":\"prop_test_type\"}]"
-        },
-        "headers": {
-          "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
-          ],
-          "Authorization": [
-            "Basic YXhpYmFzZTpheGliYXNl"
-          ],
-          "Content-Type": [
-            "application/json"
-          ]
-        }
-      },
-      "response": {
-        "status": {
-          "code": 200,
-          "message": null
-        },
-        "headers": {
-          "set-cookie": [
-            "ATSD_SESSION_ID=xgovw21cmewf1y1ixl03nax47;Path=/"
-          ],
-          "expires": [
-            "Thu, 01 Jan 1970 00:00:00 GMT"
-          ],
-          "access-control-allow-origin": [
-            "*"
-          ],
-          "access-control-allow-headers": [
-            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-          ],
-          "access-control-allow-methods": [
-            "HEAD, GET, POST, PUT, PATCH, DELETE"
-          ],
-          "content-type": [
-            "application/json;charset=UTF-8"
-          ],
-          "vary": [
-            "Accept-Encoding, User-Agent"
-          ],
-          "connection": [
-            "close"
-          ],
-          "server": [
-            "Jetty(8.y.z-SNAPSHOT)"
-          ]
-        },
-        "body": {
-          "encoding": "ASCII-8BIT",
-          "string": "[]"
-        },
-        "http_version": null
-      },
-      "recorded_at": "Thu, 09 Jun 2016 09:25:52 GMT"
-    },
-    {
-      "request": {
-        "method": "post",
-        "uri": "http://hbs.axibase.com:32816/api/v1/properties/query",
-        "body": {
-          "encoding": "UTF-8",
-          "string": "[{\"startDate\":\"2015-04-01T10:59:34.000Z\",\"endDate\":\"2016-06-09T12:26:23+03:00\",\"entity\":\"prop-test-entity\",\"type\":\"prop_test_type\"}]"
-        },
-        "headers": {
-          "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
-          ],
-          "Authorization": [
-            "Basic YXhpYmFzZTpheGliYXNl"
-          ],
-          "Content-Type": [
-            "application/json"
-          ]
-        }
-      },
-      "response": {
-        "status": {
-          "code": 200,
-          "message": null
-        },
-        "headers": {
-          "set-cookie": [
-            "ATSD_SESSION_ID=umjcr7ylt0fiek0d1zlvh1f7;Path=/"
-          ],
-          "expires": [
-            "Thu, 01 Jan 1970 00:00:00 GMT"
-          ],
-          "access-control-allow-origin": [
-            "*"
-          ],
-          "access-control-allow-headers": [
-            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-          ],
-          "access-control-allow-methods": [
-            "HEAD, GET, POST, PUT, PATCH, DELETE"
-          ],
-          "content-type": [
-            "application/json;charset=UTF-8"
-          ],
-          "vary": [
-            "Accept-Encoding, User-Agent"
-          ],
-          "connection": [
-            "close"
-          ],
-          "server": [
-            "Jetty(8.y.z-SNAPSHOT)"
-          ]
-        },
-        "body": {
-          "encoding": "ASCII-8BIT",
-          "string": "[]"
-        },
-        "http_version": null
-      },
-      "recorded_at": "Thu, 09 Jun 2016 09:26:23 GMT"
-    },
-    {
-      "request": {
-        "method": "post",
-        "uri": "http://hbs.axibase.com:32816/api/v1/properties/query",
-        "body": {
-          "encoding": "UTF-8",
-          "string": "[{\"startDate\":\"2015-04-01T10:59:34.000Z\",\"endDate\":\"2016-06-09T12:26:42+03:00\",\"entity\":\"prop-test-entity\",\"type\":\"prop_test_type\"}]"
-        },
-        "headers": {
-          "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
-          ],
-          "Authorization": [
-            "Basic YXhpYmFzZTpheGliYXNl"
-          ],
-          "Content-Type": [
-            "application/json"
-          ]
-        }
-      },
-      "response": {
-        "status": {
-          "code": 200,
-          "message": null
-        },
-        "headers": {
-          "set-cookie": [
-            "ATSD_SESSION_ID=y2242ynzfn0x1hhuqztlv8gpu;Path=/"
-          ],
-          "expires": [
-            "Thu, 01 Jan 1970 00:00:00 GMT"
-          ],
-          "access-control-allow-origin": [
-            "*"
-          ],
-          "access-control-allow-headers": [
-            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-          ],
-          "access-control-allow-methods": [
-            "HEAD, GET, POST, PUT, PATCH, DELETE"
-          ],
-          "content-type": [
-            "application/json;charset=UTF-8"
-          ],
-          "vary": [
-            "Accept-Encoding, User-Agent"
-          ],
-          "connection": [
-            "close"
-          ],
-          "server": [
-            "Jetty(8.y.z-SNAPSHOT)"
-          ]
-        },
-        "body": {
-          "encoding": "ASCII-8BIT",
-          "string": "[]"
-        },
-        "http_version": null
-      },
-      "recorded_at": "Thu, 09 Jun 2016 09:26:42 GMT"
-    },
-    {
-      "request": {
-        "method": "post",
-        "uri": "http://hbs.axibase.com:32816/api/v1/properties/query",
-        "body": {
-          "encoding": "UTF-8",
-          "string": "[{\"startDate\":\"2015-04-01T10:59:34.000Z\",\"endDate\":\"2016-06-09T12:28:11+03:00\",\"entity\":\"prop-test-entity\",\"type\":\"prop_test_type\"}]"
-        },
-        "headers": {
-          "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
-          ],
-          "Authorization": [
-            "Basic YXhpYmFzZTpheGliYXNl"
-          ],
-          "Content-Type": [
-            "application/json"
-          ]
-        }
-      },
-      "response": {
-        "status": {
-          "code": 200,
-          "message": null
-        },
-        "headers": {
-          "set-cookie": [
-            "ATSD_SESSION_ID=nioziqgv2edp18yhjmed6j144;Path=/"
-          ],
-          "expires": [
-            "Thu, 01 Jan 1970 00:00:00 GMT"
-          ],
-          "access-control-allow-origin": [
-            "*"
-          ],
-          "access-control-allow-headers": [
-            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-          ],
-          "access-control-allow-methods": [
-            "HEAD, GET, POST, PUT, PATCH, DELETE"
-          ],
-          "content-type": [
-            "application/json;charset=UTF-8"
-          ],
-          "vary": [
-            "Accept-Encoding, User-Agent"
-          ],
-          "connection": [
-            "close"
-          ],
-          "server": [
-            "Jetty(8.y.z-SNAPSHOT)"
-          ]
-        },
-        "body": {
-          "encoding": "ASCII-8BIT",
-          "string": "[]"
-        },
-        "http_version": null
-      },
-      "recorded_at": "Thu, 09 Jun 2016 09:28:11 GMT"
-    },
-    {
-      "request": {
-        "method": "post",
-        "uri": "http://hbs.axibase.com:32816/api/v1/properties/query",
-        "body": {
-          "encoding": "UTF-8",
-          "string": "[{\"startDate\":\"2015-04-01T10:59:34.000Z\",\"endDate\":\"2016-06-09T12:28:55+03:00\",\"entity\":\"prop-test-entity\",\"type\":\"prop_test_type\"}]"
-        },
-        "headers": {
-          "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
-          ],
-          "Authorization": [
-            "Basic YXhpYmFzZTpheGliYXNl"
-          ],
-          "Content-Type": [
-            "application/json"
-          ]
-        }
-      },
-      "response": {
-        "status": {
-          "code": 200,
-          "message": null
-        },
-        "headers": {
-          "set-cookie": [
-            "ATSD_SESSION_ID=1j0udyb6wmtlm1xykx7qu43n39;Path=/"
-          ],
-          "expires": [
-            "Thu, 01 Jan 1970 00:00:00 GMT"
-          ],
-          "access-control-allow-origin": [
-            "*"
-          ],
-          "access-control-allow-headers": [
-            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-          ],
-          "access-control-allow-methods": [
-            "HEAD, GET, POST, PUT, PATCH, DELETE"
-          ],
-          "content-type": [
-            "application/json;charset=UTF-8"
-          ],
-          "vary": [
-            "Accept-Encoding, User-Agent"
-          ],
-          "connection": [
-            "close"
-          ],
-          "server": [
-            "Jetty(8.y.z-SNAPSHOT)"
-          ]
-        },
-        "body": {
-          "encoding": "ASCII-8BIT",
-          "string": "[]"
-        },
-        "http_version": null
-      },
-      "recorded_at": "Thu, 09 Jun 2016 09:28:55 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 13:10:21 GMT"
     },
     {
       "request": {
@@ -624,7 +258,7 @@
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
+            "ATSD Ruby Client v1.0.8"
           ],
           "Authorization": [
             "Basic YXhpYmFzZTpheGliYXNl"
@@ -665,7 +299,7 @@
         },
         "http_version": null
       },
-      "recorded_at": "Thu, 09 Jun 2016 09:44:52 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 13:10:39 GMT"
     },
     {
       "request": {
@@ -673,11 +307,11 @@
         "uri": "http://hbs.axibase.com:32816/api/v1/properties/insert",
         "body": {
           "encoding": "UTF-8",
-          "string": "[{\"entity\":\"prop-test-entity\",\"type\":\"prop_test_type\",\"key\":{\"system\":\"system_name\",\"user\":\"user_name\"},\"tags\":{\"tag1\":\"tagvalue1\",\"tag2\":\"tagvalue2\"},\"date\":\"2015-04-01T10:59:34.000Z\"}]"
+          "string": "[{\"entity\":\"prop_test_entity\",\"type\":\"prop_test_type\",\"key\":{\"system\":\"system_name\",\"user\":\"user_name\"},\"tags\":{\"tag1\":\"tagvalue1\",\"tag2\":\"tagvalue2\"}}]"
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
+            "ATSD Ruby Client v1.0.8"
           ],
           "Authorization": [
             "Basic YXhpYmFzZTpheGliYXNl"
@@ -694,7 +328,7 @@
         },
         "headers": {
           "set-cookie": [
-            "ATSD_SESSION_ID=1jmej5p410yt5eg7ljnn8srzy;Path=/"
+            "ATSD_SESSION_ID=5q9v9tdtiuwy1w8kalpqjl6ho;Path=/"
           ],
           "expires": [
             "Thu, 01 Jan 1970 00:00:00 GMT"
@@ -721,7 +355,7 @@
         },
         "http_version": null
       },
-      "recorded_at": "Thu, 09 Jun 2016 09:44:52 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 13:10:39 GMT"
     },
     {
       "request": {
@@ -729,11 +363,11 @@
         "uri": "http://hbs.axibase.com:32816/api/v1/properties/query",
         "body": {
           "encoding": "UTF-8",
-          "string": "[{\"startDate\":\"2015-04-01T10:59:34.000Z\",\"endDate\":\"2016-06-09T12:44:52+03:00\",\"entity\":\"prop-test-entity\",\"type\":\"prop_test_type\"}]"
+          "string": "[{\"startDate\":\"2015-04-01T10:59:34.000Z\",\"endDate\":\"2016-06-09T16:10:40+03:00\",\"entity\":\"prop_test_entity\",\"type\":\"prop_test_type\"}]"
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
+            "ATSD Ruby Client v1.0.8"
           ],
           "Authorization": [
             "Basic YXhpYmFzZTpheGliYXNl"
@@ -750,7 +384,7 @@
         },
         "headers": {
           "set-cookie": [
-            "ATSD_SESSION_ID=eefzw11xetx319hj2l32cgvwz;Path=/"
+            "ATSD_SESSION_ID=1heaabbojw36g1r3lz9rc2cany;Path=/"
           ],
           "expires": [
             "Thu, 01 Jan 1970 00:00:00 GMT"
@@ -779,11 +413,11 @@
         },
         "body": {
           "encoding": "ASCII-8BIT",
-          "string": "[{\"type\":\"prop_test_type\",\"entity\":\"prop-test-entity\",\"key\":{\"system\":\"system_name\",\"user\":\"user_name\"},\"tags\":{\"tag1\":\"tagvalue1\",\"tag2\":\"tagvalue2\"},\"date\":\"2016-06-09T09:28:55.591Z\"}]"
+          "string": "[{\"type\":\"prop_test_type\",\"entity\":\"prop_test_entity\",\"key\":{\"system\":\"system_name\",\"user\":\"user_name\"},\"tags\":{\"tag1\":\"tagvalue1\",\"tag2\":\"tagvalue2\"},\"date\":\"2016-06-09T13:10:39.566Z\"}]"
         },
         "http_version": null
       },
-      "recorded_at": "Thu, 09 Jun 2016 09:44:52 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 13:10:40 GMT"
     },
     {
       "request": {
@@ -791,11 +425,11 @@
         "uri": "http://hbs.axibase.com:32816/api/v1/properties/delete",
         "body": {
           "encoding": "UTF-8",
-          "string": "[{\"type\":\"prop_test_type\",\"entity\":\"prop-test-entity\",\"key\":{\"system\":\"system_name\",\"user\":\"user_name\"}}]"
+          "string": "[{\"type\":\"prop_test_type\",\"entity\":\"prop_test_entity\",\"key\":{\"system\":\"system_name\",\"user\":\"user_name\"}}]"
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
+            "ATSD Ruby Client v1.0.8"
           ],
           "Authorization": [
             "Basic YXhpYmFzZTpheGliYXNl"
@@ -812,7 +446,7 @@
         },
         "headers": {
           "set-cookie": [
-            "ATSD_SESSION_ID=ak2djydmjs96sdu7pqz8jduf;Path=/"
+            "ATSD_SESSION_ID=1jxo8krvpwu0mgjo3pwtfs8in;Path=/"
           ],
           "expires": [
             "Thu, 01 Jan 1970 00:00:00 GMT"
@@ -839,7 +473,7 @@
         },
         "http_version": null
       },
-      "recorded_at": "Thu, 09 Jun 2016 09:44:53 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 13:10:40 GMT"
     }
   ],
   "recorded_with": "VCR 2.9.3"

@@ -10,7 +10,7 @@
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
+            "ATSD Ruby Client v1.0.8"
           ],
           "Authorization": [
             "Basic YXhpYmFzZTpheGliYXNl"
@@ -24,7 +24,7 @@
         },
         "headers": {
           "set-cookie": [
-            "ATSD_SESSION_ID=19xqf2n90rk4t49qts9pssii1;Path=/"
+            "ATSD_SESSION_ID=lyph6eg8bs6w12jtm3jf6pg9t;Path=/"
           ],
           "expires": [
             "Thu, 01 Jan 1970 00:00:00 GMT"
@@ -53,11 +53,11 @@
         },
         "body": {
           "encoding": "ASCII-8BIT",
-          "string": "[{\"metric\":\"meminfo.active\",\"entity\":\"25944e8aa09d\",\"tags\":{},\"lastInsertDate\":\"2016-06-09T09:44:39.000Z\"},{\"metric\":\"meminfo.active\",\"entity\":\"ubuntu\",\"tags\":{},\"lastInsertDate\":\"2015-04-01T10:59:34.000Z\"}]"
+          "string": "[{\"metric\":\"meminfo.active\",\"entity\":\"25944e8aa09d\",\"tags\":{},\"lastInsertDate\":\"2016-06-09T13:10:32.000Z\"},{\"metric\":\"meminfo.active\",\"entity\":\"ubuntu\",\"tags\":{},\"lastInsertDate\":\"2015-04-01T10:59:34.000Z\"}]"
         },
         "http_version": null
       },
-      "recorded_at": "Thu, 09 Jun 2016 09:44:51 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 13:10:52 GMT"
     }
   ],
   "recorded_with": "VCR 2.9.3"

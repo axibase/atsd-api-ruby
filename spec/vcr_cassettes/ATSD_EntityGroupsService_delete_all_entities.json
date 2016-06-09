@@ -10,7 +10,7 @@
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
+            "ATSD Ruby Client v1.0.8"
           ],
           "Authorization": [
             "Basic YXhpYmFzZTpheGliYXNl"
@@ -27,7 +27,7 @@
         },
         "headers": {
           "set-cookie": [
-            "ATSD_SESSION_ID=pcxz3ccu1bjk1uomoalofe1de;Path=/"
+            "ATSD_SESSION_ID=1ly7v69ijrdn21czfwimt4z80i;Path=/"
           ],
           "expires": [
             "Thu, 01 Jan 1970 00:00:00 GMT"
@@ -54,7 +54,7 @@
         },
         "http_version": null
       },
-      "recorded_at": "Thu, 09 Jun 2016 09:45:04 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 13:10:54 GMT"
     },
     {
       "request": {
@@ -66,7 +66,7 @@
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
+            "ATSD Ruby Client v1.0.8"
           ],
           "Authorization": [
             "Basic YXhpYmFzZTpheGliYXNl"
@@ -83,7 +83,7 @@
         },
         "headers": {
           "set-cookie": [
-            "ATSD_SESSION_ID=1k22rwq84juhs19tp4adoergf8;Path=/"
+            "ATSD_SESSION_ID=giuyfb695ibkepiqpwg5w4yt;Path=/"
           ],
           "expires": [
             "Thu, 01 Jan 1970 00:00:00 GMT"
@@ -110,7 +110,7 @@
         },
         "http_version": null
       },
-      "recorded_at": "Thu, 09 Jun 2016 09:45:04 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 13:10:54 GMT"
     },
     {
       "request": {
@@ -122,7 +122,7 @@
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
+            "ATSD Ruby Client v1.0.8"
           ],
           "Authorization": [
             "Basic YXhpYmFzZTpheGliYXNl"
@@ -139,7 +139,7 @@
         },
         "headers": {
           "set-cookie": [
-            "ATSD_SESSION_ID=1uc3c9yvkgv65uwpjg869j6kd;Path=/"
+            "ATSD_SESSION_ID=1d3efebs8weba5delqgfskkrl;Path=/"
           ],
           "expires": [
             "Thu, 01 Jan 1970 00:00:00 GMT"
@@ -166,7 +166,7 @@
         },
         "http_version": null
       },
-      "recorded_at": "Thu, 09 Jun 2016 09:45:04 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 13:10:54 GMT"
     },
     {
       "request": {
@@ -178,7 +178,7 @@
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
+            "ATSD Ruby Client v1.0.8"
           ],
           "Authorization": [
             "Basic YXhpYmFzZTpheGliYXNl"
@@ -192,7 +192,7 @@
         },
         "headers": {
           "set-cookie": [
-            "ATSD_SESSION_ID=1sbu1f0f3ynan1ubzzodnfcaih;Path=/"
+            "ATSD_SESSION_ID=l2ol2x46c8d1138pm004ryqx3;Path=/"
           ],
           "expires": [
             "Thu, 01 Jan 1970 00:00:00 GMT"
@@ -225,7 +225,7 @@
         },
         "http_version": null
       },
-      "recorded_at": "Thu, 09 Jun 2016 09:45:04 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 13:10:54 GMT"
     },
     {
       "request": {
@@ -237,7 +237,7 @@
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
+            "ATSD Ruby Client v1.0.8"
           ],
           "Authorization": [
             "Basic YXhpYmFzZTpheGliYXNl"
@@ -251,7 +251,7 @@
         },
         "headers": {
           "set-cookie": [
-            "ATSD_SESSION_ID=6cwseu86l1kt1t2jalppovkf1;Path=/"
+            "ATSD_SESSION_ID=19dfeo7ojr9onplugnontha7k;Path=/"
           ],
           "expires": [
             "Thu, 01 Jan 1970 00:00:00 GMT"
@@ -278,7 +278,7 @@
         },
         "http_version": null
       },
-      "recorded_at": "Thu, 09 Jun 2016 09:45:04 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 13:10:54 GMT"
     }
   ],
   "recorded_with": "VCR 2.9.3"

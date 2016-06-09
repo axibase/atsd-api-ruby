@@ -2,6 +2,230 @@
   "http_interactions": [
     {
       "request": {
+        "method": "put",
+        "uri": "http://hbs.axibase.com:32816/api/v1/entities/test_entity",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"name\":\"test_entity\",\"enabled\":false,\"tags\":{\"tag\":\"value\"}}"
+        },
+        "headers": {
+          "User-Agent": [
+            "ATSD Ruby Client v1.0.8"
+          ],
+          "Authorization": [
+            "Basic YXhpYmFzZTpheGliYXNl"
+          ],
+          "Content-Type": [
+            "application/json"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": null
+        },
+        "headers": {
+          "set-cookie": [
+            "ATSD_SESSION_ID=11d4nwzasr5hlwkm8i8v09ndt;Path=/"
+          ],
+          "expires": [
+            "Thu, 01 Jan 1970 00:00:00 GMT"
+          ],
+          "access-control-allow-origin": [
+            "*"
+          ],
+          "access-control-allow-headers": [
+            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+          ],
+          "access-control-allow-methods": [
+            "HEAD, GET, POST, PUT, PATCH, DELETE"
+          ],
+          "connection": [
+            "close"
+          ],
+          "server": [
+            "Jetty(8.y.z-SNAPSHOT)"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": ""
+        },
+        "http_version": null
+      },
+      "recorded_at": "Thu, 09 Jun 2016 13:10:46 GMT"
+    },
+    {
+      "request": {
+        "method": "patch",
+        "uri": "http://hbs.axibase.com:32816/api/v1/entities/test_entity",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"name\":\"test_entity\",\"enabled\":true}"
+        },
+        "headers": {
+          "User-Agent": [
+            "ATSD Ruby Client v1.0.8"
+          ],
+          "Authorization": [
+            "Basic YXhpYmFzZTpheGliYXNl"
+          ],
+          "Content-Type": [
+            "application/json"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": null
+        },
+        "headers": {
+          "set-cookie": [
+            "ATSD_SESSION_ID=bdbphoqjlyta8jcg35rxtmq2;Path=/"
+          ],
+          "expires": [
+            "Thu, 01 Jan 1970 00:00:00 GMT"
+          ],
+          "access-control-allow-origin": [
+            "*"
+          ],
+          "access-control-allow-headers": [
+            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+          ],
+          "access-control-allow-methods": [
+            "HEAD, GET, POST, PUT, PATCH, DELETE"
+          ],
+          "connection": [
+            "close"
+          ],
+          "server": [
+            "Jetty(8.y.z-SNAPSHOT)"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": ""
+        },
+        "http_version": null
+      },
+      "recorded_at": "Thu, 09 Jun 2016 13:10:47 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "http://hbs.axibase.com:32816/api/v1/entities/test_entity",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "ATSD Ruby Client v1.0.8"
+          ],
+          "Authorization": [
+            "Basic YXhpYmFzZTpheGliYXNl"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": null
+        },
+        "headers": {
+          "set-cookie": [
+            "ATSD_SESSION_ID=xspxmedr8imc1uv4z5fl2ff9w;Path=/"
+          ],
+          "expires": [
+            "Thu, 01 Jan 1970 00:00:00 GMT"
+          ],
+          "access-control-allow-origin": [
+            "*"
+          ],
+          "access-control-allow-headers": [
+            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+          ],
+          "access-control-allow-methods": [
+            "HEAD, GET, POST, PUT, PATCH, DELETE"
+          ],
+          "content-type": [
+            "application/json;charset=UTF-8"
+          ],
+          "vary": [
+            "Accept-Encoding, User-Agent"
+          ],
+          "connection": [
+            "close"
+          ],
+          "server": [
+            "Jetty(8.y.z-SNAPSHOT)"
+          ]
+        },
+        "body": {
+          "encoding": "ASCII-8BIT",
+          "string": "{\"name\":\"test_entity\",\"enabled\":true,\"tags\":{\"tag\":\"value\"}}"
+        },
+        "http_version": null
+      },
+      "recorded_at": "Thu, 09 Jun 2016 13:10:47 GMT"
+    },
+    {
+      "request": {
+        "method": "delete",
+        "uri": "http://hbs.axibase.com:32816/api/v1/entities/test_entity",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "ATSD Ruby Client v1.0.8"
+          ],
+          "Authorization": [
+            "Basic YXhpYmFzZTpheGliYXNl"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": null
+        },
+        "headers": {
+          "set-cookie": [
+            "ATSD_SESSION_ID=15emuxwogb0zq12nxbc8z2nwy1;Path=/"
+          ],
+          "expires": [
+            "Thu, 01 Jan 1970 00:00:00 GMT"
+          ],
+          "access-control-allow-origin": [
+            "*"
+          ],
+          "access-control-allow-headers": [
+            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+          ],
+          "access-control-allow-methods": [
+            "HEAD, GET, POST, PUT, PATCH, DELETE"
+          ],
+          "connection": [
+            "close"
+          ],
+          "server": [
+            "Jetty(8.y.z-SNAPSHOT)"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": ""
+        },
+        "http_version": null
+      },
+      "recorded_at": "Thu, 09 Jun 2016 13:10:47 GMT"
+    },
+    {
+      "request": {
         "method": "patch",
         "uri": "http://hbs.axibase.com:32816/api/v1/entities/entity404",
         "body": {
@@ -10,7 +234,7 @@
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
+            "ATSD Ruby Client v1.0.8"
           ],
           "Authorization": [
             "Basic YXhpYmFzZTpheGliYXNl"
@@ -51,231 +275,7 @@
         },
         "http_version": null
       },
-      "recorded_at": "Thu, 09 Jun 2016 09:44:56 GMT"
-    },
-    {
-      "request": {
-        "method": "put",
-        "uri": "http://hbs.axibase.com:32816/api/v1/entities/test_entity",
-        "body": {
-          "encoding": "UTF-8",
-          "string": "{\"name\":\"test_entity\",\"enabled\":false,\"tags\":{\"tag\":\"value\"}}"
-        },
-        "headers": {
-          "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
-          ],
-          "Authorization": [
-            "Basic YXhpYmFzZTpheGliYXNl"
-          ],
-          "Content-Type": [
-            "application/json"
-          ]
-        }
-      },
-      "response": {
-        "status": {
-          "code": 200,
-          "message": null
-        },
-        "headers": {
-          "set-cookie": [
-            "ATSD_SESSION_ID=18762sloabgqi1i42p76koa0xa;Path=/"
-          ],
-          "expires": [
-            "Thu, 01 Jan 1970 00:00:00 GMT"
-          ],
-          "access-control-allow-origin": [
-            "*"
-          ],
-          "access-control-allow-headers": [
-            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-          ],
-          "access-control-allow-methods": [
-            "HEAD, GET, POST, PUT, PATCH, DELETE"
-          ],
-          "connection": [
-            "close"
-          ],
-          "server": [
-            "Jetty(8.y.z-SNAPSHOT)"
-          ]
-        },
-        "body": {
-          "encoding": "UTF-8",
-          "string": ""
-        },
-        "http_version": null
-      },
-      "recorded_at": "Thu, 09 Jun 2016 09:44:56 GMT"
-    },
-    {
-      "request": {
-        "method": "patch",
-        "uri": "http://hbs.axibase.com:32816/api/v1/entities/test_entity",
-        "body": {
-          "encoding": "UTF-8",
-          "string": "{\"name\":\"test_entity\",\"enabled\":true}"
-        },
-        "headers": {
-          "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
-          ],
-          "Authorization": [
-            "Basic YXhpYmFzZTpheGliYXNl"
-          ],
-          "Content-Type": [
-            "application/json"
-          ]
-        }
-      },
-      "response": {
-        "status": {
-          "code": 200,
-          "message": null
-        },
-        "headers": {
-          "set-cookie": [
-            "ATSD_SESSION_ID=1vrywzlz39deyey3zuydbw784;Path=/"
-          ],
-          "expires": [
-            "Thu, 01 Jan 1970 00:00:00 GMT"
-          ],
-          "access-control-allow-origin": [
-            "*"
-          ],
-          "access-control-allow-headers": [
-            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-          ],
-          "access-control-allow-methods": [
-            "HEAD, GET, POST, PUT, PATCH, DELETE"
-          ],
-          "connection": [
-            "close"
-          ],
-          "server": [
-            "Jetty(8.y.z-SNAPSHOT)"
-          ]
-        },
-        "body": {
-          "encoding": "UTF-8",
-          "string": ""
-        },
-        "http_version": null
-      },
-      "recorded_at": "Thu, 09 Jun 2016 09:44:56 GMT"
-    },
-    {
-      "request": {
-        "method": "get",
-        "uri": "http://hbs.axibase.com:32816/api/v1/entities/test_entity",
-        "body": {
-          "encoding": "US-ASCII",
-          "string": ""
-        },
-        "headers": {
-          "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
-          ],
-          "Authorization": [
-            "Basic YXhpYmFzZTpheGliYXNl"
-          ]
-        }
-      },
-      "response": {
-        "status": {
-          "code": 200,
-          "message": null
-        },
-        "headers": {
-          "set-cookie": [
-            "ATSD_SESSION_ID=4adax9dbfuoq1fnchlvkwiptg;Path=/"
-          ],
-          "expires": [
-            "Thu, 01 Jan 1970 00:00:00 GMT"
-          ],
-          "access-control-allow-origin": [
-            "*"
-          ],
-          "access-control-allow-headers": [
-            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-          ],
-          "access-control-allow-methods": [
-            "HEAD, GET, POST, PUT, PATCH, DELETE"
-          ],
-          "content-type": [
-            "application/json;charset=UTF-8"
-          ],
-          "vary": [
-            "Accept-Encoding, User-Agent"
-          ],
-          "connection": [
-            "close"
-          ],
-          "server": [
-            "Jetty(8.y.z-SNAPSHOT)"
-          ]
-        },
-        "body": {
-          "encoding": "ASCII-8BIT",
-          "string": "{\"name\":\"test_entity\",\"enabled\":true,\"tags\":{\"tag\":\"value\"}}"
-        },
-        "http_version": null
-      },
-      "recorded_at": "Thu, 09 Jun 2016 09:44:57 GMT"
-    },
-    {
-      "request": {
-        "method": "delete",
-        "uri": "http://hbs.axibase.com:32816/api/v1/entities/test_entity",
-        "body": {
-          "encoding": "US-ASCII",
-          "string": ""
-        },
-        "headers": {
-          "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
-          ],
-          "Authorization": [
-            "Basic YXhpYmFzZTpheGliYXNl"
-          ]
-        }
-      },
-      "response": {
-        "status": {
-          "code": 200,
-          "message": null
-        },
-        "headers": {
-          "set-cookie": [
-            "ATSD_SESSION_ID=1bp1zxmtysuq31609bxsmxce2u;Path=/"
-          ],
-          "expires": [
-            "Thu, 01 Jan 1970 00:00:00 GMT"
-          ],
-          "access-control-allow-origin": [
-            "*"
-          ],
-          "access-control-allow-headers": [
-            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-          ],
-          "access-control-allow-methods": [
-            "HEAD, GET, POST, PUT, PATCH, DELETE"
-          ],
-          "connection": [
-            "close"
-          ],
-          "server": [
-            "Jetty(8.y.z-SNAPSHOT)"
-          ]
-        },
-        "body": {
-          "encoding": "UTF-8",
-          "string": ""
-        },
-        "http_version": null
-      },
-      "recorded_at": "Thu, 09 Jun 2016 09:44:57 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 13:10:47 GMT"
     }
   ],
   "recorded_with": "VCR 2.9.3"

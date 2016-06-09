@@ -2,56 +2,6 @@
   "http_interactions": [
     {
       "request": {
-        "method": "delete",
-        "uri": "http://hbs.axibase.com:32816/api/v1/metrics/not_found_metric",
-        "body": {
-          "encoding": "US-ASCII",
-          "string": ""
-        },
-        "headers": {
-          "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
-          ],
-          "Authorization": [
-            "Basic YXhpYmFzZTpheGliYXNl"
-          ]
-        }
-      },
-      "response": {
-        "status": {
-          "code": 400,
-          "message": null
-        },
-        "headers": {
-          "access-control-allow-origin": [
-            "*"
-          ],
-          "access-control-allow-headers": [
-            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-          ],
-          "access-control-allow-methods": [
-            "HEAD, GET, POST, PUT, PATCH, DELETE"
-          ],
-          "content-type": [
-            "application/json;charset=UTF-8"
-          ],
-          "connection": [
-            "close"
-          ],
-          "server": [
-            "Jetty(8.y.z-SNAPSHOT)"
-          ]
-        },
-        "body": {
-          "encoding": "UTF-8",
-          "string": "{\"error\":\"IllegalArgumentException: Metric not found for name 'not_found_metric'\"}"
-        },
-        "http_version": null
-      },
-      "recorded_at": "Thu, 09 Jun 2016 09:44:51 GMT"
-    },
-    {
-      "request": {
         "method": "put",
         "uri": "http://hbs.axibase.com:32816/api/v1/metrics/ttt",
         "body": {
@@ -60,7 +10,7 @@
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
+            "ATSD Ruby Client v1.0.8"
           ],
           "Authorization": [
             "Basic YXhpYmFzZTpheGliYXNl"
@@ -77,7 +27,7 @@
         },
         "headers": {
           "set-cookie": [
-            "ATSD_SESSION_ID=kz2pnao2s2kk180ubf7zokv9v;Path=/"
+            "ATSD_SESSION_ID=cw0zbdhisiikq9pbgwuyo7fq;Path=/"
           ],
           "expires": [
             "Thu, 01 Jan 1970 00:00:00 GMT"
@@ -104,7 +54,7 @@
         },
         "http_version": null
       },
-      "recorded_at": "Thu, 09 Jun 2016 09:44:52 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 13:10:49 GMT"
     },
     {
       "request": {
@@ -116,7 +66,7 @@
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
+            "ATSD Ruby Client v1.0.8"
           ],
           "Authorization": [
             "Basic YXhpYmFzZTpheGliYXNl"
@@ -130,7 +80,7 @@
         },
         "headers": {
           "set-cookie": [
-            "ATSD_SESSION_ID=1h04x2xx12oyxpt2f1i4bugfp;Path=/"
+            "ATSD_SESSION_ID=wxdrhoq4vgdc1n7aj7yu44kso;Path=/"
           ],
           "expires": [
             "Thu, 01 Jan 1970 00:00:00 GMT"
@@ -157,7 +107,7 @@
         },
         "http_version": null
       },
-      "recorded_at": "Thu, 09 Jun 2016 09:44:52 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 13:10:49 GMT"
     },
     {
       "request": {
@@ -169,7 +119,7 @@
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
+            "ATSD Ruby Client v1.0.8"
           ],
           "Authorization": [
             "Basic YXhpYmFzZTpheGliYXNl"
@@ -207,7 +157,57 @@
         },
         "http_version": null
       },
-      "recorded_at": "Thu, 09 Jun 2016 09:44:52 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 13:10:50 GMT"
+    },
+    {
+      "request": {
+        "method": "delete",
+        "uri": "http://hbs.axibase.com:32816/api/v1/metrics/not_found_metric",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "ATSD Ruby Client v1.0.8"
+          ],
+          "Authorization": [
+            "Basic YXhpYmFzZTpheGliYXNl"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 400,
+          "message": null
+        },
+        "headers": {
+          "access-control-allow-origin": [
+            "*"
+          ],
+          "access-control-allow-headers": [
+            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+          ],
+          "access-control-allow-methods": [
+            "HEAD, GET, POST, PUT, PATCH, DELETE"
+          ],
+          "content-type": [
+            "application/json;charset=UTF-8"
+          ],
+          "connection": [
+            "close"
+          ],
+          "server": [
+            "Jetty(8.y.z-SNAPSHOT)"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"error\":\"IllegalArgumentException: Metric not found for name 'not_found_metric'\"}"
+        },
+        "http_version": null
+      },
+      "recorded_at": "Thu, 09 Jun 2016 13:10:50 GMT"
     }
   ],
   "recorded_with": "VCR 2.9.3"

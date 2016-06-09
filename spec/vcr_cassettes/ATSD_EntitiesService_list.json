@@ -10,7 +10,7 @@
         },
         "headers": {
           "User-Agent": [
-            "ATSD Ruby Client v1.0.7"
+            "ATSD Ruby Client v1.0.8"
           ],
           "Authorization": [
             "Basic YXhpYmFzZTpheGliYXNl"
@@ -24,7 +24,7 @@
         },
         "headers": {
           "set-cookie": [
-            "ATSD_SESSION_ID=12apdbypo7xwjjm1zs9dnxkuu;Path=/"
+            "ATSD_SESSION_ID=nak8lnm7domg1qv0kll0jwgqt;Path=/"
           ],
           "expires": [
             "Thu, 01 Jan 1970 00:00:00 GMT"
@@ -53,11 +53,11 @@
         },
         "body": {
           "encoding": "ASCII-8BIT",
-          "string": "[{\"name\":\"25944e8aa09d\",\"enabled\":true,\"lastInsertDate\":\"2016-06-09T09:44:54.000Z\"},{\"name\":\"atsd\",\"enabled\":true,\"lastInsertDate\":\"2016-06-09T09:44:45.624Z\"},{\"name\":\"bbb\",\"enabled\":true},{\"name\":\"ccc\",\"enabled\":true},{\"name\":\"e1\",\"enabled\":true},{\"name\":\"e2\",\"enabled\":true},{\"name\":\"e3\",\"enabled\":true},{\"name\":\"e4\",\"enabled\":true},{\"name\":\"e5\",\"enabled\":true},{\"name\":\"e6\",\"enabled\":true},{\"name\":\"e8\",\"enabled\":true},{\"name\":\"e9\",\"enabled\":true},{\"name\":\"prop-test-entity\",\"enabled\":true},{\"name\":\"r1\",\"enabled\":true},{\"name\":\"r2\",\"enabled\":true},{\"name\":\"r3\",\"enabled\":true},{\"name\":\"r4\",\"enabled\":true},{\"name\":\"ubuntu\",\"enabled\":true,\"lastInsertDate\":\"2332-02-29T02:20:11.000Z\"}]"
+          "string": "[{\"name\":\"25944e8aa09d\",\"enabled\":true,\"lastInsertDate\":\"2016-06-09T13:10:42.000Z\"},{\"name\":\"atsd\",\"enabled\":true,\"lastInsertDate\":\"2016-06-09T13:10:41.984Z\"},{\"name\":\"e1\",\"enabled\":true},{\"name\":\"e2\",\"enabled\":true},{\"name\":\"e3\",\"enabled\":true},{\"name\":\"e4\",\"enabled\":true},{\"name\":\"e5\",\"enabled\":true},{\"name\":\"e6\",\"enabled\":true},{\"name\":\"e8\",\"enabled\":true},{\"name\":\"e9\",\"enabled\":true},{\"name\":\"prop_test_entity\",\"enabled\":true},{\"name\":\"r1\",\"enabled\":true},{\"name\":\"r2\",\"enabled\":true},{\"name\":\"r3\",\"enabled\":true},{\"name\":\"r4\",\"enabled\":true},{\"name\":\"ubuntu\",\"enabled\":true,\"lastInsertDate\":\"2332-02-29T02:20:11.000Z\"}]"
         },
         "http_version": null
       },
-      "recorded_at": "Thu, 09 Jun 2016 09:45:00 GMT"
+      "recorded_at": "Thu, 09 Jun 2016 13:10:47 GMT"
     }
   ],
   "recorded_with": "VCR 2.9.3"

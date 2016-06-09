@@ -2,7 +2,7 @@ require 'helpers/shared_client'
 
 include ATSD
 
-entity_name = 'prop-test-entity'
+entity_name = 'prop_test_entity'
 RSpec.describe PropertiesService do
   include_context 'client'
   subject { PropertiesService.new $client }
@@ -64,8 +64,8 @@ RSpec.describe PropertiesService do
                           key: key,
                           tags: tags
       subject.insert(prop)
-      query = subject.query(entity, type, :start_date => start_date, :end_date => end_date)
-      response = query.execute
+      sleep 1
+      response = subject.query(entity, type, :start_date => start_date, :end_date => end_date).execute
       expect(response).to be_a Array
       expect(response.count).to eq 1
       remote = response[0]
@@ -84,11 +84,10 @@ RSpec.describe PropertiesService do
           type: type,
           key: key,
           tags: tags,
-          date: start_date
       }
       expect(subject.insert(property)).to eq(subject) # also check method chaining
-      query = subject.query(entity, type, :start_date => start_date, :end_date => end_date)
-      remote = query.execute
+      sleep 1
+      remote = subject.query(entity, type, :start_date => start_date, :end_date => end_date).execute
       remote = remote[0]
       expect(remote.entity).to eq entity
       expect(remote.type).to eq type

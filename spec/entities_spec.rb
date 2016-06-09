@@ -153,6 +153,7 @@ RSpec.describe EntitiesService do
       seriesService.insert(metrics.map do |m|
         Series.new entity: entity.name, metric: m, data: [ {d: "1970-01-12T13:46:40.000Z", v: 100} ]
       end)
+      sleep 1
       subject.metrics(entity)
       expect(subject.metrics(entity).map {|m| m.name}).to contain_exactly(*metrics)
       subject.delete(entity)
