@@ -1,5 +1,6 @@
 require 'atsd/middleware/errors_handler'
 require 'active_support/core_ext/hash/keys'
+require 'uri'
 
 module ATSD
 
@@ -42,6 +43,7 @@ module ATSD
     # @param [Hash, Array<Hash>] queries query or array of queries
     # @return [Array<Hash>] time series
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/data/series/query.md for details
     def series_query(queries)
       response = @connection.post 'series/query', Utils.ensure_array(queries)
       response.body
@@ -55,10 +57,10 @@ module ATSD
     # @param [Hash] parameters other query parameters
     # @return [Array<Hash>] time series
     # @raise [APIError]
-    def series_url_query(format, entity, metric, parameters)
-      url = "series/#{format}/#{entity}/#{metric}?"
-      parameters.each { |k, v| url << "&#{k}=#{v}" }
-      response = @connection.get url
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/data/series/url-query.md for details
+    def series_url_query(format, entity, metric, parameters ={})
+      url = "series/#{CGI.escape(format)}/#{CGI.escape(entity)}/#{CGI.escape(metric)}?"
+      response = @connection.get url, parameters
       response.body
     end
 
@@ -67,6 +69,7 @@ module ATSD
     # @param [Hash, Array<Hash>] series series or array of series
     # @return true
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/data/series/insert.md for details
     def series_insert(series)
       @connection.post 'series/insert', Utils.ensure_array(series)
       true
@@ -82,9 +85,10 @@ module ATSD
     # @param [Hash] tags tag=value hash
     # @return [true]
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/data/series/csv-insert.md for details
     def series_csv_insert(entity, data, tags = {})
       request = @connection.build_request(:post) do |req|
-        req.url("series/csv/#{entity}", tags)
+        req.url("series/csv/#{CGI.escape(entity)}", tags)
         req.headers["Content-Type"] = 'text/csv'
         req.body = data
       end
@@ -93,11 +97,46 @@ module ATSD
       true
     end
 
+    # Query messages
+    #
+    # @param [Hash, Array<Hash>] queries query or array of queries
+    # @return [Array<Hash>] array of messages
+    # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/data/messages/query.md for details
+    def messages_query(queries = nil)
+      response = @connection.post 'messages/query', Utils.ensure_array(queries)
+      response.body
+    end
+
+    # Insert messages
+    #
+    # @param [Hash, Array<Hash>] messages message or array of messages
+    # @return true
+    # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/data/messages/insert.md for details
+    def messages_insert(messages)
+      @connection.post 'messages/insert', Utils.ensure_array(messages)
+      true
+    end
+
+    # Statistics query
+    #
+    # @param [Hash] parameters
+    # @return [Array<Hash>] time series
+    # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/data/messages/stats-query.md for details
+    def messages_stat_query(parameters = {})
+      print parameters
+      response = @connection.post 'messages/stats/query', Utils.ensure_array(parameters)
+      response.body
+    end
+
     # Query properties
     #
     # @param [Hash, Array<Hash>] queries query or array of queries
     # @return [Array<Hash>] array of properties
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/data/properties/query.md for details
     def properties_query(queries = nil)
       response = @connection.post 'properties/query', Utils.ensure_array(queries)
       response.body
@@ -109,18 +148,20 @@ module ATSD
     # @param [String] type
     # @return [Array<Hash>] array of properties
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/data/properties/url-query.md for details
     def properties_for_entity_and_type(entity, type)
-      response = @connection.get "properties/#{entity}/types/#{type}"
+      response = @connection.get "properties/#{CGI.escape(entity)}/types/#{CGI.escape(type)}"
       response.body
     end
 
     # Returns array of property types for the entity.
     #
-    # @param [String] type
+    # @param [String] entity
     # @return [Array<Hash>] array of properties
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/data/properties/type-query.md for details
     def properties_for_entity(entity)
-      response = @connection.get "properties/#{entity}/types"
+      response = @connection.get "properties/#{CGI.escape(entity)}/types"
       response.body
     end
 
@@ -129,6 +170,7 @@ module ATSD
     # @param [Hash, Array<Hash>] properties property or array of properties
     # @return true
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/data/properties/insert.md for details
     def properties_insert(properties)
       @connection.post 'properties/insert', Utils.ensure_array(properties)
       true
@@ -139,6 +181,7 @@ module ATSD
     # @param [Hash, Array<Hash>] properties
     # @return true
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/data/properties/delete.md for details
     def properties_delete(properties)
       @connection.post 'properties/delete', Utils.ensure_array(properties)
     end
@@ -148,6 +191,7 @@ module ATSD
     # @param [Hash, Array<Hash>] queries query or array of queries
     # @return [Array<Hash>] alerts
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/data/alerts/query.md for details
     def alerts_query(queries = nil)
       response = @connection.post 'alerts/query', Utils.ensure_array(queries)
       response.body
@@ -158,6 +202,7 @@ module ATSD
     # @param [Hash, Array<Hash>] actions action or array of actions
     # @return [true]
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/data/alerts/update.md for details
     def alerts_update(actions)
       @connection.post 'alerts/update', Utils.ensure_array(actions)
       true
@@ -168,6 +213,7 @@ module ATSD
     # @param [Hash, Array<Hash>] actions action or array of actions
     # @return [true]
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/data/alerts/delete.md for details
     def alerts_delete(actions)
       @connection.post 'alerts/delete', Utils.ensure_array(actions)
       true
@@ -178,6 +224,7 @@ module ATSD
     # @param [Hash, Array<Hash>] queries query or array of queries
     # @return [Array<Hash>] history records
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/data/alerts/history-query.md for details
     def alerts_history_query(queries = nil)
       response = @connection.post 'alerts/history/query', Utils.ensure_array(queries)
       response.body
@@ -188,6 +235,7 @@ module ATSD
     # @param [Hash] parameters
     # @return [Array<Hash>]
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/meta/metric/list.md for details
     def metrics_list(parameters = {})
       response = @connection.get 'metrics', parameters
       response.body
@@ -198,8 +246,9 @@ module ATSD
     # @param [String] metric
     # @return [Hash]
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/meta/metric/get.md for details
     def metrics_get(metric)
-      response = @connection.get "metrics/#{metric}"
+      response = @connection.get "metrics/#{CGI.escape(metric)}"
       response.body
     end
 
@@ -213,8 +262,9 @@ module ATSD
     # @param [Hash] body
     # @return [true]
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/meta/metric/create-or-replace.md for details
     def metrics_create_or_replace(metric, body)
-      @connection.put "metrics/#{metric}", body
+      @connection.put "metrics/#{CGI.escape(metric)}", body
       true
     end
 
@@ -227,8 +277,9 @@ module ATSD
     # @param [Hash] body
     # @return [true]
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/meta/metric/update.md for details
     def metrics_update(metric, body)
-      @connection.patch "metrics/#{metric}", body
+      @connection.patch "metrics/#{CGI.escape(metric)}", body
       true
     end
 
@@ -238,20 +289,22 @@ module ATSD
     # @param [String] metric
     # @return [true]
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/meta/metric/delete.md for details
     def metrics_delete(metric)
-      @connection.delete "metrics/#{metric}"
+      @connection.delete "metrics/#{CGI.escape(metric)}"
       true
     end
 
-    # Returns a list of unique series tags for the metric.
-    # The list is based on data stored on disk for the last 24 hours.
+    # Returns a list of series for the metric.
+    # Each series is identified with metric name, entity name, and optional series tags.
     #
     # @param [String] metric
     # @param [Hash] parameters
     # @return [Array]
     # @raise [APIError]
-    def metrics_entity_and_tags(metric, parameters = {})
-      response = @connection.get "metrics/#{metric}/entity-and-tags", parameters
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/meta/metric/series.md for details
+    def metrics_series(metric, parameters = {})
+      response = @connection.get "metrics/#{CGI.escape(metric)}/series", parameters
       response.body
     end
 
@@ -260,6 +313,7 @@ module ATSD
     # @param [Hash] parameters
     # @return [Array<Hash>]
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/meta/entity/list.md for details
     def entities_list(parameters = {})
       response = @connection.get 'entities', parameters
       response.body
@@ -270,8 +324,9 @@ module ATSD
     # @param [String] entity
     # @return [Hash]
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/meta/entity/get.md for details
     def entities_get(entity)
-      response = @connection.get "entities/#{entity}"
+      response = @connection.get "entities/#{CGI.escape(entity)}"
       response.body
     end
 
@@ -281,8 +336,9 @@ module ATSD
     # @param [Hash] body
     # @return [true]
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/meta/entity/create-or-replace.md for details
     def entities_create_or_replace(entity, body)
-      @connection.put "entities/#{entity}", body
+      @connection.put "entities/#{CGI.escape(entity)}", body
       true
     end
 
@@ -292,8 +348,9 @@ module ATSD
     # @param [Hash] body
     # @return [true]
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/meta/entity/update.md for details
     def entities_update(entity, body)
-      @connection.patch "entities/#{entity}", body
+      @connection.patch "entities/#{CGI.escape(entity)}", body
       true
     end
 
@@ -302,9 +359,21 @@ module ATSD
     # @param [String] entity
     # @return [true]
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/meta/entity/delete.md for details
     def entities_delete(entity)
-      @connection.delete "entities/#{entity}"
+      @connection.delete "entities/#{CGI.escape(entity)}"
       true
+    end
+
+    # Entity groups entity.
+    #
+    # @param [String] entity
+    # @return [Array]
+    # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/meta/entity/entity-groups.md for details
+    def entities_entity_groups(entity, parameters = {})
+      response = @connection.get "entities/#{CGI.escape(entity)}/groups", parameters
+      response.body
     end
 
     # Property types for entity
@@ -313,8 +382,9 @@ module ATSD
     # @param [Hash] parameters
     # @return [Array]
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/meta/entity/property-types.md for details
     def entities_property_types(entity, parameters = {})
-      response = @connection.get "entities/#{entity}/property-types", parameters
+      response = @connection.get "entities/#{CGI.escape(entity)}/property-types", parameters
       response.body
     end
 
@@ -324,8 +394,9 @@ module ATSD
     # @param [Hash] parameters
     # @return [Array]
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/meta/entity/metrics.md for details
     def entities_metrics(entity, parameters = {})
-      response = @connection.get "entities/#{entity}/metrics", parameters
+      response = @connection.get "entities/#{CGI.escape(entity)}/metrics", parameters
       response.body
     end
 
@@ -334,6 +405,7 @@ module ATSD
     # @param [Hash] parameters
     # @return [Array]
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/meta/entity-group/list.md for details
     def entity_groups_list(parameters = {})
       response = @connection.get 'entity-groups', parameters
       response.body
@@ -344,8 +416,9 @@ module ATSD
     # @param [String] entity_group
     # @return [Hash]
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/meta/entity-group/get.md for details
     def entity_groups_get(entity_group)
-      response = @connection.get "entity-groups/#{entity_group}"
+      response = @connection.get "entity-groups/#{CGI.escape(entity_group)}"
       response.body
     end
 
@@ -355,8 +428,9 @@ module ATSD
     # @param [Hash] body
     # @return [true]
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/meta/entity-group/create-or-replace.md for details
     def entity_groups_create_or_replace(entity_group, body)
-      @connection.put "entity-groups/#{entity_group}", body
+      @connection.put "entity-groups/#{CGI.escape(entity_group)}", body
       true
     end
 
@@ -366,8 +440,9 @@ module ATSD
     # @param [Hash] body
     # @return [true]
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/meta/entity-group/update.md for details
     def entity_groups_update(entity_group, body)
-      @connection.patch "entity-groups/#{entity_group}", body
+      @connection.patch "entity-groups/#{CGI.escape(entity_group)}", body
       true
     end
 
@@ -376,8 +451,9 @@ module ATSD
     # @param [String] entity_group
     # @return [true]
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/meta/entity-group/delete.md for details
     def entity_groups_delete(entity_group)
-      @connection.delete "entity-groups/#{entity_group}"
+      @connection.delete "entity-groups/#{CGI.escape(entity_group)}"
       true
     end
 
@@ -387,8 +463,9 @@ module ATSD
     # @param [Hash] parameters
     # @return [Array]
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/meta/entity-group/get-entities.md for details
     def entity_groups_get_entities(entity_group, parameters = {})
-      response = @connection.get "entity-groups/#{entity_group}/entities", parameters
+      response = @connection.get "entity-groups/#{CGI.escape(entity_group)}/entities", parameters
       response.body
     end
 
@@ -399,9 +476,11 @@ module ATSD
     # @param [Hash] parameters
     # @return [true]
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/meta/entity-group/add-entities.md for details
     def entity_groups_add_entities(entity_group, entities, parameters = {})
-      @connection.patch "entity-groups/#{entity_group}/entities", [
+      @connection.patch "entity-groups/#{CGI.escape(entity_group)}/entities", [
           parameters.merge(:action => 'add',
+                           :createEntities => true,
                            :entities => entities)
       ]
       true
@@ -414,8 +493,9 @@ module ATSD
     # @param [Hash] parameters
     # @return [true]
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/meta/entity-group/replace-entities.md for details
     def entity_groups_replace_entities(entity_group, entities, parameters = {})
-      @connection.put "entity-groups/#{entity_group}/entities", entities
+      @connection.put "entity-groups/#{CGI.escape(entity_group)}/entities", entities
       true
     end
 
@@ -425,21 +505,10 @@ module ATSD
     # @param [Array] entities
     # @return [true]
     # @raise [APIError]
+    # @see https://github.com/axibase/atsd-docs/blob/master/api/meta/entity-group/delete-entities.md for details
     def entity_groups_delete_entities(entity_group, entities)
-      @connection.patch "entity-groups/#{entity_group}/entities", [
+      @connection.patch "entity-groups/#{CGI.escape(entity_group)}/entities", [
           {:action => 'delete', :entities => entities}
-      ]
-      true
-    end
-
-    # Delete all entities in entity group.
-    #
-    # @param [String] entity_group
-    # @return [true]
-    # @raise [APIError]
-    def entity_groups_delete_all_entities(entity_group)
-      @connection.patch "entity-groups/#{entity_group}/entities", [
-          {:action => 'delete-all'}
       ]
       true
     end

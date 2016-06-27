@@ -92,7 +92,7 @@ RSpec.describe EntityGroupsService do
 
   context '#entities' do
     it 'raise error if group not found' do
-      expect { subject.entities(name: 'not_found_group') }.to raise_error
+      expect { subject.get_entities(name: 'not_found_group') }.to raise_error
     end
 
     it 'return array of Entity for group' do
@@ -100,7 +100,7 @@ RSpec.describe EntityGroupsService do
       entities = %w[e1 e2 e3 e4]
       subject.create_or_replace(name: name)
       subject.add_entities(name, entities.map {|e| {name: e}})
-      remote = subject.entities(name)
+      remote = subject.get_entities(name)
       expect(remote.count).to eq entities.count
       remote.each do |e|
         expect(e).to be_a Entity
@@ -119,7 +119,7 @@ RSpec.describe EntityGroupsService do
       entities = %w[e4 e5 e6]
       subject.create_or_replace(name: name)
       subject.add_entities(name, entities.map {|e| {name: e}})
-      remote = subject.entities(name)
+      remote = subject.get_entities(name)
       expect(remote.map(&:name)).to contain_exactly(*entities)
       subject.delete(name)
     end
@@ -133,7 +133,7 @@ RSpec.describe EntityGroupsService do
       subject.create_or_replace(name: name)
       subject.add_entities(name, entities.map {|e| {name: e}})
       subject.replace_entities(name, entities2.map {|e| {name: e}})
-      remote = subject.entities(name)
+      remote = subject.get_entities(name)
       expect(remote.map(&:name)).to contain_exactly(*entities2)
       subject.delete(name)
     end
@@ -146,7 +146,7 @@ RSpec.describe EntityGroupsService do
       subject.create_or_replace(name: name)
       subject.add_entities(name, entities.map {|e| {name: e}})
       subject.delete_entities(name, entities)
-      remote = subject.entities(name)
+      remote = subject.get_entities(name)
       expect(remote.count).to eq 0
       subject.delete(name)
     end
@@ -157,7 +157,7 @@ RSpec.describe EntityGroupsService do
       subject.create_or_replace(name: name)
       subject.add_entities(name, entities.map {|e| {name: e}})
       subject.delete_entities(name, entities[0])
-      remote = subject.entities(name)
+      remote = subject.get_entities(name)
       expect(remote.count).to eq 1
       subject.delete(name)
     end
@@ -170,7 +170,7 @@ RSpec.describe EntityGroupsService do
       subject.create_or_replace(name: name)
       subject.add_entities(name, entities.map {|e| {name: e}})
       subject.delete_all_entities(name)
-      remote = subject.entities(name)
+      remote = subject.get_entities(name)
       expect(remote.count).to eq 0
       subject.delete(name)
     end

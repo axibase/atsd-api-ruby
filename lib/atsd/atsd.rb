@@ -1,6 +1,7 @@
 require 'atsd/client'
 require 'atsd/services/series_service'
 require 'atsd/services/properties_service'
+require 'atsd/services/messages_service'
 require 'atsd/services/alerts_service'
 require 'atsd/services/metrics_service'
 require 'atsd/services/entities_service'
@@ -46,6 +47,7 @@ module ATSD
 
     service :series_service, SeriesService
     service :properties_service, PropertiesService
+    service :messages_service, MessagesService
     service :alerts_service, AlertsService
     service :metrics_service, MetricsService
     service :entities_service, EntitiesService

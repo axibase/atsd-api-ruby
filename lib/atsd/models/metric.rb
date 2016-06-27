@@ -143,6 +143,7 @@ module ATSD
     FLOAT = 'FLOAT'
     LONG = 'LONG'
     DOUBLE = 'DOUBLE'
+    DECIMAL = 'DECIMAL'
   end
 
   module TimePrecision

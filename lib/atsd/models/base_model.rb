@@ -23,11 +23,16 @@ module ATSD
 
     # Converts time and value keys as t and v respectively
     # for the rest operates as a superclass method
-    def []=(key,value)
+    def []=(key, value)
       key = :v if key.to_s == 'value'
+      case value
+        when Time
+          value = value.iso8601
+        else
+          value = value
+      end
       super(key, value)
     end
-
   end
 end
 

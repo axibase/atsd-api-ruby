@@ -16,6 +16,20 @@ module ATSD
       query
     end
 
+    # Change acknowledgement status of the specified alerts.
+    #
+    # @param [Array<Hash, Alert>, Hash, Alert] alerts
+    # @return [self]
+    # @raise [APIError]
+    def update(alerts)
+      alerts = Utils.ensure_array(alerts).map do |alert|
+        { :id => id_for_alert(alert),
+          :acknowledged => acknowledged_for_alert(alert)}
+      end
+      return if alerts.count == 0
+      @client.alerts_update alerts
+    end
+
     # Delete alerts
     #
     # @param [Array<Hash, Alert>, Hash, Alert] alerts
@@ -51,6 +65,17 @@ module ATSD
           alert[:id] || alert['id']
         else
           alert.id
+      end
+    end
+
+    def acknowledged_for_alert(alert)
+      case alert
+        when Alert
+          alert.acknowledged
+        when Hash
+          alert[:acknowledged] || alert['acknowledged']
+        else
+          false
       end
     end
   end

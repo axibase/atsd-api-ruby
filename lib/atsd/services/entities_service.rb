@@ -79,6 +79,17 @@ module ATSD
       self
     end
 
+    # Returns an array of Entity Groups to which the entity belongs.
+    # Entity-group tags are included in the reponse.
+    #
+    # @param [Hash, Entity, String] entity entity or name
+    # @return [Array<EntityGroup>]
+    # @raise [APIError]
+    def entity_groups(entity)
+      result = @client.entities_entity_groups(name_for_entity entity)
+      result.map { |json| EntityGroup.new json }
+    end
+
     # Returns an array of property types for the entity.
     #
     # @param [String, Hash, Entity] entity

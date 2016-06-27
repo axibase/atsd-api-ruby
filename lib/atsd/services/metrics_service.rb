@@ -76,19 +76,16 @@ module ATSD
       self
     end
 
-    # Returns a list of unique series tags for the metric. The list is
-    # based on data stored on disk for the last 24 hours.
+    # Returns a list of series for the metric. Each series
+    # is identified with metric name, entity name and optional
+    # series tags
     #
     # @param [Hash, Metric, String] metric
-    # @param [Hash, Entity, String] entity
-    # @return [Array<Entity>]
+    # @return [Array<Series>]
     # @raise [APIError]
-    def entity_and_tags(metric, entity = nil)
-      metric = name_for_metric(metric)
-      params = {}
-      params[:entity] = name_for_entity(entity) if entity
-      result = @client.metrics_entity_and_tags(metric, params)
-      result.map { |json| Entity.new json }
+    def series(metric, params = {})
+      result = @client.metrics_series(name_for_metric(metric), params)
+      result.map { |json| Series.new json }
     end
 
     private

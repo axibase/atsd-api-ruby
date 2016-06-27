@@ -16,7 +16,7 @@ RSpec.describe ATSD::Client do
   context 'Middleware' do
     it 'throws APIError on error' do
       expect { $client.connection.get '404_not_found' }.to raise_exception ATSD::APIError do |error|
-        expect(error.status).to eq 500
+        expect(error.status).to eq 404
       end
     end
   end

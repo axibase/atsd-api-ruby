@@ -26,42 +26,53 @@ Alternatively, you can install atsd gem manually:
 
 ### Data API
 - Series
-    - Query
-    - Insert
-    - CSV Insert
+    - query
+    - insert
+    - csv insert
+    - url query
 - Properties
-    - Query
-    - Insert
-    - Batch
+    - query
+    - insert
+    - url query
+    - type query
+    - delete
+- Messages
+    - insert
+    - query
+    - statistics
 - Alerts 
-    - Query
-    - Update
-    - History Query
+    - query
+    - update
+    - delete
+    - history query
     
 ### Meta API
-- Metrics 
-    - List
-    - Get
-    - Create or replace
-    - Update
-    - Delete
-    - Entities and tags
-- Entities
-    - List
-    - Get
-    - Create or replace
-    - Update
-    - Delete
+- Metric 
+    - get
+    - list
+    - update
+    - create or replace
+    - delete
+    - series    
+- Entity
+    - get
+    - list
+    - update
+    - create or replace
+    - delete
+    - entity groups
+    - metrics
+    - property types
 - Entity Group 
-    - List
-    - Get
-    - Create or replace
-    - Update
-    - Delete
-    - Get entities
-    - Add entities
-    - Set entities
-    - Delete entities
+    - get
+    - list
+    - update
+    - create or replace
+    - delete
+    - get entities
+    - add entities
+    - replace entities
+    - delete entities
 
 ## Usage
 
@@ -102,6 +113,7 @@ The following services are currently implemented:
 
 - series_service, 
 - properties_service, 
+- messages_service, 
 - alerts_service, 
 - metrics_service,
 - entities_service,
@@ -223,8 +235,8 @@ series_service.insert(s)
 Inserting Series with Versions:
 
 ```ruby
-sample_1 = Sample.new :date => Time.parse("2015-11-17T17:00:00Z"), :value => 7, :version => {:status => "normal", :source => "gateway-1"}
-sample_2 = Sample.new :date => Time.parse("2015-11-17T18:00:00Z"), :value => 17, :version => {:status => "error", :source => "gateway-1"}
+sample_1 = Sample.new :date => "2015-11-17T17:00:00Z", :value => 7, :version => {:status => "normal", :source => "gateway-1"}
+sample_2 = Sample.new :date => "2015-11-17T18:00:00Z", :value => 17, :version => {:status => "error", :source => "gateway-1"}
 series = Series.new :entity => "sensor-1", :metric => "pressure", :data => [sample_1, sample_2]
 atsd.series_service.insert(series)
 ```
@@ -300,6 +312,42 @@ properties_service.url_query('nurswgvml007','network')
 
 
 ```
+#### Messages Service
+
+```ruby
+messages_service = atsd.messages_service
+# => #<ATSD::MessagesService:0x000000024156e8
+
+message = Message.new entity: "sensor-1", type: "logger", message: "Processing file"
+messages_service.insert(message)
+
+messages_service.query("sensor-1", :limit => 5, :endDate => "now", :interval => {:count => 5, :unit => "MINUTE"}).execute
+# => [{"entity"=>"sensor-1", "type"=>"logger", "source"=>"default", "severity"=>"NORMAL", "message"=>"Processing file", "date"=>"2016-06-27T14:13:17.580Z"}]
+
+messages_service.stats_query(:entity => "sensor-1", :startDate => "current_day", :endDate => "now")
+#  => [{"entity"=>"sensor-1", "metric"=>"message-count", "tags"=>{}, "type"=>"HISTORY", "aggregate"=>{"type"=>"COUNT", "interval"=>{"count"=>51363229, "unit"=>"MILLISECOND"}}, "data"=>[{"d"=>"2016-06-27T00:00:00.000Z", "v"=>1}]}]
+
+messages_service.stats_query(:entity => "sensor-1", :startDate => "current_day", :endDate => "now", :groupKeys => "type")
+#  => [{"entity"=>"sensor-1", "metric"=>"message-count", "tags"=>{"type"=>"backup"}, "type"=>"HISTORY", "aggregate"=>{"type"=>"COUNT", "interval"=>{"count"=>50071806, "unit"=>"MILLISECOND"}}, "data"=>[{"d"=>"2016-06-27T00:00:00.000Z", "v"=>4}]},
+#  {"entity"=>"sensor-1", "metric"=>"message-count", "tags"=>{"type"=>"logger"}, "type"=>"HISTORY", "aggregate"=>{"type"=>"COUNT", "interval"=>{"count"=>50071806, "unit"=>"MILLISECOND"}}, "data"=>[{"d"=>"2016-06-27T00:00:00.000Z", "v"=>1485}]},
+#  {"entity"=>"sensor-1", "metric"=>"message-count", "tags"=>{"type"=>"security"}, "type"=>"HISTORY", "aggregate"=>{"type"=>"COUNT", "interval"=>{"count"=>50071806, "unit"=>"MILLISECOND"}}, "data"=>[{"d"=>"2016-06-27T00:00:00.000Z", "v"=>272}]}]
+
+messages_service.stats_query(:entity => "sensor-1", :startDate => "current_day", :endDate => "now", "groupKeys" => "type", "aggregate" => {"type" => "COUNT", "period" => {"count" => 12, "unit" => "HOUR"}})
+# => [{"entity"=>"sensor-1", "metric"=>"message-count", "tags"=>{"type"=>"backup"}, "type"=>"HISTORY", "aggregate"=>{"type"=>"COUNT", "period"=>{"count"=>12, "unit"=>"HOUR"}}, "data"=>[{"d"=>"2016-06-27T00:00:00.000Z", "v"=>4}]},
+# {"entity"=>"sensor-1",
+#  "metric"=>"message-count",
+#  "tags"=>{"type"=>"logger"},
+#  "type"=>"HISTORY",
+#  "aggregate"=>{"type"=>"COUNT", "period"=>{"count"=>12, "unit"=>"HOUR"}},
+#  "data"=>[{"d"=>"2016-06-27T00:00:00.000Z", "v"=>1235}, {"d"=>"2016-06-27T12:00:00.000Z", "v"=>253}]},
+# {"entity"=>"sensor-1",
+#  "metric"=>"message-count",
+#  "tags"=>{"type"=>"security"},
+#  "type"=>"HISTORY",
+#  "aggregate"=>{"type"=>"COUNT", "period"=>{"count"=>12, "unit"=>"HOUR"}},
+#  "data"=>[{"d"=>"2016-06-27T00:00:00.000Z", "v"=>232}, {"d"=>"2016-06-27T12:00:00.000Z", "v"=>40}]}]
+
+```
 
 #### Alerts Service
 
@@ -346,14 +394,16 @@ metrics_service.list(:limit => 10)
 #     :persistent=>true,
 # ...
 
-metrics_service.entity_and_tags('df.disk_size')
-# => [{:entity=>"server-1", :tags=>{"file_system"=>"/dev/sda1", "mount_point"=>"/"}, :last_insert_time=>1428328928000},
-#  {:entity=>"server-1", :tags=>{"file_system"=>"none", "mount_point"=>"/sys/fs/cgroup"}, :last_insert_time=>1428328928000},
-#  {:entity=>"server-1", :tags=>{"file_system"=>"none", "mount_point"=>"/run/lock"}, :last_insert_time=>1428328928000},
-#  {:entity=>"server-1", :tags=>{"file_system"=>"none", "mount_point"=>"/run/shm"}, :last_insert_time=>1428328928000},
-#  {:entity=>"server-2", :tags=>{"file_system"=>"none", "mount_point"=>"/run/user"}, :last_insert_time=>1428328928000},
-#  {:entity=>"server-2", :tags=>{"file_system"=>"udev", "mount_point"=>"/dev"}, :last_insert_time=>1428328928000},
-#  {:entity=>"server-2", :tags=>{"file_system"=>"tmpfs", "mount_point"=>"/run"}, :last_insert_time=>1428328928000}]
+metrics_service.series("disk_used", "entity" => "nurswgvml007")
+# => => [{"metric"=>"disk_used", "entity"=>"nurswgvml007", "tags"=>{"file_system"=>"/dev/mapper/vg_nurswgvml007-lv_root", "mount_point"=>"/"}, "lastInsertDate"=>"2016-06-21T11:47:17.000Z"},
+      {"metric"=>"disk_used", "entity"=>"nurswgvml007", "tags"=>{"file_system"=>"10.102.0.2:/home/store/share", "mount_point"=>"/mnt/share"}, "lastInsertDate"=>"2015-12-25T14:09:49.000Z"},
+      {"metric"=>"disk_used", "entity"=>"nurswgvml007", "tags"=>{"file_system"=>"//u113452.your-backup.de/backup", "mount_point"=>"/mnt/u113452"}, "lastInsertDate"=>"2016-06-21T11:47:17.000Z"}]
+
+
+metrics_service.series("disk_used", "entity" => "nurswgvml007", "tags.mount_point" => "/")
+# => [{"metric"=>"disk_used", "entity"=>"nurswgvml007", 
+    "tags"=>{"file_system"=>"/dev/mapper/vg_nurswgvml007-lv_root", "mount_point"=>"/"}, 
+    "lastInsertDate"=>"2016-06-21T11:36:16.000Z"}]
 
 metric = Metric.new
 # => {}
@@ -401,6 +451,12 @@ entities_service.list
 # => [{:name=>"atsd", :enabled=>true, :last_insert_time=>1428304482631},
 #  {:name=>"test_entity", :enabled=>true, :last_insert_time=>1000000000},
 #  {:name=>"sensor-1", :enabled=>true, :last_insert_time=>1428304489000}]
+
+entities_service.entity_groups("nurswgvml007")
+# => [{"name"=>"VMware VMs", "tags"=>{}},
+# {"name"=>"java-loggers", "tags"=>{}},
+# {"name"=>"java-virtual-machine", "tags"=>{}},
+# {"name"=>"jetty-web-server", "tags"=>{}},
 ```
 #### Entity Groups Service 
 
@@ -413,12 +469,19 @@ entity_groups_service.list
 # => [{:name=>"group1"}]
 
 entity_groups_service.add_entities('group1', [{name:'entity1'},{name:'entity2'}])
-entity_groups_service.entities(entity_groups_service.get('group1'))
+entity_groups_service.get_entities(entity_groups_service.get('group1'))
 # => [{:name=>"entity1", :enabled=>true}, {:name=>"entity2", :enabled=>true}]
 
-entity_groups_service.delete_all_entities('group1')
-entity_groups_service.entities('group1')
+entity_groups_service.delete_entities('group1', [{name:'entity1'},{name:'entity2'}])
+entity_groups_service.get_entities('group1')
 # => []
+
+entity_groups_service.get_entities("java-loggers", :limit => 3, :timeFormat => "iso")
+# => [{"name"=>"-last-https-test-drive", "enabled"=>true, "lastInsertDate"=>"2016-05-19T11:22:05.710Z"},
+# {"name"=>"12364bc005b2", "enabled"=>true, "lastInsertDate"=>"2016-05-19T22:26:50.432Z"},
+# {"name"=>"1d99e87f5a89", "enabled"=>true, "lastInsertDate"=>"2016-04-18T16:53:51.563Z"}]
+
+
 ```
 
 ### Errors

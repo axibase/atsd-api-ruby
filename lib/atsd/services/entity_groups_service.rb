@@ -90,7 +90,7 @@ module ATSD
     #   Limit response to first N entities, ordered by name.
     # @return [Array<Entity>]
     # @raise [APIError]
-    def entities(entity_group, parameters = {})
+    def get_entities(entity_group, parameters = {})
       entity_group = name_for_entity_group(entity_group)
       parameters = parameters.camelize_keys
       @client.entity_groups_get_entities(entity_group, parameters).map do |json|
@@ -154,17 +154,6 @@ module ATSD
         e = e.to_request_hash
       end
       @client.entity_groups_delete_entities(entity_group, entities)
-      self
-    end
-
-    # Delete all entities from entity group.
-    #
-    # @param [String, EntityGroup, Hash] entity_group
-    # @return [self]
-    # @raise [APIError]
-    def delete_all_entities(entity_group)
-      entity_group = name_for_entity_group(entity_group)
-      @client.entity_groups_delete_all_entities(entity_group)
       self
     end
 
