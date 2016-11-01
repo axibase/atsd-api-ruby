@@ -2,7 +2,7 @@
 
 The ATSD Client for Ruby enables Ruby developers 
 to easily read and write statistics and metadata 
-from Axibase Time Series Database.
+from the Axibase Time Series Database.
 
 API documentation: https://github.com/axibase/atsd-docs/blob/master/api/README.md
 
@@ -89,7 +89,7 @@ atsd = ATSD.new :url => "#{API_ENDPOINT}/api/v1",
 ### Configuration
 
 #### Authorization
-In order to use the API you need to specify `:basic_auth` option in one
+In order to use the API, you need to specify the `:basic_auth` option in one
 of the following ways:
 
 - `"login:password"`
@@ -98,31 +98,31 @@ of the following ways:
 #### SSL 
 Connecting to ATSD via SSL requires extra configuration if your ATSD instance runs on a self-signed SSL certificate. 
 See [Faraday Wiki](https://github.com/lostisland/faraday/wiki/Setting-up-SSL-certificates) on how to setup SSL. 
-As a workaround you can specify `ssl: { verify: false }` option in the client.
+As a workaround you can specify the `ssl: { verify: false }` option in the client.
 
 
 #### Logging
 
 - To use a custom logger specify it in the `:logger` option. 
-- To use the default STDOUT logger set `:logger` option to `true`. 
+- To use the default STDOUT logger set the `:logger` option to `true`. 
 
 ### Services
 Once you instantiated the ATSD class, you can use different services. 
-Each service represents a particular object type in Axibase Time Series Database.
+Each service represents a particular object type in the Axibase Time Series Database.
 The following services are currently implemented: 
 
-- series_service, 
-- properties_service, 
-- messages_service, 
-- alerts_service, 
-- metrics_service,
-- entities_service,
-- entity_groups_service.
+- `series_service`
+- `properties_service`
+- `messages_service`
+- `alerts_service`
+- `metrics_service`
+- `entities_service`
+- `entity_groups_service`
 
 #### Query builders
 Query objects created by services provide convenient methods to build complex queries.
-They support method chaining and automatically translate snake_styled properties 
-to CamelCase used in the API. For example, `end_time` property in ruby code becomes `endTime` in json request.
+They support method chaining and automatically translate `snake_styled` properties 
+to CamelCase used in the API. For example, the `end_time` property in ruby code becomes `endTime` in a json request.
 
 #### Series Service
 
@@ -176,7 +176,7 @@ query.execute
 #   :data=>[{"t"=>1428300000000, "v"=>23.57}]}]
 ```
 
-Query with Versions:
+Query with versions:
 
 ```ruby
 query = atsd.series_service.query("sensor-2", "pressure", Time.parse("2015-11-17T12:00:00Z"), Time.parse("2015-11-17T19:00:00Z"), {:versioned => true})
@@ -211,7 +211,7 @@ puts output
    2015-11-17T18:00:00Z,            17.0,      2015-11-19T11:32:35Z,           gateway-1,               error
 ```
 
-Inserting series:
+Inserting Series:
 
 ```ruby
 s = Series.new
@@ -263,7 +263,7 @@ Inserting CSV data from file:
 series_service.csv_insert('sensor-1', File.read('/path/to/data.csv'), { :user => 'beta' })
 ```
 
-Retrieving series values CSV and JSON format:
+Retrieving series values in CSV and JSON format:
 
 ```ruby
 series_service.url_query('json','nurswgvml007','cpu_busy', :startDate => 'previous_minute', :endDate => 'now')
@@ -485,15 +485,15 @@ entity_groups_service.get_entities("java-loggers", :limit => 3, :timeFormat => "
 ```
 
 ### Errors
-If the request wasn't completed successfully then an `ATSD::APIError` exception is raised. You can get a message and HTTP status code using the `message` and `status`
+If the request wasn't completed successfully, then an `ATSD::APIError` exception is raised. You can get a message and HTTP status code using the `message` and `status`
 fields.
 
 ### Low-level API Client
-Gem also provides an `ATSD::Client` class. It is a simple API wrapper 
+Gem also provides an `ATSD::Client` class. It is a simple API wrapper, 
 which uses [Faraday](https://github.com/lostisland/faraday) to handle HTTP-related routines. 
 All services are built on top of it. 
 
-You can access `Faraday::Connection` object using the `connection` field of the client if necessary.
+You can access the `Faraday::Connection` object using the `connection` field of the client if necessary.
 
 ## Development
 
