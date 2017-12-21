@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'pry', '~> 0.10'
   spec.add_development_dependency 'rspec', '~> 3.2'
   spec.add_development_dependency 'vcr', '~> 2.9'
-  spec.add_development_dependency 'yard', '~> 0.8'
+  spec.add_development_dependency 'yard', '~> 0.9.11'
   spec.add_development_dependency 'redcarpet'
   spec.add_development_dependency 'geminabox'
   spec.add_development_dependency 'multi_json'
