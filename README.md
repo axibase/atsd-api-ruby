@@ -1,14 +1,142 @@
-# Axibase Time Series Database Client for Ruby
+# ATSD Ruby Client
 
-The ATSD Client for Ruby enables Ruby developers 
-to easily read and write statistics and metadata 
-from the Axibase Time Series Database.
+![](./images/axibase-and-ruby.png)
 
-API documentation: https://github.com/axibase/atsd-docs/blob/master/api/README.md
+## Table of Contents
 
-## Installation
+* [Overview](#overview)
+* [Implemented Methods](#implemented-methods)
+* [Installing Ruby Client](#installing-ruby-client)
+* [Usage](#usage)
+* [Development](#development)
 
-Add this line to your application's Gemfile:
+## Overview
+
+**ATSD Ruby Client** enables Ruby developers to read and write statistics and metadata from [Axibase Time Series Database](https://axibase.com/docs/atsd/).
+
+For more information about the ATSD API, refer to [ATSD API Documentation](https://axibase.com/docs/atsd/api/).
+    
+## Implemented Methods
+
+The **ATSD Client for Ruby** provides an easy-to-use client for interfacing with **ATSD** metadata and data REST API services.
+It has the ability to read and write time series values, statistics, properties, alerts, and messages.
+
+### [REST API](https://axibase.com/docs/atsd/api/data/)
+
+The REST API allows you to insert and retrieve data from the database using HTTP requests.
+
+#### Series
+
+* [Series: `query`](https://axibase.com/docs/atsd/api/data/series/query.html)<br>
+  Retrieves time series objects for the specified metric, entity, tags, and date range. Applies common time series transformations including aggregation, interpolation, downsampling etc.
+
+* [Series: `insert`](https://axibase.com/docs/atsd/api/data/series/insert.html)<br>
+  Inserts a timestamped array of numbers for a given series identified by metric, entity, and series tags.
+
+* [Series: `insert CSV`](https://axibase.com/docs/atsd/api/data/series/csv-insert.html)<br>
+  Inserts series values for the specified entity and series tags in CSV format.
+
+#### Properties
+
+* [Properties: `query`](https://axibase.com/docs/atsd/api/data/properties/query.html)<br>
+  Retrieves property records for the specified filters including type, entity, key, and time range.
+
+* [Properties: `get types`](https://axibase.com/docs/atsd/api/data/properties/list-types.html)<br>
+  Returns an array of property types for the entity.
+
+* [Properties: `insert`](https://axibase.com/docs/atsd/api/data/properties/insert.html)<br>
+  Inserts an array of properties.
+
+* [Properties: `delete`](https://axibase.com/docs/atsd/api/data/properties/delete.html)<br>
+  Deletes property records that match specified filters.
+
+#### Messages
+
+* [Messages: `query`](https://axibase.com/docs/atsd/api/data/messages/query.html)<br>
+  Retrieves message records for the specified filters.
+
+* [Messages: `insert`](https://axibase.com/docs/atsd/api/data/messages/insert.html)<br>
+  Inserts messages.
+
+#### Alerts
+
+* [Alerts: `query`](https://axibase.com/docs/atsd/api/data/alerts/query.html)<br>
+  Retrieves open alerts for specified filters.
+
+* [Alerts: `update`](https://axibase.com/docs/atsd/api/data/alerts/update.html)
+
+* [Alerts: `history query`](https://axibase.com/docs/atsd/api/data/alerts/history-query.html)<br>
+  Retrieves a list of closed alerts matching specified fields.
+
+### [Meta API](https://axibase.com/docs/atsd/api/meta/)
+
+The Meta API allows you to query metadata for metrics, entities, and entity groups in the database.
+
+#### Metrics
+
+* [Metric: `get`](https://axibase.com/docs/atsd/api/meta/metric/get.html)<br>
+  Retrieves properties and tags for the specified metric.
+
+* [Metric: `update`](https://axibase.com/docs/atsd/api/meta/metric/update.html)<br>
+  Updates fields and tags of the specified metric.
+
+* [Metric: `create or replace`](https://axibase.com/docs/atsd/api/meta/metric/create-or-replace.html)<br>
+  Creates a metric with specified fields and tags or replaces the fields and tags of an existing metric.
+
+* [Metric: `delete`](https://axibase.com/docs/atsd/api/meta/metric/delete.html)<br>
+  Deletes the specified metric.
+
+* [Metric: `series tags`](https://axibase.com/docs/atsd/api/meta/metric/series-tags.html)<br>
+  Retrieves unique series tags values for the specified metric.
+
+#### Entities
+
+* [Entity: `get`](https://axibase.com/docs/atsd/api/meta/entity/get.html)<br>
+  Retrieves fields and tags describing the specified entity.
+
+* [Entity: `update`](https://axibase.com/docs/atsd/api/meta/entity/update.html)<br>
+  Updates fields and tags of the specified entity.
+
+* [Entity: `create or replace`](https://axibase.com/docs/atsd/api/meta/entity/create-or-replace.html)<br>
+  Creates an entity with specified fields and tags or replaces the fields and tags of an existing entity.
+
+* [Entity: `delete`](https://axibase.com/docs/atsd/api/meta/entity/delete.html)<br>
+  Deletes the specified entity and removes the entity from any entity groups it belongs to.
+
+* [Entity: `metrics`](https://axibase.com/docs/atsd/api/meta/entity/metrics.html)<br>
+  Retrieves a list of metrics collected by the entity.
+  
+#### Entity Groups
+
+* [Entity Group: `get`](https://axibase.com/docs/atsd/api/meta/entity-group/get.html)<br>
+  Retrieves information about the specified entity group including its name and user-defined tags.
+
+* [Entity Group: `update`](https://axibase.com/docs/atsd/api/meta/entity-group/update.html)<br>
+  Updates fields and tags of the specified entity group.
+
+* [Entity Group: `create or replace`](https://axibase.com/docs/atsd/api/meta/entity-group/create-or-replace.html)<br>
+  Creates an entity group with specified fields and tags or replaces the fields and tags of an existing entity group.
+
+* [Entity Group: `delete`](https://axibase.com/docs/atsd/api/meta/entity-group/delete.html)<br>
+  Deletes the specified entity group.
+
+* [Entity Group: `get entities`](https://axibase.com/docs/atsd/api/meta/entity-group/get-entities.html)<br>
+  Retrieves a list of entities that are members of the specified entity group and are matching the specified filter conditions.
+
+* [Entity Group: `add entities`](https://axibase.com/docs/atsd/api/meta/entity-group/get-entities.html)<br>
+  Retrieves a list of entities that are members of the specified entity group and are matching the specified filter conditions.
+
+* [Entity Group: `set entities`](https://axibase.com/docs/atsd/api/meta/entity-group/set-entities.html)<br>
+  Sets members of the entity group from the specified entity list.
+
+* [Entity Group: `delete entities`](https://axibase.com/docs/atsd/api/meta/entity-group/delete-entities.html)<br>
+  Removes the specified members from the entity group.
+
+---
+
+## Installing Ruby Client
+
+Append this line to the Gemfile of the target application:
 
 ```ruby
 gem 'atsd'
@@ -16,63 +144,15 @@ gem 'atsd'
 
 Then execute:
 
-    $ bundle
+```sh
+bundle
+```
 
-Alternatively, you can install atsd gem manually:
+Alternatively, install the `atsd` gem manually:
 
-    $ gem install atsd
-    
-## Implemented Methods
-
-### Data API
-- Series
-    - query
-    - insert
-    - csv insert
-    - url query
-- Properties
-    - query
-    - insert
-    - url query
-    - type query
-    - delete
-- Messages
-    - insert
-    - query
-    - statistics
-- Alerts 
-    - query
-    - update
-    - delete
-    - history query
-    
-### Meta API
-- Metric 
-    - get
-    - list
-    - update
-    - create or replace
-    - delete
-    - series    
-- Entity
-    - get
-    - list
-    - update
-    - create or replace
-    - delete
-    - entity groups
-    - metrics
-    - property types
-- Entity Group 
-    - get
-    - list
-    - update
-    - create or replace
-    - delete
-    - get entities
-    - add entities
-    - replace entities
-    - delete entities
+```sh
+gem install atsd
+```
 
 ## Usage
 
@@ -89,40 +169,46 @@ atsd = ATSD.new :url => "#{API_ENDPOINT}/api/v1",
 ### Configuration
 
 #### Authorization
-In order to use the API, you need to specify the `:basic_auth` option in one
-of the following ways:
 
-- `"login:password"`
-- `{ :login => 'login', :password => 'password' }`
+In order to use the API, specify the `:basic_auth` option with either of these options:
 
-#### SSL 
-Connecting to ATSD via SSL requires extra configuration if your ATSD instance runs on a self-signed SSL certificate. 
-See [Faraday Wiki](https://github.com/lostisland/faraday/wiki/Setting-up-SSL-certificates) on how to setup SSL. 
-As a workaround you can specify the `ssl: { verify: false }` option in the client.
+* `"login:password"`
+* `{ :login => 'login', :password => 'password' }`
 
+#### SSL
+
+Connecting to ATSD via SSL requires extra configuration if your ATSD instance runs on a self-signed SSL certificate.
+
+Refer to one of the following tutorials to install a specific kind of SSL certificate to your ATSD instance:
+
+* [Self-Signed Certificate](https://axibase.com/docs/atsd/administration/ssl-self-signed.html)
+* [CA-Signed Certificate](https://axibase.com/docs/atsd/administration/ssl-ca-signed.html)
+* [`Let's Encrypt` Certificate](https://axibase.com/docs/atsd/administration/ssl-lets-encrypt.html)
+
+As a workaround, specify the `ssl: { verify: false }` option in the client.
 
 #### Logging
 
-- To use a custom logger specify it in the `:logger` option. 
-- To use the default STDOUT logger set the `:logger` option to `true`. 
+* To use a custom logger specify the logger in the `:logger` option.
+* To use the default STDOUT logger set the `:logger` option to `true`.
 
 ### Services
-Once you instantiated the ATSD class, you can use different services. 
-Each service represents a particular object type in the Axibase Time Series Database.
-The following services are currently implemented: 
 
-- `series_service`
-- `properties_service`
-- `messages_service`
-- `alerts_service`
-- `metrics_service`
-- `entities_service`
-- `entity_groups_service`
+Once you have instantiated the `ATSD` class, you can access each of the available services. Each service represents a particular object type in ATSD.
+
+The following services are available:
+
+* `series_service`
+* `properties_service`
+* `messages_service`
+* `alerts_service`
+* `metrics_service`
+* `entities_service`
+* `entity_groups_service`
 
 #### Query builders
-Query objects created by services provide convenient methods to build complex queries.
-They support method chaining and automatically translate `snake_styled` properties 
-to CamelCase used in the API. For example, the `end_time` property in ruby code becomes `endTime` in a json request.
+
+Query objects created by services provide convenient methods to build complex queries. These objects support method chaining and automatically translate `snake_styled` properties to CamelCase, used by the API. For example, the `end_time` property in ruby code becomes `endTime` in a JSON request.
 
 #### Series Service
 
@@ -241,10 +327,11 @@ series = Series.new :entity => "sensor-1", :metric => "pressure", :data => [samp
 atsd.series_service.insert(series)
 ```
 
-**CSV Insert**
+**CSV Insert**:
 
-data.csv contents:
-```plain
+`data.csv` contents:
+
+```csv
 time, pressure, temperature
 1447228800000, 39,    29.23
 1447315200000, 32,    29.24
@@ -259,6 +346,7 @@ time, pressure, temperature
 ```
 
 Inserting CSV data from file:
+
 ```ruby
 series_service.csv_insert('sensor-1', File.read('/path/to/data.csv'), { :user => 'beta' })
 ```
@@ -309,9 +397,8 @@ properties_service.type_query('sensor-1')
 properties_service.url_query('nurswgvml007','network')
 # => [{"type"=>"network", "entity"=>"nurswgvml007", "key"=>{"id"=>"eth1"}, "tags"=>{"network_i/o.read-kb/s"=>"261.9", "network_i/o.write-kb/s"=>"209.9", "network_packets.read/s"=>"354.4", "network_packets.write/s"=>"339.4"}, "timestamp"=>1464680627000},
 # {"type"=>"network", "entity"=>"nurswgvml007", "key"=>{"id"=>"lo"}, "tags"=>{"network_i/o.read-kb/s"=>"2.7", "network_i/o.write-kb/s"=>"2.7", "network_packets.read/s"=>"6.7", "network_packets.write/s"=>"6.7"}, "timestamp"=>1464680627000}]
-
-
 ```
+
 #### Messages Service
 
 ```ruby
@@ -370,6 +457,7 @@ alerts_service.query(:entity => "sensor-1", :metrics => ["meminfo.active"], :sta
 #  :v=>21.9,
 #  "id"=>8}]
 ```
+
 #### Metrics Service
 
 ```ruby
@@ -458,6 +546,7 @@ entities_service.entity_groups("nurswgvml007")
 # {"name"=>"java-virtual-machine", "tags"=>{}},
 # {"name"=>"jetty-web-server", "tags"=>{}},
 ```
+
 #### Entity Groups Service 
 
 ```ruby
@@ -485,19 +574,17 @@ entity_groups_service.get_entities("java-loggers", :limit => 3, :timeFormat => "
 ```
 
 ### Errors
-If the request wasn't completed successfully, then an `ATSD::APIError` exception is raised. You can get a message and HTTP status code using the `message` and `status`
-fields.
+
+If a request is unsuccessful an `ATSD::APIError` exception is raised. Retrieve message and HTTP status code using the `message` and `status` fields.
 
 ### Low-level API Client
-Gem also provides an `ATSD::Client` class. It is a simple API wrapper, 
-which uses [Faraday](https://github.com/lostisland/faraday) to handle HTTP-related routines. 
-All services are built on top of it. 
 
-You can access the `Faraday::Connection` object using the `connection` field of the client if necessary.
+The `ATSD` gem also provides an `ATSD::Client` class. This class is a simple API wrapper, which uses [Faraday](https://github.com/lostisland/faraday) to handle HTTP-related routines. All services are built on top of this library.
+
+Access the `Faraday::Connection` object using the client `connection` field if necessary.
 
 ## Development
 
-After checking out the repository, run `bin/setup` to install dependencies. 
-Then run `bin/console` for an interactive prompt that will allow you to experiment with the client.
+Run `bin/setup` to install dependencies. Then run `bin/console` for an interactive prompt that will allow you to experiment with the client.
 
-To install this gem onto your local machine, run `bundle exec rake install`. 
+To install this gem to a local machine, run `bundle exec rake install`.
